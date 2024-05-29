@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/spi/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="carbooking-helidon" />
+      </profile>
+      <profile name="Annotation profile for SmallRye LLM: Parent" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="azure-openai" />
+        <module name="core" />
+        <module name="spi" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="azure-openai (1) (io.smallrye.llm.extensions)" target="11" />
+      <module name="extensions.main" target="11" />
+      <module name="extensions.test" target="21" />
+      <module name="spi.main" target="11" />
+      <module name="spi.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

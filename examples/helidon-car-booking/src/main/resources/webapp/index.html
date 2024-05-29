@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Chat Room</title>
+        <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <!-- <link href="favicon.ico" rel="icon" />
+        <link href="favicon.ico" rel="shortcut icon" /> -->
+    </head>
+    <body>
+        <section id="appIntro">
+            <div id="titleSection">
+                <h2 id="appTitle">Chat Room implemented with Helidon</h2>
+                <div class="line"></div>
+                <!-- <div class="headerImage"></div> -->
+            </div>
+            <div class="msSection" id="messages">
+                <div class="headerRow">
+                    <div class="headerIcon">
+                      <img src="img/sysProps.svg"/>
+                    </div>
+                    <div class="headerTitle" id="sysPropTitle">
+                      <h2>Conversation with an AI Agent</h2>
+                    </div>
+                </div>
+                <div class="sectionContent">
+                    <table id="chatTable">
+                        <tbody id="messagesTableBody">
+                            <tr>
+                                <th width="60%">Chat Messages</th>
+                                <th width="10%">Time</th>
+                                <th></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div class="my_message_container">
+            <label id="myMsgLabel">My message:</label>
+            <input type="text" size="50" id="myMessage"/>
+            <button id="sendButton" type="button" onclick="sendMessage()">Send</button>
+        </div>
+        <script src="chatroom.js"></script>
+    </body>
+</html>

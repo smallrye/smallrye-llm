@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="org.digma.intellij.plugin.ui.jcef.persistence.JCEFProjectPersistence">
+    <state>
+      <entry>
+        <PersistenceKey key="assetsFilters" />
+        <PersistenceValue filter="{&quot;services&quot;:[],&quot;operations&quot;:[],&quot;insights&quot;:[]}" />
+      </entry>
+    </state>
+  </component>
+</project>
