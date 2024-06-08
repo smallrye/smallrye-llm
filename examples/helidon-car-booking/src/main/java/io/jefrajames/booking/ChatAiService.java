@@ -1,6 +1,5 @@
 package io.jefrajames.booking;
 
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import dev.langchain4j.service.SystemMessage;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
@@ -12,7 +11,6 @@ import java.time.temporal.ChronoUnit;
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(
         tools = BookingService.class,
-        model = AzureOpenAiChatModel.class,
         chatMemoryMaxMessages = 10
 )
 public interface ChatAiService {

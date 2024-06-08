@@ -7,13 +7,13 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>azure-openai</artifactId>
+    <artifactId>langchain4j-azure-openai</artifactId>
     <name>SmallRye LLM: Build Compatible Extensions - Azure OpenAI </name>
 
     <dependencies>
         <dependency>
             <groupId>io.smallrye.llm.bce.extensions</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>langchain4j-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

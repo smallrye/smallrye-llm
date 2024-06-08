@@ -9,6 +9,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="helidon-car-booking" />
         <module name="carbooking-helidon" />
       </profile>
       <profile name="Annotation profile for SmallRye LLM: Parent" enabled="true">
@@ -16,9 +17,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
-        <module name="azure-openai" />
-        <module name="core" />
         <module name="spi" />
+        <module name="langchain4j-core" />
+        <module name="langchain4j-azure-openai" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

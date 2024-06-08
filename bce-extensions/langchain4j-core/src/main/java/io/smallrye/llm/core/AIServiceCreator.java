@@ -20,9 +20,8 @@ public class AIServiceCreator implements SyntheticBeanCreator<Object> {
         Class<?> interfaceClass = params.get(SmallryeLLMBuildCompatibleExtension.PARAM_INTERFACE_CLASS, Class.class);
         RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
 
-        Class<? extends ChatLanguageModel> chatLanguageModelClass = annotation.model();
         CDI<Object> cdi = CDI.current();
-        ChatLanguageModel chatLanguageModel = cdi.select(chatLanguageModelClass).get();
+        ChatLanguageModel chatLanguageModel = cdi.select(ChatLanguageModel.class).get();
 
         try {
             AiServices<?> aiServices = AiServices.builder(interfaceClass)
