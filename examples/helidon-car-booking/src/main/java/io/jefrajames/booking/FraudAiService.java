@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(
-        model = AzureOpenAiChatModel.class,
         chatMemoryMaxMessages = 5
 )
 public interface FraudAiService {

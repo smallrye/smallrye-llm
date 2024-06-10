@@ -1,12 +1,14 @@
 package io.smallrye.llm.core;
 
-import io.smallrye.llm.spi.RegisterAIService;
-import jakarta.enterprise.inject.build.compatible.spi.*;
-import jakarta.enterprise.lang.model.declarations.ClassInfo;
-import org.jboss.logging.Logger;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.enterprise.inject.build.compatible.spi.*;
+import jakarta.enterprise.lang.model.declarations.ClassInfo;
+
+import org.jboss.logging.Logger;
+
+import io.smallrye.llm.spi.RegisterAIService;
 
 public class SmallryeLLMBuildCompatibleExtension implements BuildCompatibleExtension {
     private static final Logger LOGGER = Logger.getLogger(SmallryeLLMBuildCompatibleExtension.class);
@@ -31,7 +33,6 @@ public class SmallryeLLMBuildCompatibleExtension implements BuildCompatibleExten
         detectedAIServicesDeclaredInterfaces.add(classInfo.name());
     }
 
-
     @SuppressWarnings({ "unused", "unchecked" })
     @Synthesis
     public void synthesis(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
@@ -41,7 +42,6 @@ public class SmallryeLLMBuildCompatibleExtension implements BuildCompatibleExten
             LOGGER.info("Create synthetic " + interfaceName);
             Class<?> interfaceClass = Class.forName(interfaceName);
             RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
-
 
             SyntheticBeanBuilder<Object> builder = (SyntheticBeanBuilder<Object>) syntheticComponents.addBean(interfaceClass);
 

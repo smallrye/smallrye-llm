@@ -6,7 +6,7 @@ import dev.langchain4j.service.V;
 import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(model = DummyChatLanguageModel.class)
+@RegisterAIService
 public interface MyDummyAIService {
     @SystemMessage("sysmsg")
     @UserMessage("usrmsg")
