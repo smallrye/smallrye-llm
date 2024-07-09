@@ -22,10 +22,11 @@ public class AIServiceCreator implements SyntheticBeanCreator<Object> {
 
         CDI<Object> cdi = CDI.current();
         ChatLanguageModel chatLanguageModel = cdi.select(ChatLanguageModel.class).get();
-
+        ContentRetriever contentRetriever = cdi.select(ContentRetriever.class).get();
         try {
             AiServices<?> aiServices = AiServices.builder(interfaceClass)
                     .chatLanguageModel(chatLanguageModel)
+                    .contentRetriever(contentRetriever)
                     .tools(Stream.of(annotation.tools())
                             .map(c -> cdi.select(c).get())
                             .collect(Collectors.toList()))

@@ -23,6 +23,7 @@ public class SmallryeLLMBuildCompatibleExtension implements BuildCompatibleExten
     @Discovery
     public void registerCDIComponents(ScannedClasses scannedClasses) {
         LOGGER.info("Core ext");
+        scannedClasses.add(ContentRetrieverProducer.class.getName());
     }
 
     @SuppressWarnings("unused")

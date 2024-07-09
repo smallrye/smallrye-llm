@@ -48,7 +48,7 @@
         <version.weld>5.1.0.Final</version.weld>
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
         <microprofile-config-api.version>3.0.3</microprofile-config-api.version>
-        <dev.langchain4j.version>0.30.0</dev.langchain4j.version>
+        <dev.langchain4j.version>0.32.0</dev.langchain4j.version>
 
         <!-- Sonar settings -->
         <sonar.projectName>SmallRye LLM</sonar.projectName>
