@@ -40,6 +40,8 @@ public class ExtensionTest {
             MyDummyApplicationScopedAIService.class,
             RequestContextCaller.class,
             DummyChatLanguageModel.class,
+            DummyEmbeddingStore.class,
+            DummyEmbeddingModel.class,
             ConfigExtension.class)
             .build();
 

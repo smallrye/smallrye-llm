@@ -14,6 +14,10 @@ public class AzureOpenAPIExtension implements BuildCompatibleExtension {
     public void registerCDIComponents(ScannedClasses scannedClasses) {
         LOGGER.info("Add AzureOpenAiChatModelProducer");
         scannedClasses.add(AzureOpenAiChatModelProducer.class.getName());
+        LOGGER.info("Add AzureOpenAiEmbeddingModelProducer");
+        scannedClasses.add(AzureOpenAiEmbeddingModelProducer.class.getName());
+        LOGGER.info("Add InMemoryEmbeddingStoreProducer");
+        scannedClasses.add(InMemoryEmbeddingStoreProducer.class.getName());
     }
 
 }
