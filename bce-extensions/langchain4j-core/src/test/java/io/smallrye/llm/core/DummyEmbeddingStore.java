@@ -3,9 +3,12 @@ package io.smallrye.llm.core;
 import java.util.Collections;
 import java.util.List;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 
+@ApplicationScoped
 public class DummyEmbeddingStore implements EmbeddingStore {
 
     @Override

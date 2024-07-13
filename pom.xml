@@ -77,7 +77,6 @@
     <modules>
         <module>examples</module>
         <module>bce-extensions</module>
-        <module>spi</module>
     </modules>
 
 

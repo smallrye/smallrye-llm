@@ -14,7 +14,9 @@ import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(
-        chatMemoryMaxMessages = 5
+        chatMemoryMaxMessages = 5,
+
+        chatLanguageModelName = "chat-model"
 )
 public interface FraudAiService {
 

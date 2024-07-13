@@ -1,4 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="jakarta.enterprise.inject.build.compatible.spi.Synthesis" />
+    </list>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -10,6 +16,8 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/azure-openai/pom.xml" />
+        <option value="$PROJECT_DIR$/bce-extensions/langchain4j-azure-openai/pom.xml" />
+        <option value="$PROJECT_DIR$/spi/pom.xml" />
       </set>
     </option>
   </component>

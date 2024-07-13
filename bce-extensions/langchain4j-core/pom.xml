@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.smallrye.llm.spi</groupId>
-            <artifactId>spi</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.microprofile.config</groupId>
             <artifactId>microprofile-config-api</artifactId>
         </dependency>
