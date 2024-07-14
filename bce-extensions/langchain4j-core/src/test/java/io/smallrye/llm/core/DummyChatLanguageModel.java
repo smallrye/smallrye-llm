@@ -11,10 +11,12 @@ import dev.langchain4j.model.output.Response;
 public class DummyChatLanguageModel implements ChatLanguageModel {
     private String apiKey;
     private EmbeddingModel embeddingModel;
+    private EmbeddingModel embeddingModel2;
 
-    public DummyChatLanguageModel(String apiKey, EmbeddingModel embeddingModel) {
+    public DummyChatLanguageModel(String apiKey, EmbeddingModel embeddingModel, EmbeddingModel embeddingModel2) {
         this.apiKey = apiKey;
         this.embeddingModel = embeddingModel;
+        this.embeddingModel2 = embeddingModel2;
     }
 
     public String getApiKey() {
@@ -23,6 +25,10 @@ public class DummyChatLanguageModel implements ChatLanguageModel {
 
     public EmbeddingModel getEmbeddingModel() {
         return embeddingModel;
+    }
+
+    public EmbeddingModel getEmbeddingModel2() {
+        return embeddingModel2;
     }
 
     @Override
@@ -37,9 +43,14 @@ public class DummyChatLanguageModel implements ChatLanguageModel {
     public static class Builder {
         private String apiKey;
         private EmbeddingModel embeddingModel;
+        private EmbeddingModel embeddingModel2;
 
         public DummyChatLanguageModel build() {
-            return new DummyChatLanguageModel(this.apiKey, this.embeddingModel);
+            return new DummyChatLanguageModel(this.apiKey, this.embeddingModel, this.embeddingModel2);
+        }
+
+        public void embeddingModel2(EmbeddingModel embeddingModel) {
+            this.embeddingModel2 = embeddingModel;
         }
 
         public void embeddingModel(EmbeddingModel embeddingModel) {
