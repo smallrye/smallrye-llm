@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>io.smallrye.llm.bce.extensions</groupId>
-            <artifactId>langchain4j-azure-openai</artifactId>
+            <artifactId>langchain4j-core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- Adds all features available in MicroProfile -->

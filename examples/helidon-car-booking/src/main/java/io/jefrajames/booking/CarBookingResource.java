@@ -42,6 +42,7 @@ public class CarBookingResource {
         try {
             answer = aiService.chat(question);
         } catch (Exception e) {
+            e.printStackTrace();
             answer = "My failure reason is:\n\n" + e.getMessage();
         }
 

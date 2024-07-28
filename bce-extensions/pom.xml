@@ -15,7 +15,6 @@
 
     <modules>
         <module>langchain4j-core</module>
-        <module>langchain4j-azure-openai</module>
     </modules>
 
     <dependencies>

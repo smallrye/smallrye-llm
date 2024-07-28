@@ -12,6 +12,8 @@
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking/src/main/filtered-resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/examples/quarkus-car-booking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/examples/quarkus-car-booking/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spi/src/main/java" charset="UTF-8" />

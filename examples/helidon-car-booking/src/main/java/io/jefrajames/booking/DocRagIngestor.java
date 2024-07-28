@@ -34,7 +34,7 @@ public class DocRagIngestor {
 
     // Used by ContentRetriever
     @Produces
-    private EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+    private InMemoryEmbeddingStore embeddingStore = new InMemoryEmbeddingStore<>();
 
     @Inject
     @ConfigProperty(name = "app.docs-for-rag.dir")
@@ -61,4 +61,8 @@ public class DocRagIngestor {
         System.currentTimeMillis() - start));
     }
 
+    public static void main(String[] args) {
+
+        System.out.println(InMemoryEmbeddingStore.class.getInterfaces()[0]);
+    }
 }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import dev.langchain4j.model.chat.ChatLanguageModel;
 import io.smallrye.config.inject.ConfigExtension;
 
 @ExtendWith(WeldJunit5Extension.class)
@@ -30,6 +31,9 @@ public class ExtensionTest {
 
     @Inject
     RequestContextCaller requestContextCaller;
+
+    @Inject
+    ChatLanguageModel chatLanguageModel;
 
     @Inject
     BeanManager beanManager;
@@ -46,15 +50,22 @@ public class ExtensionTest {
             .build();
 
     @Test
+    public void assertPlugin() {
+        Assertions.assertEquals(((DummyChatLanguageModel) chatLanguageModel).getApiKey(), "apikey");
+        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel());
+        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel2());
+    }
+
+    @Test
     void detectAIServiceInterface() {
         Assertions.assertTrue(
                 SmallryeLLMBuildCompatibleExtension
                         .getDetectedAIServicesDeclaredInterfaces()
-                        .contains(MyDummyAIService.class.getName()));
+                        .contains(MyDummyAIService.class));
         Assertions.assertTrue(
                 SmallryeLLMBuildCompatibleExtension
                         .getDetectedAIServicesDeclaredInterfaces()
-                        .contains(MyDummyApplicationScopedAIService.class.getName()));
+                        .contains(MyDummyApplicationScopedAIService.class));
     }
 
     @Test

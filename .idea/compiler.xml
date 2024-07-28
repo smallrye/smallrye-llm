@@ -5,6 +5,7 @@
       <directory url="file://$PROJECT_DIR$/spi/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -12,22 +13,42 @@
         <module name="helidon-car-booking" />
         <module name="carbooking-helidon" />
       </profile>
+      <profile name="Annotation profile for quarkus-car-booking.main" enabled="true">
+        <sourceOutputDir name="../generated-sources/annotations" />
+        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="quarkus-car-booking.main" />
+      </profile>
+      <profile name="Annotation profile for quarkus-car-booking.test" enabled="true">
+        <sourceOutputDir name="../generated-sources/annotations" />
+        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="quarkus-car-booking.test" />
+      </profile>
       <profile name="Annotation profile for SmallRye LLM: Parent" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
-        <module name="spi" />
         <module name="langchain4j-core" />
-        <module name="langchain4j-azure-openai" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="azure-openai" target="11" />
       <module name="azure-openai (1) (io.smallrye.llm.extensions)" target="11" />
       <module name="extensions.main" target="11" />
       <module name="extensions.test" target="21" />
+      <module name="langchain4j-azure-openai" target="11" />
+      <module name="spi" target="11" />
       <module name="spi.main" target="11" />
       <module name="spi.test" target="21" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="quarkus-car-booking" options="-parameters" />
+      <module name="quarkus-car-booking.main" options="-parameters" />
+      <module name="quarkus-car-booking.test" options="-parameters" />
+    </option>
   </component>
 </project>
