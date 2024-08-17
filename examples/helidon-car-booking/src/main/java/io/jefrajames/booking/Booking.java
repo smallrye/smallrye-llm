@@ -1,10 +1,10 @@
 package io.jefrajames.booking;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -17,5 +17,5 @@ public class Booking {
     private Customer customer;
     private boolean canceled = false;
     private String carModel;
-    
+
 }

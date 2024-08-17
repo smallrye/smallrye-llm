@@ -1,5 +1,6 @@
 package io.smallrye.llm.plugin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
@@ -9,8 +10,6 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.build.compatible.spi.Parameters;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanCreator;
 import jakarta.enterprise.inject.literal.NamedLiteral;
-import java.lang.reflect.InvocationTargetException;
-
 
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -70,7 +69,8 @@ public class LLMPluginCreator implements SyntheticBeanCreator<Object> {
                 // get Method
             }
             return builderClass.getMethod("build").invoke(builder);
-        } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
+        } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException
+                | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
