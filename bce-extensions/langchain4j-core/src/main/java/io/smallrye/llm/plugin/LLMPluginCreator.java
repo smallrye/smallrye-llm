@@ -11,6 +11,7 @@ import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanCreator;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import java.lang.reflect.InvocationTargetException;
 
+
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 

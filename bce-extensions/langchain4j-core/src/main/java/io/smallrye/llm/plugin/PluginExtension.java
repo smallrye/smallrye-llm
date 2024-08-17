@@ -19,9 +19,8 @@ import jakarta.enterprise.inject.literal.NamedLiteral;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.jboss.logging.Logger;
-
 import io.smallrye.llm.spi.AISyntheticBeanCreatorClassProvider;
-
+ 
 public class PluginExtension implements BuildCompatibleExtension {
     public static final Logger LOGGER = Logger.getLogger(PluginExtension.class);
     public static final String PREFIX = "smallrye.llm.plugin";
@@ -82,6 +81,7 @@ public class PluginExtension implements BuildCompatibleExtension {
         LOGGER.info("bean name: " + beanName);
 
         SyntheticBeanBuilder<Object> builder = (SyntheticBeanBuilder<Object>) syntheticComponents.addBean(targetClass);
+
         builder.createWith(AISyntheticBeanCreatorClassProvider.getSyntheticBeanCreatorClass())
                 .type(targetClass)
                 .scope(scopeClass)

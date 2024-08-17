@@ -7,6 +7,8 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.build.compatible.spi.Parameters;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanCreator;
 import jakarta.enterprise.inject.literal.NamedLiteral;
+import org.jboss.logging.Logger;
+
 
 import org.jboss.logging.Logger;
 
@@ -23,7 +25,6 @@ public class AIServiceCreator implements SyntheticBeanCreator<Object> {
     public Object create(Instance<Object> lookup, Parameters params) {
         Class<?> interfaceClass = params.get(SmallryeLLMBuildCompatibleExtension.PARAM_INTERFACE_CLASS, Class.class);
         RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
-
         ChatLanguageModel chatLanguageModel = getChatLanguageModel(lookup, annotation);
         ContentRetriever contentRetriever = getContentRetriever(lookup, annotation);
         try {
@@ -55,6 +56,7 @@ public class AIServiceCreator implements SyntheticBeanCreator<Object> {
     private static ContentRetriever getContentRetriever(Instance<Object> lookup,RegisterAIService annotation) {
         if (annotation.contentRetrieverModelName().isBlank()) {
             Instance<ContentRetriever> contentRetrievers = lookup.select(ContentRetriever.class);
+
             if (contentRetrievers.isResolvable())
                 return contentRetrievers.get();
         }
