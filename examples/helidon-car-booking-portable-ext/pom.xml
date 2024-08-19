@@ -10,7 +10,7 @@
         <relativePath />
     </parent>
 
-    <artifactId>helidon-car-booking</artifactId>
+    <artifactId>helidon-car-booking-portable-ext</artifactId>
     <groupId>io.smallrye.llm.examples</groupId>
     <version>1.0</version>
 
@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>

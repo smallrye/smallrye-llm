@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/spi/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/smallrye-llm-langchain4j-core/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/smallrye-llm-langchain4j-config-mpconfig/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
@@ -11,34 +13,58 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="helidon-car-booking" />
+        <module name="helidon-car-booking (1)" />
         <module name="carbooking-helidon" />
       </profile>
-      <profile name="Annotation profile for quarkus-car-booking.main" enabled="true">
+      <profile name="Annotation profile for smallrye-llm-parent" enabled="true">
         <sourceOutputDir name="../generated-sources/annotations" />
         <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
         <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
         <module name="quarkus-car-booking.main" />
-      </profile>
-      <profile name="Annotation profile for quarkus-car-booking.test" enabled="true">
-        <sourceOutputDir name="../generated-sources/annotations" />
-        <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
-        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
         <module name="quarkus-car-booking.test" />
       </profile>
-      <profile name="Annotation profile for SmallRye LLM: Parent" enabled="true">
+      <profile name="Annotation profile for smallrye-llm-langchain4j-buildcompatible-extension" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
-        <module name="langchain4j-core" />
+        <module name="smallrye-llm-langchain4j-buildcompatible-extension" />
+      </profile>
+      <profile name="Annotation profile for smallrye-llm-langchain4j-config-mpconfig" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="smallrye-llm-langchain4j-config-mpconfig" />
+      </profile>
+      <profile name="Annotation profile for smallrye-llm-langchain4j-core" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="smallrye-llm-langchain4j-core" />
+      </profile>
+      <profile name="Annotation profile for smallrye-llm-langchain4j-portable-extension" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="smallrye-llm-langchain4j-portable-extension" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="azure-openai" target="11" />
       <module name="azure-openai (1) (io.smallrye.llm.extensions)" target="11" />
+      <module name="bce-extensions" target="11" />
       <module name="extensions.main" target="11" />
       <module name="extensions.test" target="21" />
       <module name="langchain4j-azure-openai" target="11" />
+      <module name="smallrye-llm-langchain4j-config-mpconfig.main" target="11" />
+      <module name="smallrye-llm-langchain4j-config-mpconfig.test" target="21" />
+      <module name="smallrye-llm-langchain4j-core.main" target="11" />
+      <module name="smallrye-llm-langchain4j-core.test" target="21" />
+      <module name="smallrye-llm-langchain4j-portable-extension.main" target="11" />
+      <module name="smallrye-llm-langchain4j-portable-extension.test" target="21" />
       <module name="spi" target="11" />
       <module name="spi.main" target="11" />
       <module name="spi.test" target="21" />

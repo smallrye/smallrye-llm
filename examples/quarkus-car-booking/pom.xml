@@ -9,10 +9,6 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
-
-    <name>SmallRye LLM: Examples - Quarkus Car booking with BCE</name>
-
     <artifactId>quarkus-car-booking</artifactId>
     <version>1.0</version>
 
@@ -42,8 +38,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.smallrye.llm.bce.extensions</groupId>
-            <artifactId>langchain4j-core</artifactId>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>

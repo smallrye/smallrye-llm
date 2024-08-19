@@ -17,6 +17,7 @@
       <set>
         <option value="$PROJECT_DIR$/azure-openai/pom.xml" />
         <option value="$PROJECT_DIR$/bce-extensions/langchain4j-azure-openai/pom.xml" />
+        <option value="$PROJECT_DIR$/bce-extensions/pom.xml" />
         <option value="$PROJECT_DIR$/spi/pom.xml" />
       </set>
     </option>

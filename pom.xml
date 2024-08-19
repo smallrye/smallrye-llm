@@ -31,7 +31,6 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <name>SmallRye LLM: Parent</name>
     <url>https://smallrye.io</url>
 
     <properties>
@@ -76,7 +75,10 @@
 
     <modules>
         <module>examples</module>
-        <module>bce-extensions</module>
+        <module>smallrye-llm-langchain4j-portable-extension</module>
+        <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
+        <module>smallrye-llm-langchain4j-core</module>
+        <module>smallrye-llm-langchain4j-config-mpconfig</module>
     </modules>
 
 
