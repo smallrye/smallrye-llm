@@ -1,6 +1,5 @@
 package io.jefrajames.booking;
 
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;

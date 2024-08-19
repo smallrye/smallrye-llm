@@ -7,8 +7,6 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.build.compatible.spi.Parameters;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanCreator;
 import jakarta.enterprise.inject.literal.NamedLiteral;
-import org.jboss.logging.Logger;
-
 
 import org.jboss.logging.Logger;
 
@@ -47,13 +45,13 @@ public class AIServiceCreator implements SyntheticBeanCreator<Object> {
         }
     }
 
-    private static ChatLanguageModel getChatLanguageModel(Instance<Object> lookup,RegisterAIService annotation) {
+    private static ChatLanguageModel getChatLanguageModel(Instance<Object> lookup, RegisterAIService annotation) {
         if (annotation.chatLanguageModelName().isBlank())
             return lookup.select(ChatLanguageModel.class).get();
         return lookup.select(ChatLanguageModel.class, NamedLiteral.of(annotation.chatLanguageModelName())).get();
     }
 
-    private static ContentRetriever getContentRetriever(Instance<Object> lookup,RegisterAIService annotation) {
+    private static ContentRetriever getContentRetriever(Instance<Object> lookup, RegisterAIService annotation) {
         if (annotation.contentRetrieverModelName().isBlank()) {
             Instance<ContentRetriever> contentRetrievers = lookup.select(ContentRetriever.class);
 
