@@ -42,7 +42,7 @@ public class CommonAIServiceCreator {
     }
 
     private static ChatLanguageModel getChatLanguageModel(Instance<Object> lookup, RegisterAIService annotation) {
-        LOGGER.info("getChatLanguageModel '" + annotation.chatLanguageModelName()+"'");
+        LOGGER.info("getChatLanguageModel '" + annotation.chatLanguageModelName() + "'");
         if (annotation.chatLanguageModelName().isBlank())
             return lookup.select(ChatLanguageModel.class).get();
         return lookup.select(ChatLanguageModel.class, NamedLiteral.of(annotation.chatLanguageModelName())).get();

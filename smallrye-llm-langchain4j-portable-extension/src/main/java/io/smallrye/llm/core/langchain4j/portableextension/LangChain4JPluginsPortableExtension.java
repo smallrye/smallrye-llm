@@ -62,6 +62,7 @@ public class LangChain4JPluginsPortableExtension implements Extension {
 
         afterBeanDiscovery.addBean()
                 .types(targetClass)
+                .addTypes(targetClass.getInterfaces())
                 .scope(scopeClass)
                 .name(beanName)
                 .qualifiers(NamedLiteral.of(beanName))
