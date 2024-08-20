@@ -7,6 +7,8 @@
     <file url="file://$PROJECT_DIR$/bce-extensions/langchain4j-azure-openai/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bce-extensions/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bce-extensions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/examples/glassfish-car-booking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/examples/glassfish-car-booking/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking-portable-ext/src/main/filtered-resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking-portable-ext/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/helidon-car-booking-portable-ext/src/main/resources" charset="UTF-8" />

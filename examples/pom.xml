@@ -16,5 +16,6 @@
         <module>helidon-car-booking</module>
         <module>helidon-car-booking-portable-ext</module>
         <module>quarkus-car-booking</module>
+        <module>glassfish-car-booking</module>
     </modules>
 </project>

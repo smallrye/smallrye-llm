@@ -1,10 +1,6 @@
 package io.smallrye.llm.aiservice;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import io.smallrye.llm.spi.RegisterAIService;
 import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
 import jakarta.enterprise.inject.build.compatible.spi.ClassConfig;
@@ -15,10 +11,12 @@ import jakarta.enterprise.inject.build.compatible.spi.SyntheticComponents;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.lang.model.declarations.ClassInfo;
 import jakarta.inject.Named;
-
 import org.jboss.logging.Logger;
 
-import io.smallrye.llm.spi.RegisterAIService;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompatibleExtension {
     private static final Logger LOGGER = Logger.getLogger(Langchain4JAIServiceBuildCompatibleExtension.class);
@@ -44,18 +42,19 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
     }
 
     @SuppressWarnings("unused")
-    @Enhancement(types = Object.class, withAnnotations = RegisterAIService.class, withSubtypes = true)
+    @Enhancement(types = Object.class, withSubtypes = true)
     @Priority(10)
     public void detectRegisterAIService(ClassConfig classConfig) throws ClassNotFoundException {
         ClassInfo classInfo = classConfig.info();
         String className = classInfo.name();
-        LOGGER.info("Analyze from Ehancement " + className);
         if (classInfo.isInterface()) {
             Class<?> interfaceClass = getLoadClass(className);
-            detectedAIServicesDeclaredInterfaces.add(interfaceClass);
             RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
-            detectedTools.addAll(Arrays.stream(annotation.tools()).map(Class::getName).collect(Collectors.toList()));
-            LOGGER.info("Current detected tools : " + detectedTools);
+            if (annotation != null) {
+                detectedAIServicesDeclaredInterfaces.add(interfaceClass);
+                detectedTools.addAll(Arrays.stream(annotation.tools()).map(Class::getName).collect(Collectors.toList()));
+                LOGGER.info("RegisterAIService '"+className+"', detected tools : " + detectedTools);
+            }
         } else {
             LOGGER.warn("The class is Annotated with @RegisterAIService, but only interface are allowed" + classConfig.info());
         }
@@ -65,7 +64,7 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         return Thread.currentThread().getContextClassLoader().loadClass(className);
     }
 
-    @SuppressWarnings({ "unused", "unchecked" })
+    @SuppressWarnings({"unused", "unchecked"})
     @Synthesis
     public void synthesisAllRegisterAIServices(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
         LOGGER.info("synthesisAllRegisterAIServices");
