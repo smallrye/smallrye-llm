@@ -17,7 +17,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dev.langchain4j.version>0.32.0</dev.langchain4j.version>
+        <dev.langchain4j.version>0.33.0</dev.langchain4j.version>
     </properties>
 
     <dependencies>
