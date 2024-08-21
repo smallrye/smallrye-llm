@@ -9,9 +9,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Inject;
-
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
@@ -34,9 +31,7 @@ public class DocRagIngestor {
     @Produces
     private InMemoryEmbeddingStore embeddingStore = new InMemoryEmbeddingStore<>();
 
-    @Inject
-    @ConfigProperty(name = "app.docs-for-rag.dir")
-    private File docs;
+    private File docs = new File(System.getProperty("docragdir"));
 
     private List<Document> loadDocs() {
         return loadDocuments(docs.getPath(), new TextDocumentParser());

@@ -1,6 +1,10 @@
 package io.smallrye.llm.aiservice;
 
-import io.smallrye.llm.spi.RegisterAIService;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
 import jakarta.enterprise.inject.build.compatible.spi.ClassConfig;
@@ -11,12 +15,10 @@ import jakarta.enterprise.inject.build.compatible.spi.SyntheticComponents;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.lang.model.declarations.ClassInfo;
 import jakarta.inject.Named;
+
 import org.jboss.logging.Logger;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import io.smallrye.llm.spi.RegisterAIService;
 
 public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompatibleExtension {
     private static final Logger LOGGER = Logger.getLogger(Langchain4JAIServiceBuildCompatibleExtension.class);
@@ -53,7 +55,7 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
             if (annotation != null) {
                 detectedAIServicesDeclaredInterfaces.add(interfaceClass);
                 detectedTools.addAll(Arrays.stream(annotation.tools()).map(Class::getName).collect(Collectors.toList()));
-                LOGGER.info("RegisterAIService '"+className+"', detected tools : " + detectedTools);
+                LOGGER.info("RegisterAIService '" + className + "', detected tools : " + detectedTools);
             }
         } else {
             LOGGER.warn("The class is Annotated with @RegisterAIService, but only interface are allowed" + classConfig.info());
@@ -64,7 +66,7 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         return Thread.currentThread().getContextClassLoader().loadClass(className);
     }
 
-    @SuppressWarnings({"unused", "unchecked"})
+    @SuppressWarnings({ "unused", "unchecked" })
     @Synthesis
     public void synthesisAllRegisterAIServices(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
         LOGGER.info("synthesisAllRegisterAIServices");
