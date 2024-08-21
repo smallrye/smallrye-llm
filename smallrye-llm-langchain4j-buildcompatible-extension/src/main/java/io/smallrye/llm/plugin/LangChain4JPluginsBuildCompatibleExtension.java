@@ -1,11 +1,5 @@
 package io.smallrye.llm.plugin;
 
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
 import jakarta.enterprise.inject.build.compatible.spi.Synthesis;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanBuilder;
@@ -26,7 +20,7 @@ public class LangChain4JPluginsBuildCompatibleExtension implements BuildCompatib
 
     private LLMConfig llmConfig;
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings({ "unused", "unchecked" })
     @Synthesis
     public void createSynthetics(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
         if (llmConfig == null)
@@ -42,59 +36,24 @@ public class LangChain4JPluginsBuildCompatibleExtension implements BuildCompatib
          * smallrye.llm.plugin.content-retriever.config.embedding-model.lookup-name=my-model
          */
         // get bean name like content-retiever or "my-model"
-        Set<String> beanNameToCreate = llmConfig.getBeanNames();
 
-        LOGGER.info("detected beans to create : " + beanNameToCreate);
+        CommonLLMPluginCreator.createAllLLMBeans(
+                llmConfig,
+                beanData -> {
+                    SyntheticBeanBuilder<Object> builder = (SyntheticBeanBuilder<Object>) syntheticComponents
+                            .addBean(beanData.getTargetClass());
 
-        for (String beanName : beanNameToCreate) {
-            prepareBean(beanName, syntheticComponents);
-        }
+                    builder.createWith(AISyntheticBeanCreatorClassProvider.getSyntheticBeanCreatorClass())
+                            .type(beanData.getTargetClass())
+                            .scope(beanData.getScopeClass())
+                            .name(beanData.getBeanName())
+                            .qualifier(NamedLiteral.of(beanData.getBeanName()))
+                            .withParam(PARAM_BEANNAME, beanData.getBeanName())
+                            .withParam(PARAM_TARGET_CLASS, beanData.getTargetClass())
+                            .withParam(PARAM_BUILDER_CLASS, beanData.getBuilderClass());
 
+                    for (Class<?> newInterface : beanData.getTargetClass().getInterfaces())
+                        builder.type(newInterface);
+                });
     }
-
-    @SuppressWarnings("unchecked")
-    private void prepareBean(String beanName, SyntheticComponents syntheticComponents)
-            throws ClassNotFoundException {
-        LOGGER.info("Prepare bean " + beanName);
-
-        String className = llmConfig.getBeanPropertyValue(beanName, "class", String.class);
-        String scopeClassName = llmConfig.getBeanPropertyValue(beanName, "scope", String.class);
-        if (scopeClassName == null || scopeClassName.isBlank())
-            scopeClassName = ApplicationScoped.class.getName();
-        Class<? extends Annotation> scopeClass = (Class<? extends Annotation>) loadClass(scopeClassName);
-        Class<?> targetClass = loadClass(className);
-
-        // test if there is an inneer static class Builder
-        Class<?> builderCLass = Arrays.stream(targetClass.getDeclaredClasses())
-                .filter(declClass -> declClass.getName().endsWith("Builder")).findFirst().orElse(null);
-        LOGGER.info("Builder class : " + builderCLass);
-        if (builderCLass == null) {
-            LOGGER.warn("No builder class found, cancel " + beanName);
-            return;
-        }
-
-        LOGGER.info("bean name: " + beanName);
-
-        SyntheticBeanBuilder<Object> builder = (SyntheticBeanBuilder<Object>) syntheticComponents.addBean(targetClass);
-
-        builder.createWith(AISyntheticBeanCreatorClassProvider.getSyntheticBeanCreatorClass())
-                .type(targetClass)
-                .scope(scopeClass)
-                .name(beanName)
-                .qualifier(NamedLiteral.of(beanName))
-                .withParam(PARAM_BEANNAME, beanName)
-                .withParam(PARAM_TARGET_CLASS, targetClass)
-                .withParam(PARAM_BUILDER_CLASS, builderCLass);
-
-        for (Class<?> newInterface : targetClass.getInterfaces())
-            builder.type(newInterface);
-
-        LOGGER.info("Types: " + targetClass + ","
-                + Arrays.stream(targetClass.getInterfaces()).map(Class::getName).collect(Collectors.joining(",")));
-    }
-
-    private static Class<?> loadClass(String scopeClassName) throws ClassNotFoundException {
-        return Thread.currentThread().getContextClassLoader().loadClass(scopeClassName);
-    }
-
 }
