@@ -1,11 +1,8 @@
 package io.smallrye.llm.core.langchain4j.portableextension;
 
-import java.lang.annotation.Annotation;
 import java.util.Arrays;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.inject.spi.AfterBeanDiscovery;
@@ -28,53 +25,29 @@ public class LangChain4JPluginsPortableExtension implements Extension {
         if (llmConfig == null)
             llmConfig = LLMConfigProvider.getLlmConfig();
 
-        Set<String> beanNameToCreate = llmConfig.getBeanNames();
+        CommonLLMPluginCreator.createAllLLMBeans(
+                llmConfig,
+                beanData -> {
+                    LOGGER.info("Add Bean " + beanData.getTargetClass() + " " + beanData.getScopeClass() + " "
+                            + beanData.getBeanName());
 
-        LOGGER.info("detected beans to create : " + beanNameToCreate);
+                    afterBeanDiscovery.addBean()
+                            .types(beanData.getTargetClass())
+                            .addTypes(beanData.getTargetClass().getInterfaces())
+                            .scope(beanData.getScopeClass())
+                            .name(beanData.getBeanName())
+                            .qualifiers(NamedLiteral.of(beanData.getBeanName()))
+                            .createWith(creationalContext -> CommonLLMPluginCreator.create(
+                                    CDI.current(),
+                                    beanData.getBeanName(),
+                                    beanData.getTargetClass(),
+                                    beanData.getBuilderClass()));
 
-        for (String beanName : beanNameToCreate) {
-            prepareBean(beanName, afterBeanDiscovery);
-        }
-    }
+                    LOGGER.info("Types: " + beanData.getTargetClass() + ","
+                            + Arrays.stream(beanData.getTargetClass().getInterfaces()).map(Class::getName)
+                                    .collect(Collectors.joining(",")));
 
-    @SuppressWarnings("unchecked")
-    private void prepareBean(String beanName, AfterBeanDiscovery afterBeanDiscovery)
-            throws ClassNotFoundException {
-        LOGGER.info("Prepare bean " + beanName);
-
-        String className = llmConfig.getBeanPropertyValue(beanName, "class", String.class);
-        String scopeClassName = llmConfig.getBeanPropertyValue(beanName, "scope", String.class);
-        if (scopeClassName == null || scopeClassName.isBlank())
-            scopeClassName = ApplicationScoped.class.getName();
-        Class<? extends Annotation> scopeClass = (Class<? extends Annotation>) loadClass(scopeClassName);
-        Class<?> targetClass = loadClass(className);
-
-        // test if there is an inneer static class Builder
-        Class<?> builderCLass = Arrays.stream(targetClass.getDeclaredClasses())
-                .filter(declClass -> declClass.getName().endsWith("Builder")).findFirst().orElse(null);
-        LOGGER.info("Builder class : " + builderCLass);
-        if (builderCLass == null) {
-            LOGGER.warn("No builder class found, cancel " + beanName);
-            return;
-        }
-
-        LOGGER.info("Add Bean " + targetClass + " " + scopeClass + " " + beanName);
-
-        afterBeanDiscovery.addBean()
-                .types(targetClass)
-                .addTypes(targetClass.getInterfaces())
-                .scope(scopeClass)
-                .name(beanName)
-                .qualifiers(NamedLiteral.of(beanName))
-                .createWith(
-                        creationalContext -> CommonLLMPluginCreator.create(CDI.current(), beanName, targetClass, builderCLass));
-
-        LOGGER.info("Types: " + targetClass + ","
-                + Arrays.stream(targetClass.getInterfaces()).map(Class::getName).collect(Collectors.joining(",")));
-    }
-
-    private static Class<?> loadClass(String scopeClassName) throws ClassNotFoundException {
-        return Thread.currentThread().getContextClassLoader().loadClass(scopeClassName);
+                });
     }
 
 }

@@ -19,10 +19,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import io.smallrye.config.inject.ConfigExtension;
-import io.smallrye.llm.aiservice.Langchain4JAIServiceBuildCompatibleExtension;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JAIServicePortableExtension;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JPluginsPortableExtension;
 
 @ExtendWith(WeldJunit5Extension.class)
-public class ExtensionTest {
+public class PortableExtensionTest {
 
     @Inject
     MyDummyAIService myDummyAIService;
@@ -41,6 +42,8 @@ public class ExtensionTest {
 
     @WeldSetup
     public WeldInitiator weld = WeldInitiator.from(
+            LangChain4JAIServicePortableExtension.class,
+            LangChain4JPluginsPortableExtension.class,
             MyDummyAIService.class,
             MyDummyApplicationScopedAIService.class,
             RequestContextCaller.class,
@@ -60,11 +63,11 @@ public class ExtensionTest {
     @Test
     void detectAIServiceInterface() {
         Assertions.assertTrue(
-                Langchain4JAIServiceBuildCompatibleExtension
+                LangChain4JAIServicePortableExtension
                         .getDetectedAIServicesDeclaredInterfaces()
                         .contains(MyDummyAIService.class));
         Assertions.assertTrue(
-                Langchain4JAIServiceBuildCompatibleExtension
+                LangChain4JAIServicePortableExtension
                         .getDetectedAIServicesDeclaredInterfaces()
                         .contains(MyDummyApplicationScopedAIService.class));
     }
