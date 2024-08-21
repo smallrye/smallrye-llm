@@ -23,17 +23,18 @@ public class CommonAIServiceCreator {
         ContentRetriever contentRetriever = getContentRetriever(lookup, annotation);
         try {
             AiServices<?> aiServices = AiServices.builder(interfaceClass)
-                    .chatLanguageModel(chatLanguageModel)
-                    .tools(Stream.of(annotation.tools())
-                            .map(c -> lookup.select(c).get())
-                            .collect(Collectors.toList()))
-                    .chatMemory(MessageWindowChatMemory.withMaxMessages(annotation.chatMemoryMaxMessages()));
+                    .chatLanguageModel(chatLanguageModel);
+
+            //This causes HuggingFace to throw an exception beceause tools return an empty collection.
+            if (annotation.tools() != null && annotation.tools().length > 0) {
+                aiServices.tools(Stream.of(annotation.tools())
+                        .map(c -> lookup.select(c).get())
+                        .collect(Collectors.toList()));
+            }
+
+            aiServices.chatMemory(MessageWindowChatMemory.withMaxMessages(annotation.chatMemoryMaxMessages()));
             if (contentRetriever != null)
                 aiServices.contentRetriever(contentRetriever);
-
-            Instance<ContentRetriever> contentRetrievers = lookup.select(ContentRetriever.class);
-            if (contentRetrievers.isResolvable())
-                aiServices.contentRetriever(contentRetrievers.get());
 
             return aiServices.build();
         } catch (Exception e) {
