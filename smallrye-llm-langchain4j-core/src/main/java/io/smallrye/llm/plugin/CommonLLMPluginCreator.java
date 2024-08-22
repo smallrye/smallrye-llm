@@ -4,8 +4,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
@@ -96,26 +98,33 @@ public class CommonLLMPluginCreator {
                 String key = "config." + property;
                 String stringValue = llmConfig.getBeanPropertyValue(beanName, key, String.class);
                 LOGGER.info("Attempt to feed : " + property + " (" + camelCaseProperty + ") with : " + stringValue);
-                Method methodToCall = Arrays.stream(builderClass.getDeclaredMethods())
+                List<Method> methodsToCall = Arrays.stream(builderClass.getDeclaredMethods())
                         .filter(method -> method.getName().equals(camelCaseProperty))
-                        .findFirst().orElse(null);
-                if (methodToCall == null) {
+                        .collect(Collectors.toList());
+                if (methodsToCall == null || methodsToCall.isEmpty()) {
                     LOGGER.warn("No method found for " + property + " for bean " + beanName);
                 } else {
-                    Class<?> parameterType = methodToCall.getParameterTypes()[0];
-                    if (stringValue.startsWith("lookup:")) {
-                        String lookupableBean = stringValue.substring("lookup:".length());
-                        LOGGER.info("Lookup " + lookupableBean + " " + parameterType);
-                        Instance<?> inst;
-                        if ("default".equals(lookupableBean)) {
-                            inst = lookup.select(parameterType);
+                    for (Method methodToCall : methodsToCall) {
+                        Class<?> parameterType = methodToCall.getParameterTypes()[0];
+                        if (stringValue.startsWith("lookup:")) {
+                            String lookupableBean = stringValue.substring("lookup:".length());
+                            LOGGER.info("Lookup " + lookupableBean + " " + parameterType);
+                            Instance<?> inst;
+                            if ("default".equals(lookupableBean)) {
+                                inst = lookup.select(parameterType);
+                            } else {
+                                inst = lookup.select(parameterType, NamedLiteral.of(lookupableBean));
+                            }
+                            methodToCall.invoke(builder, inst.get());
+                            break;
                         } else {
-                            inst = lookup.select(parameterType, NamedLiteral.of(lookupableBean));
+                            try {
+                                Object value = llmConfig.getBeanPropertyValue(beanName, key, parameterType);
+                                methodToCall.invoke(builder, value);
+                                break;
+                            } catch (IllegalArgumentException ex) {
+                            }
                         }
-                        methodToCall.invoke(builder, inst.get());
-                    } else {
-                        Object value = llmConfig.getBeanPropertyValue(beanName, key, parameterType);
-                        methodToCall.invoke(builder, value);
                     }
                 }
             }
