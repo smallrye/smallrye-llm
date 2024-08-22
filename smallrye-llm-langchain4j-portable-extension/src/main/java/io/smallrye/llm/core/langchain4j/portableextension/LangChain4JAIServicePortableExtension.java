@@ -69,10 +69,7 @@ public class LangChain4JAIServicePortableExtension implements Extension {
         Class<?> rawType = Reflections.getRawType(event.getInjectionPoint().getType());
         if (rawType.isInterface()) {
             RegisterAIService annotation = rawType.getAnnotation(RegisterAIService.class);
-            if (annotation == null) {
-                event.addDefinitionError(new RuntimeException("The class '" + rawType.getName()
-                        + "'is annotated with @RegisterAIService, but only interface(s) are allowed."));
-            } else {
+            if (annotation != null) {
                 detectedAIServicesDeclaredInterfaces.add(rawType);
             }
         }
