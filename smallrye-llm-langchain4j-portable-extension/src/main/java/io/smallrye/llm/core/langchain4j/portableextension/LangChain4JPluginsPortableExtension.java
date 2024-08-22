@@ -7,7 +7,6 @@ import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.inject.spi.AfterBeanDiscovery;
 import jakarta.enterprise.inject.spi.BeanManager;
-import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.Extension;
 
 import org.jboss.logging.Logger;
@@ -37,8 +36,8 @@ public class LangChain4JPluginsPortableExtension implements Extension {
                             .scope(beanData.getScopeClass())
                             .name(beanData.getBeanName())
                             .qualifiers(NamedLiteral.of(beanData.getBeanName()))
-                            .createWith(creationalContext -> CommonLLMPluginCreator.create(
-                                    CDI.current(),
+                            .produceWith(creationalContext -> CommonLLMPluginCreator.create(
+                                    creationalContext,
                                     beanData.getBeanName(),
                                     beanData.getTargetClass(),
                                     beanData.getBuilderClass()));
