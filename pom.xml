@@ -48,6 +48,10 @@
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
         <microprofile-config-api.version>3.0.3</microprofile-config-api.version>
         <dev.langchain4j.version>0.33.0</dev.langchain4j.version>
+        <maven.version>3.9.9</maven.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+        <maven-surefire-plugin.version>3.4.0</maven-surefire-plugin.version>
 
         <!-- Sonar settings -->
         <sonar.projectName>SmallRye LLM</sonar.projectName>
@@ -80,8 +84,6 @@
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
     </modules>
-
-
 
     <dependencyManagement>
         <dependencies>
@@ -140,7 +142,65 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
+    
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+				</plugin>
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-enforcer-plugin</artifactId>
+				    <version>${maven-enforcer-plugin.version}</version>
+				    <executions>
+						<execution>
+							<id>enforce-maven</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<version>[${maven.version},)</version>
+										<message>Check for Maven version &gt;=${maven.version} failed.
+											Update your Maven install.</message>
+									</requireMavenVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
