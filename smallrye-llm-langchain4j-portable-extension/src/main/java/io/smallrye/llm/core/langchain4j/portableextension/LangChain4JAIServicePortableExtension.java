@@ -71,6 +71,8 @@ public class LangChain4JAIServicePortableExtension implements Extension {
             RegisterAIService annotation = rawType.getAnnotation(RegisterAIService.class);
             if (annotation != null) {
                 detectedAIServicesDeclaredInterfaces.add(rawType);
+            } else {
+            	LOGGER.warn("Detected interface '" + rawType.getName() + "' has @" + RegisterAIService.class.getSimpleName() + " annotation. Ignoring...");
             }
         }
     }
