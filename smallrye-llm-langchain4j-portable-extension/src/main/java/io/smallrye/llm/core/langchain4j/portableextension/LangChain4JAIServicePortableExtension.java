@@ -61,7 +61,7 @@ public class LangChain4JAIServicePortableExtension implements Extension {
     void afterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery, BeanManager beanManager)
             throws ClassNotFoundException {
         for (AnnotatedType<?> annotatedType : annotatedTypes) {
-            LOGGER.info("Adding RegisterAIService of interface '" + annotatedType.getJavaClass().getName()
+            LOGGER.info("Adding @RegisterAIService of interface '" + annotatedType.getJavaClass().getName()
                     + "', discovered during processAnnotatedType(), for component injection.");
             RegisterAIService registerAiServiceAnnotation = annotatedType.getJavaClass().getAnnotation(RegisterAIService.class);
             addBean(afterBeanDiscovery, annotatedType.getJavaClass(), registerAiServiceAnnotation, false);
@@ -97,7 +97,7 @@ public class LangChain4JAIServicePortableExtension implements Extension {
             bc.createWith(c -> CommonAIServiceCreator.create(CDI.current(), interfaceClass));
         }
 
-        LOGGER.info("Added RegisterAIService of interface type '" + interfaceClass.getName() + "' for "
+        LOGGER.info("Added @RegisterAIService of interface type '" + interfaceClass.getName() + "' for "
                 + (produce ? "instance" : "component") + " injection.");
     }
 }
