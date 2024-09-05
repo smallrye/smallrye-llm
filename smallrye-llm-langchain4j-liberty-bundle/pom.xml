@@ -17,4 +17,10 @@
     	<integration.artifact.id>smallrye-llm-langchain4j-bundle</integration.artifact.id>
     	<new.integration.code.private.package>io.smallrye.llm.core.langchain4j.spi.liberty.cdi.internal</new.integration.code.private.package>
     </properties>
+	
+	<modules>
+		<module>BOM</module>
+		<module>ESA</module>
+		<module>integration</module>
+	</modules>
 </project>

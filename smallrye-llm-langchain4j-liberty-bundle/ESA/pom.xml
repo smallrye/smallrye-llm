@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+        <groupId>io.smallrye.llm</groupId>
+        <artifactId>smallyre-llm-langchain4j-liberty-bundle</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+	<artifactId>${esa.artifact.id}</artifactId>
+	<packaging>esa</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>io.smallrye.llm</groupId>
+			<artifactId>${integration.artifact.id}</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.openliberty.features/microProfile-6.1 -->
+		<dependency>
+		    <groupId>io.openliberty.features</groupId>
+		    <artifactId>microProfile-6.1</artifactId>
+		    <version>24.0.0.8</version>
+		    <type>esa</type>
+		    <scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.aries</groupId>
+			        <artifactId>esa-maven-plugin</artifactId>
+			        <version>1.0.2</version>
+			        <extensions>true</extensions>
+			        <configuration>
+			        	<generateManifest>true</generateManifest>
+			        	<archiveContent>all</archiveContent>
+			        	<instructions>
+			        		<Subsystem-Vendor>IBM</Subsystem-Vendor>
+            				<IBM-Feature-Version>2</IBM-Feature-Version>
+            				<IBM-ShortName>${feature.name}</IBM-ShortName>
+            				<!--
+            				<Subsystem-Content>io.openliberty.microProfile-6.1; type="osgi.subsystem.feature"</Subsystem-Content>
+            				-->
+            				<Subsystem-SymbolicName>
+						        ${integration.artifact.id};visibility:=public
+						    </Subsystem-SymbolicName>
+            				<Subsystem-Type>osgi.subsystem.feature</Subsystem-Type>
+    						<Subsystem-Version>1.0.0</Subsystem-Version>
+    						<IBM-API-Package>
+    							smallrye-llm-langchain4j-core;version="1.0.0-SNAPSHOT"
+    						</IBM-API-Package>
+    						<IBM-SPI-Package>jakarta.enterprise; type="spec",io.smallrye.llm.spi; type="third-party"</IBM-SPI-Package>
+			        	</instructions>
+        			</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.apache.aries</groupId>
+			   	<artifactId>esa-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
