@@ -48,12 +48,12 @@
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -74,13 +74,12 @@
 							<Embed-Transitive>true</Embed-Transitive>
 							<Export-Package>
 								io.smallrye.llm.spi;version="1.0.0",
-	                            io.smallrye.llm.core.langchain4j.spi.cdi.extension;version="1.0.0",
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Export-Package>
 	                        <!--
 	                        <Private-Package>
 	                            io.smallrye.llm.spi;version="1.0.0",
-	                            io.smallrye.llm.core.langchain4j.spi.cdi.extension;version="1.0.0"
+	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Private-Package>
 	                        -->
 						</instructions>
