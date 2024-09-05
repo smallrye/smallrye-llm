@@ -69,7 +69,7 @@
 							<Bundle-Name>${project.artifactId}</Bundle-Name>
 							<Bundle-SymbolicName>${project.artifactId}; singleton:=true</Bundle-SymbolicName>
 							<Bundle-Version>1.0.0</Bundle-Version>
-							<Bundle-Description>Sindi LangChain4J Liberty Bundle</Bundle-Description>
+							<Bundle-Description>SmallRye LLM LangChain4J Liberty Bundle</Bundle-Description>
 							<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 							<Embed-Transitive>true</Embed-Transitive>
 							<Export-Package>
