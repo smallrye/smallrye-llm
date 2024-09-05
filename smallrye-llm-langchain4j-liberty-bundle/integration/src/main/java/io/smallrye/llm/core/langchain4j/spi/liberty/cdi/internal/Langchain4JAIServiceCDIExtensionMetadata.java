@@ -17,7 +17,7 @@ import io.smallrye.llm.spi;
  * @since 26 August 2024
  */
 @Component(service = CDIExtensionMetadata.class, configurationPolicy = ConfigurationPolicy.IGNORE, immediate = true)
-public class Langchain4JCDIExtensionMetadata implements CDIExtensionMetadata {
+public class Langchain4JAIServiceCDIExtensionMetadata implements CDIExtensionMetadata {
 
     /*
      * (non-Javadoc)
