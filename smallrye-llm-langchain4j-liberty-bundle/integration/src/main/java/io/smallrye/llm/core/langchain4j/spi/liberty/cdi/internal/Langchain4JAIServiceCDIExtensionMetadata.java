@@ -38,6 +38,6 @@ public class Langchain4JAIServiceCDIExtensionMetadata implements CDIExtensionMet
     @Override
     public Set<Class<? extends Extension>> getExtensions() {
         // TODO Auto-generated method stub
-        return Set.of(LangChain4JAIServicePortableExtension.class);
+        return Set.of(LangChain4JAIServicePortableExtension.class, LangChain4JPluginsPortableExtension.class);
     }
 }

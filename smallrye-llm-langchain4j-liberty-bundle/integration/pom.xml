@@ -73,12 +73,12 @@
 							<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 							<Embed-Transitive>true</Embed-Transitive>
 							<Export-Package>
-								io.smallrye.llm.spi;version="1.0.0",
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Export-Package>
 	                        <!--
 	                        <Private-Package>
 	                            io.smallrye.llm.spi;version="1.0.0",
+								io.smallrye.llm.core.langchain4j.portableextension;version="1.0.0",
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Private-Package>
 	                        -->
