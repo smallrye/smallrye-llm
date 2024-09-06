@@ -16,7 +16,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>io.smallrye.llm</groupId>
-				<artifactId>smallrye-llm-langchain4j-feature</artifactId>
+				<artifactId>${esa.artifact.id}</artifactId>
 				<version>${project.version}</version>
 				<scope>runtime</scope>
 				<type>esa</type>

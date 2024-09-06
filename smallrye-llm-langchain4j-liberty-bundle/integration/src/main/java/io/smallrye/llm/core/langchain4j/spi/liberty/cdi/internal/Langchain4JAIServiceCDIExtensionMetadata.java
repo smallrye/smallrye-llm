@@ -9,8 +9,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 
 import io.openliberty.cdi.spi.CDIExtensionMetadata;
-import io.smallrye.llm.core.langchain4j.portableextension;
-import io.smallrye.llm.spi;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JAIServicePortableExtension;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JPluginsPortableExtension;
+import io.smallrye.llm.spi.RegisterAIService;
 
 /**
  * @author Buhake Sindi
