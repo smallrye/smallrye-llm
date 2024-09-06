@@ -12,7 +12,7 @@
 	<packaging>pom</packaging>
 	
 	<properties>
-        <feature.name>mpLLM-1.0</feature.name>
+        <liberty.feature.name>mpLLM-1.0</liberty.feature.name>
         <bom.artifact.id>smallrye-llm-langchain4j-features-bom</bom.artifact.id>
     	<esa.artifact.id>smallrye-llm-langchain4j-feature</esa.artifact.id>
     	<integration.artifact.id>smallrye-llm-langchain4j-bundle</integration.artifact.id>

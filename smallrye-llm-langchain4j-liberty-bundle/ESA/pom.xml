@@ -41,7 +41,7 @@
 			        	<instructions>
 			        		<Subsystem-Vendor>IBM</Subsystem-Vendor>
             				<IBM-Feature-Version>2</IBM-Feature-Version>
-            				<IBM-ShortName>${feature.name}</IBM-ShortName>
+            				<IBM-ShortName>${liberty.feature.name}</IBM-ShortName>
             				<!--
             				<Subsystem-Content>io.openliberty.microProfile-6.1; type="osgi.subsystem.feature"</Subsystem-Content>
             				-->
