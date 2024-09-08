@@ -5,10 +5,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <groupId>io.smallrye.llm</groupId>
+        <groupId>io.smallrye.llm.liberty-bundle</groupId>
         <artifactId>smallyre-llm-langchain4j-liberty-bundle</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 	<artifactId>${integration.artifact.id}</artifactId>
 	<packaging>bundle</packaging>

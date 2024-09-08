@@ -3,17 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <groupId>io.smallrye.llm</groupId>
+        <groupId>io.smallrye.llm.liberty-bundle</groupId>
         <artifactId>smallyre-llm-langchain4j-liberty-bundle</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 	<artifactId>${esa.artifact.id}</artifactId>
 	<packaging>esa</packaging>
 	
 	<dependencies>
 		<dependency>
-			<groupId>io.smallrye.llm</groupId>
+			<groupId>io.smallrye.llm.liberty-bundle</groupId>
 			<artifactId>${integration.artifact.id}</artifactId>
 			<version>${project.version}</version>
 		</dependency>
