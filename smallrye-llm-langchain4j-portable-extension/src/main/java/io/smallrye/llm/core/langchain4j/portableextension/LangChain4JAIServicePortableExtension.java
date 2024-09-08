@@ -1,5 +1,8 @@
 package io.smallrye.llm.core.langchain4j.portableextension;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +12,7 @@ import jakarta.enterprise.inject.spi.AfterBeanDiscovery;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.Extension;
+import jakarta.enterprise.inject.spi.InjectionPoint;
 import jakarta.enterprise.inject.spi.ProcessAnnotatedType;
 import jakarta.enterprise.inject.spi.ProcessInjectionPoint;
 import jakarta.enterprise.inject.spi.WithAnnotations;
@@ -44,11 +48,15 @@ public class LangChain4JAIServicePortableExtension implements Extension {
      */
     void processInjectionPoints(@Observes ProcessInjectionPoint<?, ?> event) {
         if (event.getInjectionPoint().getBean() == null) {
-            processInjectionPoint(event);
+            Class<?> rawType = Reflections.getRawType(event.getInjectionPoint().getType());
+            if (classSatisfies(rawType, RegisterAIService.class))
+                detectedAIServicesDeclaredInterfaces.add(rawType);
         }
 
         if (Instance.class.equals(Reflections.getRawType(event.getInjectionPoint().getType()))) {
-            processInjectionPoint(event);
+            Class<?> parameterizedType = Reflections.getRawType(getFacadeType(event.getInjectionPoint()));
+            if (classSatisfies(parameterizedType, RegisterAIService.class))
+                detectedAIServicesDeclaredInterfaces.add(parameterizedType);
         }
     }
 
@@ -65,15 +73,18 @@ public class LangChain4JAIServicePortableExtension implements Extension {
         }
     }
 
-    private void processInjectionPoint(ProcessInjectionPoint<?, ?> event) {
-        Class<?> rawType = Reflections.getRawType(event.getInjectionPoint().getType());
-        if (rawType.isInterface()) {
-            RegisterAIService annotation = rawType.getAnnotation(RegisterAIService.class);
-            if (annotation != null) {
-                detectedAIServicesDeclaredInterfaces.add(rawType);
-            } else {
-            	LOGGER.warn("Detected interface '" + rawType.getName() + "' has @" + RegisterAIService.class.getSimpleName() + " annotation. Ignoring...");
-            }
+    private <T extends Annotation> boolean classSatisfies(Class<?> clazz, Class<T> annotationClass) {
+        if (!clazz.isInterface())
+            return false;
+        T annotation = clazz.getAnnotation(annotationClass);
+        return (annotation != null);
+    }
+
+    private Type getFacadeType(InjectionPoint injectionPoint) {
+        Type genericType = injectionPoint.getType();
+        if (genericType instanceof ParameterizedType) {
+            return ((ParameterizedType) genericType).getActualTypeArguments()[0];
         }
+        return null;
     }
 }
