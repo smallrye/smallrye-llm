@@ -13,6 +13,7 @@
 	<packaging>pom</packaging>
 	
 	<properties>
+		<microprofile-api.version>6.1</microprofile-api.version>
         <liberty.feature.name>mpLLM-1.0</liberty.feature.name>
         <bom.artifact.id>smallrye-llm-langchain4j-features-bom</bom.artifact.id>
     	<esa.artifact.id>smallrye-llm-langchain4j-feature</esa.artifact.id>
