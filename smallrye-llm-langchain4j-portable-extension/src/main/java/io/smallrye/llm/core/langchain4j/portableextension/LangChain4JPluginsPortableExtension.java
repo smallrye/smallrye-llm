@@ -36,11 +36,7 @@ public class LangChain4JPluginsPortableExtension implements Extension {
                             .scope(beanData.getScopeClass())
                             .name(beanData.getBeanName())
                             .qualifiers(NamedLiteral.of(beanData.getBeanName()))
-                            .produceWith(creationalContext -> CommonLLMPluginCreator.create(
-                                    creationalContext,
-                                    beanData.getBeanName(),
-                                    beanData.getTargetClass(),
-                                    beanData.getBuilderClass()));
+                            .produceWith(beanData.getCallback());
 
                     LOGGER.info("Types: " + beanData.getTargetClass() + ","
                             + Arrays.stream(beanData.getTargetClass().getInterfaces()).map(Class::getName)
