@@ -15,6 +15,7 @@ smallrye.llm.plugin.content-retriever.config.embedding-model=lookup:my-model
 public interface LLMConfig {
 
     String PREFIX = "smallrye.llm.plugin";
+    String VALUE = "defined_bean_value";
 
     void init();
 
@@ -28,6 +29,10 @@ public interface LLMConfig {
     <T> T getBeanPropertyValue(String beanName, String propertyName, Class<T> type);
 
     Set<String> getPropertyNamesForBean(String beanName);
+
+    static String getBeanPropertyName(String beanName, String propertyName) {
+        return PREFIX + "." + beanName + "." + propertyName;
+    }
 
     static String dashToCamel(String property) {
         String fixed;

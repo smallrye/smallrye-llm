@@ -24,4 +24,10 @@ public @interface RegisterAIService {
     String contentRetrieverModelName() default "";
 
     int chatMemoryMaxMessages() default 10;
+
+    String embeddingModelName() default "";
+
+    String embeddingStoreName() default "";
+
+    String contentRetrieverName() default "";
 }

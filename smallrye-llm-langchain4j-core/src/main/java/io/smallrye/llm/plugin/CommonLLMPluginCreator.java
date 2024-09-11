@@ -1,5 +1,7 @@
 package io.smallrye.llm.plugin;
 
+import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.VALUE;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -7,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -27,6 +30,7 @@ smallrye.llm.plugin.content-retriever.config.embedding-store=lookup:default
 smallrye.llm.plugin.content-retriever.config.embedding-model=lookup:my-model
  */
 public class CommonLLMPluginCreator {
+
     public static final Logger LOGGER = Logger.getLogger(CommonLLMPluginCreator.class);
 
     @SuppressWarnings("unchecked")
@@ -37,35 +41,50 @@ public class CommonLLMPluginCreator {
         for (String beanName : beanNameToCreate) {
             String className = llmConfig.getBeanPropertyValue(beanName, "class", String.class);
             String scopeClassName = llmConfig.getBeanPropertyValue(beanName, "scope", String.class);
-            if (scopeClassName == null || scopeClassName.isBlank())
+            if (scopeClassName == null || scopeClassName.isBlank()) {
                 scopeClassName = ApplicationScoped.class.getName();
+            }
             Class<? extends Annotation> scopeClass = (Class<? extends Annotation>) loadClass(scopeClassName);
             Class<?> targetClass = loadClass(className);
-
-            // test if there is an inneer static class Builder
-            Class<?> builderCLass = Arrays.stream(targetClass.getDeclaredClasses())
-                    .filter(declClass -> declClass.getName().endsWith("Builder")).findFirst().orElse(null);
-            LOGGER.info("Builder class : " + builderCLass);
-            if (builderCLass == null) {
-                LOGGER.warn("No builder class found, cancel " + beanName);
-                return;
+            Object bean = llmConfig.getBeanPropertyValue(beanName, VALUE, targetClass);
+            if (bean != null) {
+                beanBuilder.accept(
+                        new BeanData(targetClass, null, scopeClass, beanName, (Instance<Object> creationalContext) -> bean));
+            } else {
+                // test if there is an inner static class Builder
+                Class<?> builderCLass = Arrays.stream(targetClass.getDeclaredClasses())
+                        .filter(declClass -> declClass.getName().endsWith("Builder")).findFirst().orElse(null);
+                LOGGER.info("Builder class : " + builderCLass);
+                if (builderCLass == null) {
+                    LOGGER.warn("No builder class found, cancel " + beanName);
+                    return;
+                }
+                beanBuilder.accept(
+                        new BeanData(targetClass, builderCLass, scopeClass, beanName,
+                                (Instance<Object> creationalContext) -> CommonLLMPluginCreator.create(
+                                        creationalContext,
+                                        beanName,
+                                        targetClass,
+                                        builderCLass)));
             }
-            beanBuilder.accept(
-                    new BeanData(targetClass, builderCLass, scopeClass, beanName));
         }
     }
 
     public static class BeanData {
+
         private final Class<?> targetClass;
         private final Class<?> builderClass;
         private final Class<? extends Annotation> scopeClass;
         private final String beanName;
+        private final Function<Instance<Object>, Object> callback;
 
-        public BeanData(Class<?> targetClass, Class<?> builderClass, Class<? extends Annotation> scopeClass, String beanName) {
+        public BeanData(Class<?> targetClass, Class<?> builderClass, Class<? extends Annotation> scopeClass,
+                String beanName, Function<Instance<Object>, Object> callback) {
             this.targetClass = targetClass;
             this.builderClass = builderClass;
             this.scopeClass = scopeClass;
             this.beanName = beanName;
+            this.callback = callback;
         }
 
         public Class<?> getTargetClass() {
@@ -82,6 +101,10 @@ public class CommonLLMPluginCreator {
 
         public String getBeanName() {
             return beanName;
+        }
+
+        public Function<Instance<Object>, Object> getCallback() {
+            return callback;
         }
     }
 
