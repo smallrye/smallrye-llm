@@ -103,9 +103,6 @@
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Private-Package>
 	                        -->
-	                        <Import-Package>
-	                        	!io.smallrye.llm.aiservice;
-	                        </Import-Package>
 						</instructions>
 					</configuration>
 				</plugin>
