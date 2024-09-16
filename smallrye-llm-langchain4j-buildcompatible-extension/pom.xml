@@ -35,10 +35,10 @@
                     <argLine>@{jacocoArgLine}</argLine>
                 </configuration>
             </plugin>
-			<plugin>
-		   		<groupId>org.apache.maven.plugins</groupId>
-		    	<artifactId>maven-enforcer-plugin</artifactId>
-		    </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
@@ -51,6 +51,12 @@
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.logging</groupId>

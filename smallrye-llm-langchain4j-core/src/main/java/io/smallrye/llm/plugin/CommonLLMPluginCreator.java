@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
+import jakarta.enterprise.inject.spi.CDI;
 
 import org.jboss.logging.Logger;
 
@@ -135,6 +136,9 @@ public class CommonLLMPluginCreator {
                             Instance<?> inst;
                             if ("default".equals(lookupableBean)) {
                                 inst = lookup.select(parameterType);
+                                if (!inst.isResolvable()) {
+                                    inst = CDI.current().select(parameterType);
+                                }
                             } else {
                                 inst = lookup.select(parameterType, NamedLiteral.of(lookupableBean));
                             }
