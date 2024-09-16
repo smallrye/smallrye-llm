@@ -1,5 +1,7 @@
 package io.smallrye.llm.core.langchain4j.mpconfig;
 
+import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.getBeanPropertyName;
+
 import java.util.Set;
 import java.util.Spliterator;
 import java.util.Spliterators;
@@ -39,8 +41,10 @@ public class LLMConfigMPConfig implements LLMConfig {
 
     @Override
     public <T> T getBeanPropertyValue(String beanName, String propertyName, Class<T> type) {
-        T value = config.getOptionalValue(PREFIX + "." + beanName + "." + propertyName, type).orElse(null);
-
+        if (VALUE.equals(propertyName)) {
+            return null;
+        }
+        T value = config.getOptionalValue(getBeanPropertyName(beanName, propertyName), type).orElse(null);
         return value;
     }
 

@@ -32,27 +32,27 @@ During my tests, GPT 3.5 has proved to be faster but less precise en consistent 
 
 Quarkus provides a deep integration with LangChain4j thanks to a specific [extension](https://docs.quarkiverse.io/quarkus-langchain4j/dev/index.html).
 
-In particular, it provides a powerful @RegisterAiService annotation and network interractions with LLMs are managed with its own RestClient.
+In particular, it provides a powerful `@RegisterAiService` annotation and network interactions with LLMs are managed with its own RestClient.
 
 This example is based on a standard usage of LangChain4j with Helidon. There is no such deep integration. 
 
-I've added 3 technical classes to manage "the glue" (more or less the equivallent of @RegisterAiService):
+I've added 3 technical classes to manage "the glue" (more or less the equivalent of `@RegisterAiService`):
 
 * ModelFactory: generates an OpenAI Chat model
 * ChatAiServiceFactory: generates a Chat assistant
-* FraudAiServiceFactrory: generates a Fraud assistant.
+* FraudAiServiceFactory: generates a Fraud assistant.
 
 I've been obliged to turn FraudResponse in a POJO. It seems that Google GSON, used to deserialize OpenAI responses does not support Java Record.
 
-In contrast with Quarkus, network interractions with LLMs are based on standard LangChain4j. For instance, the Azure SDK is used with Azure OpenAI.
+In contrast with Quarkus, network interactions with LLMs are based on standard LangChain4j. For instance, the Azure SDK is used with Azure OpenAI.
 
 ## Packaging the application
 
-To package the application in JVM mode run: _mvn package_.
+To package the application in JVM mode run: `mvn package`.
 
 ## Configuration
 
-All configuration is centralized in microprofile-config.properties and can be redefined using environment variables.
+All configuration is centralized in `microprofile-config.properties` and can be redefined using environment variables.
 
 ## Running the application
 
@@ -66,14 +66,14 @@ Note: native mode not yet tested.
 
 The application exposes a REST API documented with OpenAPI. 
 
-To interract with the application go to: http://localhost:8080/openapi/ui.
+To interact with the application go to: [http://localhost:8080/openapi/ui](http://localhost:8080/openapi/ui).
 
 
 Typical questions you can ask in the Chat:
 
 * Hello, how can you help me?
 * What is your list of cars?
-* What is your cancelation policy?
+* What is your cancellation policy?
 * What is your fleet size? Be short please.
 * How many electric cars do you have?
 * My name is James Bond, please list my bookings

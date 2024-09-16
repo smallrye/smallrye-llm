@@ -43,7 +43,7 @@ public class DummyLLConfig implements LLMConfig {
         try {
             return type.getConstructor(String.class).newInstance(value);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException();
         }
     }
 

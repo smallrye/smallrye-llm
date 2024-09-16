@@ -50,6 +50,10 @@
             <artifactId>weld-junit5</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-impl</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
