@@ -47,7 +47,8 @@ public class CommonAIServiceCreator {
                 }
                 aiServices.tools(tools);
             }
-            aiServices.chatMemory(ChatMemoryFactoryProvider.getChatMemoryFactory().getChatMemory(lookup, annotation.chatMemoryMaxMessages()));
+            aiServices.chatMemory(
+                    ChatMemoryFactoryProvider.getChatMemoryFactory().getChatMemory(lookup, annotation.chatMemoryMaxMessages()));
             return aiServices.build();
         } catch (Exception e) {
             throw new RuntimeException(e);

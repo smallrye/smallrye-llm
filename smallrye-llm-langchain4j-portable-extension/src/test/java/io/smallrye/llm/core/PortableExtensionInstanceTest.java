@@ -1,15 +1,16 @@
 package io.smallrye.llm.core;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import io.smallrye.config.inject.ConfigExtension;
-import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JAIServicePortableExtension;
-import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JPluginsPortableExtension;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.util.concurrent.Callable;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.control.ActivateRequestContext;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
+
 import org.jboss.weld.junit5.WeldInitiator;
 import org.jboss.weld.junit5.WeldJunit5Extension;
 import org.jboss.weld.junit5.WeldSetup;
@@ -17,9 +18,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.UndeclaredThrowableException;
-import java.util.concurrent.Callable;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import io.smallrye.config.inject.ConfigExtension;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JAIServicePortableExtension;
+import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JPluginsPortableExtension;
 
 @ExtendWith(WeldJunit5Extension.class)
 public class PortableExtensionInstanceTest {
@@ -73,8 +75,8 @@ public class PortableExtensionInstanceTest {
 
     @Test
     void ensureInjectAndScope() {
-        MyDummyAIService myDummyAIService=myDummyAIServiceInstance.get();
-        MyDummyApplicationScopedAIService myDummyApplicationScopedAIService=myDummyApplicationScopedAIServiceInstance.get();
+        MyDummyAIService myDummyAIService = myDummyAIServiceInstance.get();
+        MyDummyApplicationScopedAIService myDummyApplicationScopedAIService = myDummyApplicationScopedAIServiceInstance.get();
         Assertions.assertNotNull(myDummyAIService);
         Assertions.assertNotNull(myDummyApplicationScopedAIService);
         assertBeanScope(MyDummyAIService.class, RequestScoped.class);
@@ -83,7 +85,7 @@ public class PortableExtensionInstanceTest {
 
     @Test
     void callEffectiveCreation() {
-        MyDummyAIService myDummyAIService=myDummyAIServiceInstance.get();
+        MyDummyAIService myDummyAIService = myDummyAIServiceInstance.get();
         Assertions.assertNotNull(requestContextCaller.run(() -> myDummyAIService.toString()));
 
     }

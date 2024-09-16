@@ -29,6 +29,32 @@
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.enterprise</groupId>
+                    <artifactId>jakarta.enterprise.cdi-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>jakarta.annotation</groupId>
+                    <artifactId>jakarta.annotation-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>jakarta.el</groupId>
+                    <artifactId>jakarta.el-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>jakarta.interceptor</groupId>
+                    <artifactId>jakarta.interceptor-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-core-impl</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -91,6 +117,7 @@
                         <home>${project.build.directory}/glassfish7x-home</home>
                         <properties>
                             <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+                            <cargo.glassfish.domain.debug>true</cargo.glassfish.domain.debug>
                         </properties>
                     </configuration>
                 </configuration>
