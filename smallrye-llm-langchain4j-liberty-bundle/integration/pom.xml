@@ -39,22 +39,41 @@
 		    <scope>provided</scope>
 		</dependency>
 		<dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
 			<version>${microprofile-api.version}</version>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-core</artifactId>
 			<version>${project.version}</version>
+			<scope>provided</scope>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
 			<version>${project.version}</version>
+			<scope>provided</scope>
 		</dependency>
+		
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -73,6 +92,8 @@
 							<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 							<Embed-Transitive>true</Embed-Transitive>
 							<Export-Package>
+								io.smallrye.llm.spi;version="1.0.0",
+								io.smallrye.llm.core.langchain4j.portableextension;version="1.0.0",
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Export-Package>
 	                        <!--
@@ -82,6 +103,9 @@
 	                            ${new.integration.code.private.package};version="1.0.0"
 	                        </Private-Package>
 	                        -->
+	                        <Import-Package>
+	                        	!io.smallrye.llm.aiservice;
+	                        </Import-Package>
 						</instructions>
 					</configuration>
 				</plugin>

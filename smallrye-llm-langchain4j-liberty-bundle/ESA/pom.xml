@@ -21,10 +21,20 @@
 		<dependency>
 		    <groupId>io.openliberty.features</groupId>
 		    <artifactId>microProfile-6.1</artifactId>
-		    <version>24.0.0.8</version>
+		    <version>24.0.0.9</version>
 		    <type>esa</type>
 		    <scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.openliberty.features/bells-1.0 -->
+		<!--
+		<dependency>
+		    <groupId>io.openliberty.features</groupId>
+		    <artifactId>bells-1.0</artifactId>
+		    <version>24.0.0.9</version>
+		    <type>esa</type>
+		    <scope>provided</scope>
+		</dependency>
+		-->
 	</dependencies>
 	
 	<build>
@@ -50,10 +60,7 @@
 						    </Subsystem-SymbolicName>
             				<Subsystem-Type>osgi.subsystem.feature</Subsystem-Type>
     						<Subsystem-Version>1.0.0</Subsystem-Version>
-    						<IBM-API-Package>
-    							smallrye-llm-langchain4j-core;version="${project.version}"
-    						</IBM-API-Package>
-    						<IBM-SPI-Package>jakarta.enterprise; type="spec",io.smallrye.llm.spi; type="third-party"</IBM-SPI-Package>
+    						<IBM-API-Package>dev.langchain4j.*;version="${dev.langchain4j.version}",io.smallrye.llm.spi;version="1.0.0",io.smallrye.llm.core.langchain4j.portableextension;version="1.0.0"</IBM-API-Package>
 			        	</instructions>
         			</configuration>
 				</plugin>
