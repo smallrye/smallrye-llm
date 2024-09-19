@@ -14,7 +14,11 @@
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
 
-    <webApplication location="liberty-car-booking.war" contextRoot="/" />
+    <webApplication location="${project.name}.war" contextRoot="/">
+    	<appProperties>
+     		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
+  		</appProperties>
+    </webApplication>
     <mpMetrics authentication="false"/>
     
     <applicationMonitor dropinsEnabled="false"/>
