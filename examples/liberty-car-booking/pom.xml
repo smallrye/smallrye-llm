@@ -25,6 +25,13 @@
 		<war-plugin.version>3.4.0</war-plugin.version>
 		<dev.langchain4j.version>0.34.0</dev.langchain4j.version>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+		
+		<!--Strictly for OpenLiberty-->
+		<!--
+		<liberty.jvm.unchecked>-Xlint:unchecked</liberty.jvm.unchecked>
+		<liberty.env.serverStartTimeout>240</liberty.env.serverStartTimeout>
+		-->
+		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
 	</properties>
 	
 	<dependencyManagement>
@@ -103,6 +110,15 @@
 	            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
 	            <version>${dev.langchain4j.version}</version>
 	        </dependency>
+        
+	        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
+	        <!--
+			<dependency>
+			    <groupId>ai.djl.huggingface</groupId>
+			    <artifactId>tokenizers</artifactId>
+			    <version>0.30.0</version>
+			</dependency>
+			-->
 	        
 	        <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
 	        <dependency>
@@ -133,23 +149,11 @@
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
-            <exclusions>
-            	<exclusion>
-					<groupId>org.eclipse.microprofile.config</groupId>
-            		<artifactId>microprofile-config-api</artifactId>
-				</exclusion>
-            </exclusions>
         </dependency>
 		
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
 			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>jakarta.enterprise</groupId>
-            		<artifactId>jakarta.enterprise.cdi-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		
 		<!--		
@@ -204,11 +208,12 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
+        <!--
 		<dependency>
 		    <groupId>ai.djl.huggingface</groupId>
 		    <artifactId>tokenizers</artifactId>
-		    <version>0.30.0</version>
 		</dependency>
+		-->
         
         <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
         <dependency>

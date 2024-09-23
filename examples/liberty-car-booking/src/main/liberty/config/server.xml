@@ -12,8 +12,12 @@
     	<appProperties>
      		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
   		</appProperties>
-  		<classloader delegation="parentLast" />
+  		<classloader commonLibraryRef="djLNativeLib" /> 
     </webApplication>
+    
+    <library id="djLNativeLib">
+    	<fileset dir="${shared.resource.dir}/lib/tokenizers/" includes="*.dll, *.so" />
+	</library>
     <mpMetrics authentication="false"/>
     
     <applicationMonitor dropinsEnabled="false"/>

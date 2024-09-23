@@ -63,12 +63,6 @@
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>jakarta.enterprise</groupId>
-            		<artifactId>jakarta.enterprise.cdi-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		
         <dependency>
