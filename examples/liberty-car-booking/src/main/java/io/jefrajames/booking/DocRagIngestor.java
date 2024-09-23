@@ -19,11 +19,26 @@ import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import lombok.extern.java.Log;
+
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @Log
 @ApplicationScoped
 public class DocRagIngestor {
+	
+//	static {
+//		ClassLoader cl = Thread.currentThread().getContextClassLoader();
+//		
+//		if (cl == null) {
+//			cl = DocRagIngestor.class.getClassLoader();
+//		}
+//		
+//		if (cl == null) {
+//			cl = ClassLoader.getSystemClassLoader();
+//		}
+//		
+//		Thread.currentThread().setContextClassLoader(ClassLoader.getSystemClassLoader());
+//	}
 
     // Used by ContentRetriever
     @Produces

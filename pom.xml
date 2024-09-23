@@ -41,11 +41,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
+        <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
         <weld-junit5.version>4.0.0.Final</weld-junit5.version>
         <version.weld>5.1.0.Final</version.weld>
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
-        <microprofile-config-api.version>3.0.3</microprofile-config-api.version>
         <dev.langchain4j.version>0.33.0</dev.langchain4j.version>
         <maven.version>3.9.9</maven.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
@@ -134,11 +133,6 @@
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j</artifactId>
                 <version>${dev.langchain4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.microprofile.config</groupId>
-                <artifactId>microprofile-config-api</artifactId>
-                <version>${microprofile-config-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

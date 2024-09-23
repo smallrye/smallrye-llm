@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>io.smallrye.llm.examples</groupId>
-  <version>1.0.0-SNAPSHOT</version>
-  <artifactId>liberty-car-booking</artifactId>
-  <packaging>war</packaging>
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>io.smallrye.llm.examples</groupId>
+  	<version>1.0.0-SNAPSHOT</version>
+  	<artifactId>liberty-car-booking</artifactId>
+  	<packaging>war</packaging>
 
 	<developers>
 		<developer>
@@ -29,6 +29,14 @@
 	
 	<dependencyManagement>
 		<dependencies>
+		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-api</artifactId>
+				<version>${jakartaee-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.eclipse.microprofile</groupId>
 				<artifactId>microprofile</artifactId>
@@ -37,27 +45,33 @@
 				<scope>provided</scope>
 			</dependency>
 			
+			<!--
 			<dependency>
 				<groupId>io.smallrye.llm.liberty-bundle</groupId>
 				<artifactId>smallrye-llm-langchain4j-features-bom</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 				<type>pom</type>
 			</dependency>
-		
+			-->
+			
 	        <dependency>
 	            <groupId>io.smallrye.llm</groupId>
 	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
 	            <version>1.0.0-SNAPSHOT</version>
 	        </dependency>
-			
+
 			<dependency>
 				<groupId>io.smallrye.llm</groupId>
 				<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
-				<!--
-				<scope>provided</scope>
-				-->
 			</dependency>
+			<!--
+			<dependency>
+				<groupId>io.smallrye.llm</groupId>
+			 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+			 	<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			-->
 			
 	        <dependency>
 	            <groupId>dev.langchain4j</groupId>
@@ -101,6 +115,15 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+		<!--
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+		
 		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
@@ -110,13 +133,33 @@
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+            <exclusions>
+            	<exclusion>
+					<groupId>org.eclipse.microprofile.config</groupId>
+            		<artifactId>microprofile-config-api</artifactId>
+				</exclusion>
+            </exclusions>
         </dependency>
 		
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
 			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>jakarta.enterprise</groupId>
+            		<artifactId>jakarta.enterprise.cdi-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
+		<!--		
+		<dependency>
+			<groupId>io.smallrye.llm</groupId>
+		 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+		</dependency>
+		-->
+		
+		<!--
 		<dependency>
 			<groupId>io.smallrye.llm.liberty-bundle</groupId>
 			<artifactId>smallrye-llm-langchain4j-feature</artifactId>
@@ -124,6 +167,7 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
+		-->
 		
         <dependency>
             <groupId>org.projectlombok</groupId>
