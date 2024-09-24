@@ -241,12 +241,6 @@
 					<artifactId>liberty-maven-plugin</artifactId>
 					<version>3.10.3</version>
 					<configuration>
-						<runtimeArtifact>
-							<groupId>io.openliberty</groupId>
-							<artifactId>openliberty-runtime</artifactId>
-							<version>24.0.0.9</version>
-							<type>zip</type>
-						</runtimeArtifact>
 						<bootstrapProperties>
 							<project.name>${project.build.finalName}</project.name>
 							<docragdir>${project.basedir}/docs-for-rag</docragdir>

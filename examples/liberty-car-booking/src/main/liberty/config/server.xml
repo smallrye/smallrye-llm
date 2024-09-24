@@ -5,9 +5,6 @@
     	<feature>microProfile-6.1</feature>
     </featureManager>
 
-    <variable name="default.http.port" defaultValue="9080"/>
-    <variable name="default.https.port" defaultValue="9443"/>
-
     <webApplication location="${project.name}.war" contextRoot="/">
     	<appProperties>
      		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
@@ -19,13 +16,4 @@
     	<fileset dir="${shared.resource.dir}/lib/tokenizers/" includes="*.dll, *.so" />
 	</library>
     <mpMetrics authentication="false"/>
-    
-    <applicationMonitor dropinsEnabled="false"/>
-
-    <logging traceSpecification="com.ibm.ws.microprofile.health.*=all" />
-
-    <httpEndpoint host="*" httpPort="${default.http.port}"
-        httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
-
-    <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 </server>
