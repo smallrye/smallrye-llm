@@ -18,7 +18,7 @@ public class LLMConfigProvider {
         if (factories.isEmpty()) {
             throw new RuntimeException("No service Found for LLMConfig interface");
         } else {
-            llmConfig = loader.findFirst().get();
+            llmConfig = factories.iterator().next(); //loader.findFirst().orElse(null);
         }
     }
 
