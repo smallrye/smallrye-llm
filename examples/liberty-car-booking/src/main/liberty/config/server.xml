@@ -4,16 +4,15 @@
     	<!-- See details here: https://openliberty.io/docs/ref/feature/#microProfile-6.1.html -->
     	<feature>microProfile-6.1</feature>
     </featureManager>
-
+    
     <webApplication location="${project.name}.war" contextRoot="/">
     	<appProperties>
      		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
   		</appProperties>
-  		<classloader commonLibraryRef="djLNativeLib" /> 
     </webApplication>
     
-    <library id="djLNativeLib">
-    	<fileset dir="${shared.resource.dir}/lib/tokenizers/" includes="*.dll, *.so" />
-	</library>
+	<applicationMonitor updateTrigger="mbean" /><!-- Or "disabled. This is required since liberty-maven-plugin causes the application to deploy twice in dev mode. -->
+	
     <mpMetrics authentication="false"/>
+    <logging consoleLogLevel="INFO"/>
 </server>

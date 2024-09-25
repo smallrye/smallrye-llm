@@ -27,10 +27,6 @@
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 		
 		<!--Strictly for OpenLiberty-->
-		<!--
-		<liberty.jvm.unchecked>-Xlint:unchecked</liberty.jvm.unchecked>
-		<liberty.env.serverStartTimeout>240</liberty.env.serverStartTimeout>
-		-->
 		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
 	</properties>
 	
@@ -112,13 +108,11 @@
 	        </dependency>
         
 	        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-	        <!--
 			<dependency>
 			    <groupId>ai.djl.huggingface</groupId>
 			    <artifactId>tokenizers</artifactId>
 			    <version>0.30.0</version>
 			</dependency>
-			-->
 	        
 	        <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
 	        <dependency>
@@ -208,12 +202,10 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-        <!--
 		<dependency>
 		    <groupId>ai.djl.huggingface</groupId>
 		    <artifactId>tokenizers</artifactId>
 		</dependency>
-		-->
         
         <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
         <dependency>
