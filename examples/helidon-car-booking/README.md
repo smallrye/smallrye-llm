@@ -9,7 +9,7 @@ It is derived from my [Quarkus-LangChain4j](https://github.com/jefrajames/car-bo
 It is based on a simplified car booking application inspired from the [Java meets AI](https://www.youtube.com/watch?v=BD1MSLbs9KE) talk from Lize Raes at Devoxx Belgium 2023. The car booking company is called "Miles of Smiles" and the application exposes two AI services:
 
 . a chat service to freely discuss with a customer assistant
-. a fraud service to determine if a customer is a frauder.
+. a fraud service to determine if a customer is a fraudster.
 
 For the sake of simplicity, there is no database interaction, the application is standalone and can be used "as is". Of course thanks to Quarkus, it can  easily be extended according to your needs.
 
@@ -17,7 +17,7 @@ Warning: you must first configure the application to connect to an LLM that supp
 
 ## Technical context
 
-The project has been developped and tested with:
+The project has been developed and tested with:
 
 * Java 22 (Temurin OpenJDK distro)
 * Helidon 4.0.7
@@ -32,11 +32,11 @@ During my tests, GPT 3.5 has proved to be faster but less precise en consistent 
 
 Quarkus provides a deep integration with LangChain4j thanks to a specific [extension](https://docs.quarkiverse.io/quarkus-langchain4j/dev/index.html).
 
-In particular, it provides a powerful @RegisterAiService annotation and network interractions with LLMs are managed with its own RestClient.
+In particular, it provides a powerful @RegisterAiService annotation and network interactions with LLMs are managed with its own RestClient.
 
 This example is based on a standard usage of LangChain4j with Helidon. There is no such deep integration. 
 
-I've added 3 technical classes to manage "the glue" (more or less the equivallent of @RegisterAiService):
+I've added 3 technical classes to manage "the glue" (more or less the equivalent of `@RegisterAiService`):
 
 * ModelFactory: generates an OpenAI Chat model
 * ChatAiServiceFactory: generates a Chat assistant
@@ -44,7 +44,7 @@ I've added 3 technical classes to manage "the glue" (more or less the equivallen
 
 I've been obliged to turn FraudResponse in a POJO. It seems that Google GSON, used to deserialize OpenAI responses does not support Java Record.
 
-In contrast with Quarkus, network interractions with LLMs are based on standard LangChain4j. For instance, the Azure SDK is used with Azure OpenAI.
+In contrast with Quarkus, network interactions with LLMs are based on standard LangChain4j. For instance, the Azure SDK is used with Azure OpenAI.
 
 ## Packaging the application
 
@@ -66,19 +66,19 @@ Note: native mode not yet tested.
 
 The application exposes a REST API documented with OpenAPI. 
 
-To interract with the application go to: http://localhost:8080/openapi/ui.
+To interact with the application go to: http://localhost:8080/openapi/ui.
 
 
 Typical questions you can ask in the Chat:
 
 * Hello, how can you help me?
 * What is your list of cars?
-* What is your cancelation policy?
+* What is your cancellation policy?
 * What is your fleet size? Be short please.
 * How many electric cars do you have?
 * My name is James Bond, please list my bookings
-* Is my booking 123-456 cancelable?
-* Is my booking 234-567 cancelable?
+* Is my booking 123-456 cancellable?
+* Is my booking 234-567 cancellable?
 * Can you check the duration please?
 * I'm James Bond, can I cancel all my booking 345-678?
 * Can you provide the details of all my bookings?

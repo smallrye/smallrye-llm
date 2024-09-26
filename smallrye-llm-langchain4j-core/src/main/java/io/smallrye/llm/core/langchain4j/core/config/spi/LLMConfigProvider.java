@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-@SuppressWarnings("unchecked")
 public class LLMConfigProvider {
 
     private static LLMConfig llmConfig;
@@ -19,7 +18,7 @@ public class LLMConfigProvider {
         if (factories.isEmpty()) {
             throw new RuntimeException("No service Found for LLMConfig interface");
         } else {
-            llmConfig = loader.findFirst().orElse(null);
+            llmConfig = factories.iterator().next(); //loader.findFirst().orElse(null);
         }
     }
 
@@ -31,5 +30,4 @@ public class LLMConfigProvider {
 
         return llmConfig;
     }
-
 }
