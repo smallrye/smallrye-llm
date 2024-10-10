@@ -6,6 +6,10 @@
         <PersistenceKey key="assetsFilters" />
         <PersistenceValue filter="{&quot;services&quot;:[],&quot;operations&quot;:[],&quot;insights&quot;:[]}" />
       </entry>
+      <entry>
+        <PersistenceKey key="services" />
+        <PersistenceValue filter="[]" />
+      </entry>
     </state>
   </component>
 </project>

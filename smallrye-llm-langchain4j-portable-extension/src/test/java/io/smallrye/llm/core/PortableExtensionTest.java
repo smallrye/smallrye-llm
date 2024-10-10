@@ -1,8 +1,12 @@
 package io.smallrye.llm.core;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
@@ -78,6 +82,17 @@ public class PortableExtensionTest {
         Assertions.assertNotNull(myDummyApplicationScopedAIService);
         assertBeanScope(MyDummyAIService.class, RequestScoped.class);
         assertBeanScope(MyDummyApplicationScopedAIService.class, ApplicationScoped.class);
+
+        List<Method> detectFraudForCustomer = Arrays.stream(myDummyAIService.getClass().getDeclaredMethods())
+                .filter(m -> m.getName().equals("detectFraudForCustomer")).collect(Collectors.toList());
+
+        Assertions.assertEquals(1, detectFraudForCustomer.size());
+
+        Assertions.assertTrue(
+                detectFraudForCustomer.get(0).isAnnotationPresent(org.eclipse.microprofile.ai.llm.SystemMessage.class));
+        Assertions.assertTrue(
+                detectFraudForCustomer.get(0).isAnnotationPresent(org.eclipse.microprofile.ai.llm.UserMessage.class));
+
     }
 
     @Test

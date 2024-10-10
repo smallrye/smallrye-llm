@@ -75,6 +75,7 @@ public class BceExtensionTest {
         Assertions.assertNotNull(myDummyApplicationScopedAIService);
         assertBeanScope(MyDummyAIService.class, RequestScoped.class);
         assertBeanScope(MyDummyApplicationScopedAIService.class, ApplicationScoped.class);
+
     }
 
     @Test
