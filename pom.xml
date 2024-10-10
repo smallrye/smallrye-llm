@@ -81,6 +81,7 @@
         <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
+        <module>mp-ai-api</module>
     </modules>
 
     <dependencyManagement>

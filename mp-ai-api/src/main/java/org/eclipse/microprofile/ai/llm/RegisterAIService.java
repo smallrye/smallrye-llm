@@ -1,4 +1,4 @@
-package io.smallrye.llm.spi;
+package org.eclipse.microprofile.ai.llm;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

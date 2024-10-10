@@ -6,8 +6,8 @@ import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
-import dev.langchain4j.service.SystemMessage;
-import io.smallrye.llm.spi.RegisterAIService;
+import org.eclipse.microprofile.ai.llm.SystemMessage;
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
 
 //@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(tools = BookingService.class, chatMemoryMaxMessages = 10)

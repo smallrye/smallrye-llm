@@ -5,6 +5,7 @@
       <directory url="file://$PROJECT_DIR$/spi/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/smallrye-llm-langchain4j-core/src/main/resources/archetype-resources" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/smallrye-llm-langchain4j-config-mpconfig/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mp-ai-api/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
@@ -12,9 +13,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="helidon-car-booking" />
         <module name="helidon-car-booking (1)" />
         <module name="carbooking-helidon" />
+        <module name="helidon-car-booking-portable-ext" />
+        <module name="helidon-car-booking" />
+        <module name="liberty-car-booking" />
       </profile>
       <profile name="Annotation profile for smallrye-llm-langchain4j-buildcompatible-extension" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -52,6 +55,13 @@
         <module name="quarkus-car-booking.test" />
         <module name="glassfish-car-booking.main" />
         <module name="glassfish-car-booking.test" />
+      </profile>
+      <profile name="Annotation profile for mp-ai-api" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="org.jboss.logging.tools.addGeneratedAnnotation" value="false" />
+        <module name="mp-ai-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
