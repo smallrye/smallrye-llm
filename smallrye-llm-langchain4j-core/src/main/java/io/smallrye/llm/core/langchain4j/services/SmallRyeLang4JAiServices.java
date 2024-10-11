@@ -31,6 +31,7 @@ import java.util.concurrent.Future;
 
 import org.eclipse.microprofile.ai.llm.MemoryId;
 import org.eclipse.microprofile.ai.llm.Moderate;
+import org.eclipse.microprofile.ai.llm.StructuredPrompt;
 import org.eclipse.microprofile.ai.llm.TokenStream;
 import org.eclipse.microprofile.ai.llm.TokenStreamAdapter;
 import org.eclipse.microprofile.ai.llm.Tool;
@@ -52,7 +53,6 @@ import dev.langchain4j.model.chat.request.json.JsonSchema;
 import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
-import dev.langchain4j.model.input.structured.StructuredPrompt;
 import dev.langchain4j.model.input.structured.StructuredPromptProcessor;
 import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.output.Response;
