@@ -15,15 +15,17 @@ import java.lang.annotation.Target;
 @Target(TYPE)
 public @interface StructuredPrompt {
 
-	/**
+    /**
      * Prompt template can be defined in one line or multiple lines.
      * If the template is defined in multiple lines, the lines will be joined with a delimiter defined below.
+     *
      * @return the prompt template lines.
      */
     String[] value();
 
     /**
      * The delimiter to join the lines of the prompt template.
+     *
      * @return the delimiter.
      */
     String delimiter() default "\n";

@@ -19,16 +19,18 @@ import dev.langchain4j.spi.prompt.structured.StructuredPromptFactory;
  * @since 10 October 2024
  */
 public class SmallRyeStructuredPromptFactory implements StructuredPromptFactory {
-	private static final Gson GSON = new GsonBuilder().setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE).create();
-	
-	/* (non-Javadoc)
-	 * @see dev.langchain4j.spi.prompt.structured.StructuredPromptFactory#toPrompt(java.lang.Object)
-	 */
+    private static final Gson GSON = new GsonBuilder().setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE).create();
 
-	@Override
-	public Prompt toPrompt(Object structuredPrompt) {
-		// TODO Auto-generated method stub
-		StructuredPrompt annotation = validateStructuredPrompt(structuredPrompt);
+    /*
+     * (non-Javadoc)
+     *
+     * @see dev.langchain4j.spi.prompt.structured.StructuredPromptFactory#toPrompt(java.lang.Object)
+     */
+
+    @Override
+    public Prompt toPrompt(Object structuredPrompt) {
+        // TODO Auto-generated method stub
+        StructuredPrompt annotation = validateStructuredPrompt(structuredPrompt);
 
         String promptTemplateString = join(annotation);
         PromptTemplate promptTemplate = PromptTemplate.from(promptTemplateString);
@@ -36,21 +38,24 @@ public class SmallRyeStructuredPromptFactory implements StructuredPromptFactory 
         Map<String, Object> variables = extractVariables(structuredPrompt);
 
         return promptTemplate.apply(variables);
-	}
+    }
 
     /**
      * Extracts the variables from the structured prompt.
+     *
      * @param structuredPrompt The structured prompt.
      * @return The variables map.
      */
     private static Map<String, Object> extractVariables(Object structuredPrompt) {
         String json = GSON.toJson(structuredPrompt);
-        TypeToken<Map<String, Object>> mapType = new TypeToken<Map<String, Object>>() {};
+        TypeToken<Map<String, Object>> mapType = new TypeToken<Map<String, Object>>() {
+        };
         return GSON.fromJson(json, mapType);
     }
-	
-	/**
+
+    /**
      * Validates that the given object is annotated with {@link StructuredPrompt}.
+     *
      * @param structuredPrompt the object to validate.
      * @return the annotation.
      */
@@ -67,6 +72,7 @@ public class SmallRyeStructuredPromptFactory implements StructuredPromptFactory 
 
     /**
      * Joins the lines of the prompt template.
+     *
      * @param structuredPrompt the structured prompt.
      * @return the joined prompt template.
      */
