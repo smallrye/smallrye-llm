@@ -35,6 +35,14 @@
     </dependencyManagement>
 
     <dependencies>
+    	<dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>mp-ai-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>mp-ai-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>mp-ai-api</artifactId>

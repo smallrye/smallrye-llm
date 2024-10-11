@@ -11,9 +11,7 @@ import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(chatMemoryMaxMessages = 5,
-
-        chatLanguageModelName = "chat-model")
+@RegisterAIService(chatMemoryMaxMessages = 5, chatLanguageModelName = "chat-model")
 public interface FraudAiService {
 
     @SystemMessage("""

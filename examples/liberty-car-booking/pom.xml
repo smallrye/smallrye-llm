@@ -42,7 +42,7 @@
                 <version>${jakartaee-api.version}</version>
                 <scope>provided</scope>
             </dependency>
-			
+
             <dependency>
                 <groupId>org.eclipse.microprofile</groupId>
                 <artifactId>microprofile</artifactId>
@@ -103,8 +103,7 @@
             <groupId>io.smallrye.llm</groupId>
             <artifactId>mp-ai-api</artifactId>
         </dependency>
-		
-		
+
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
