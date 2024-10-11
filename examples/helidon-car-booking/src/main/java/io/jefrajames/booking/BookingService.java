@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import org.eclipse.microprofile.ai.llm.Tool;
 
-import dev.langchain4j.agent.tool.Tool;
+import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.java.Log;
 
 @ApplicationScoped
@@ -33,7 +33,7 @@ public class BookingService {
     }
 
     // Simulate database accesses
-    private Booking checkBookingExists(String bookingNumber,String name, String surname) {
+    private Booking checkBookingExists(String bookingNumber, String name, String surname) {
         Booking booking = BOOKINGS.get(bookingNumber);
         if (booking == null || !booking.getCustomer().getName().equals(name)
                 || !booking.getCustomer().getSurname().equals(surname)) {
