@@ -7,8 +7,9 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-    <url>http://maven.apache.org</url>
+    <name>SmallRye LLM: LangChain4j Portable Extension</name>
 
     <dependencies>
         <dependency>

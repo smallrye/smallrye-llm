@@ -9,6 +9,7 @@
     </parent>
     <artifactId>examples</artifactId>
     <groupId>io.smallrye.llm.examples</groupId>
+    <name>SmallRye LLM Examples: Parent</name>
 
     <packaging>pom</packaging>
 
