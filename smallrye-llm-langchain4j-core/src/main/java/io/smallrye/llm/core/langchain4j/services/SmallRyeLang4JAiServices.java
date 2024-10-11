@@ -263,7 +263,7 @@ public class SmallRyeLang4JAiServices<T> extends AiServices<T> {
                                     chatResponse.finishReason());
                         } else {
                             // TODO migrate to new API
-                            response = toolSpecifications == null
+                            response = toolSpecifications == null || toolSpecifications.isEmpty()
                                     ? context.chatModel.generate(messages)
                                     : context.chatModel.generate(messages, toolSpecifications);
                         }
