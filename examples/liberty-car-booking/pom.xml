@@ -57,6 +57,12 @@
 			</dependency>
 			-->
 			
+			<dependency>
+	            <groupId>io.smallrye.llm</groupId>
+	            <artifactId>mp-ai-api</artifactId>
+	            <version>1.0.0-SNAPSHOT</version>
+	        </dependency>
+			
 	        <dependency>
 	            <groupId>io.smallrye.llm</groupId>
 	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
@@ -133,6 +139,11 @@
 			<scope>provided</scope>
 		</dependency>
 		-->
+		
+		<dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>mp-ai-api</artifactId>
+        </dependency>
 		
 		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
