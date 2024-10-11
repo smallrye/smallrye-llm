@@ -7,14 +7,13 @@
         <artifactId>examples</artifactId>
         <groupId>io.smallrye.llm.examples</groupId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>quarkus-car-booking</artifactId>
-    <version>1.0</version>
+    <name>SmallRye LLM Examples: Quarkus Car Booking</name>
 
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>
-        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>

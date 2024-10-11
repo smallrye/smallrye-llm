@@ -11,21 +11,21 @@ import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
-import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import lombok.extern.java.Log;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-
 @Log
 @ApplicationScoped
 public class DocRagIngestor {
-	
+
     // Used by ContentRetriever
     @Produces
     private EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
@@ -34,8 +34,8 @@ public class DocRagIngestor {
     @Produces
     private InMemoryEmbeddingStore embeddingStore = new InMemoryEmbeddingStore<>();
 
-//    private File docs = new File(System.getProperty("docragdir"));
-    
+    //    private File docs = new File(System.getProperty("docragdir"));
+
     @Inject
     @ConfigProperty(name = "app.docs-for-rag.dir")
     private File docs;

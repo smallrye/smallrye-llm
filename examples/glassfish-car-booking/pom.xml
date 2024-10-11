@@ -6,18 +6,19 @@
         <artifactId>examples</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>glassfish-car-booking</artifactId>
     <packaging>war</packaging>
-    <name>glassfish-car-booking Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <name>SmallRye LLM Examples: Glassfish Car Booking</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	    <maven.compiler.release>17</maven.compiler.release>
         <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
         <format.skip>true</format.skip> <!-- war plugin with sorts import do not support java 21-->
         <cargo.servlet.port>8080</cargo.servlet.port>
         <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs</cargo.zipUrlInstaller.downloadDir>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -94,6 +95,11 @@
     <build>
         <finalName>glassfish-car-booking</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven3-plugin</artifactId>

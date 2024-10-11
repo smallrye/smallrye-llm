@@ -33,7 +33,7 @@ public class BookingService {
     }
 
     // Simulate database accesses
-    private Booking checkBookingExists(String bookingNumber,String name, String surname) {
+    private Booking checkBookingExists(String bookingNumber, String name, String surname) {
         Booking booking = BOOKINGS.get(bookingNumber);
         if (booking == null || !booking.getCustomer().getName().equals(name)
                 || !booking.getCustomer().getSurname().equals(surname)) {
