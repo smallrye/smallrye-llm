@@ -20,9 +20,8 @@ import jakarta.enterprise.lang.model.declarations.FieldInfo;
 import jakarta.enterprise.lang.model.types.ClassType;
 import jakarta.inject.Named;
 
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
 import org.jboss.logging.Logger;
-
-import io.smallrye.llm.spi.RegisterAIService;
 
 public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompatibleExtension {
     private static final Logger LOGGER = Logger.getLogger(Langchain4JAIServiceBuildCompatibleExtension.class);

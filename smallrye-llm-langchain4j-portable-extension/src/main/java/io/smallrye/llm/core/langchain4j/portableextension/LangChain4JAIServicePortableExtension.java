@@ -17,10 +17,10 @@ import jakarta.enterprise.inject.spi.ProcessAnnotatedType;
 import jakarta.enterprise.inject.spi.ProcessInjectionPoint;
 import jakarta.enterprise.inject.spi.WithAnnotations;
 
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
 import org.jboss.logging.Logger;
 
 import io.smallrye.llm.aiservice.CommonAIServiceCreator;
-import io.smallrye.llm.spi.RegisterAIService;
 
 public class LangChain4JAIServicePortableExtension implements Extension {
     private static final Logger LOGGER = Logger.getLogger(LangChain4JAIServicePortableExtension.class);

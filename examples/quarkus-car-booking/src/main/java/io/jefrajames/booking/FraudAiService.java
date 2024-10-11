@@ -2,6 +2,7 @@ package io.jefrajames.booking;
 
 import java.time.temporal.ChronoUnit;
 
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
@@ -9,7 +10,6 @@ import org.eclipse.microprofile.faulttolerance.Timeout;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(chatMemoryMaxMessages = 5)

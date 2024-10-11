@@ -23,7 +23,7 @@
 		<microprofile-api.version>6.1</microprofile-api.version>
 		<compiler-plugin.version>3.13.0</compiler-plugin.version>
 		<war-plugin.version>3.4.0</war-plugin.version>
-		<dev.langchain4j.version>0.34.0</dev.langchain4j.version>
+		<dev.langchain4j.version>0.35.0</dev.langchain4j.version>
 		<maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 		
 		<!--Strictly for OpenLiberty-->

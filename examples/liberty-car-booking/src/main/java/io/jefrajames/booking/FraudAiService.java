@@ -1,9 +1,10 @@
 package io.jefrajames.booking;
 
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
+
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(chatMemoryMaxMessages = 5,

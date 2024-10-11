@@ -1,10 +1,11 @@
 package io.jefrajames.booking;
 
 import dev.langchain4j.service.SystemMessage;
+
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
-import io.smallrye.llm.spi.RegisterAIService;
 
 import java.time.temporal.ChronoUnit;
 
