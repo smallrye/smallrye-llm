@@ -27,6 +27,11 @@
         </dependency>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
+            <artifactId>mp-ai-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <exclusions>
@@ -66,7 +71,6 @@
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j</artifactId>
-            <version>${dev.langchain4j.version}</version>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j</groupId>
