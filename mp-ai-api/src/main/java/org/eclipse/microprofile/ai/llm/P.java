@@ -3,12 +3,14 @@ package org.eclipse.microprofile.ai.llm;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
  * Parameter of a Tool
  */
+@Documented
 @Retention(RUNTIME)
 @Target({ PARAMETER })
 public @interface P {
