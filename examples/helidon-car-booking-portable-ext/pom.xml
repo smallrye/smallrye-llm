@@ -27,7 +27,7 @@
             <dependency>
                 <groupId>io.helidon</groupId>
                 <artifactId>helidon-dependencies</artifactId>
-                <version>4.0.7</version>
+                <version>4.1.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
