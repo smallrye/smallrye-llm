@@ -44,10 +44,7 @@
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
         <dev.langchain4j.version>0.35.0</dev.langchain4j.version>
 
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
-        <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
+        <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <maven.compiler.release>17</maven.compiler.release>
 
         <!-- Sonar settings -->
