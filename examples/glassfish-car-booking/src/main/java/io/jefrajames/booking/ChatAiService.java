@@ -1,9 +1,7 @@
 package io.jefrajames.booking;
 
-import dev.langchain4j.service.SystemMessage;
-import io.smallrye.llm.spi.RegisterAIService;
-
-import java.time.temporal.ChronoUnit;
+import org.eclipse.microprofile.ai.llm.RegisterAIService;
+import org.eclipse.microprofile.ai.llm.SystemMessage;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(tools = BookingService.class, chatMemoryMaxMessages = 10, chatLanguageModelName = "chat-model")

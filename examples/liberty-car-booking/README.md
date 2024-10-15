@@ -10,7 +10,7 @@ These are the steps to run this service.
 ## Application requirements:
 - JDK 17 and higher
 - Maven 3.9.9 and higher
-- LangChain4j 0.33.0 or higher.
+- LangChain4j 0.35.0 or higher.
 - Testing against GPT 3.5 and 4.0 on a dedicated Azure instance (to be customized in your context). 
 
 Then you can access the application through the browser of your choice.
@@ -39,7 +39,7 @@ To package the application in JVM mode run: `mvn package`.
 
 ## Configuration
 
-All configuration is centralized in `microprofile-config.properties`(found is `resources\META-INF` folder) and can be redefined using environment variables.
+All configuration is centralized in `microprofile-config.properties` (found is `resources\META-INF` folder) and can be redefined using environment variables.
 
 ## Running the application
 
