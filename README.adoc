@@ -1,41 +1,48 @@
-# 🚀 Smallrye LLM
+:ci: https://github.com/smallrye/smallrye-llm/actions?query=workflow%3A%22SmallRye+Build%22
+
+image:https://github.com/smallrye/smallrye-llm/workflows/SmallRye%20Build/badge.svg?branch=main[link={ci}]
+image:https://img.shields.io/github/license/smallrye/smallrye-llm.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0"]
+image:https://img.shields.io/maven-central/v/io.smallrye.llm/smallrye-llm?color=green["Maven", link="https://central.sonatype.com/search?q=io.smallrye.llm%3Asmallrye-llm-parent"]
+
+= 🚀 Smallrye LLM
 
 Experimentation around LLM and MicroProfile
 
-## How to run examples
+== How to run examples
 
-### Use LM Studio
+=== Use LM Studio
 
-#### Install LM Sutdio
+==== Install LM Studio
 
 https://lmstudio.ai/
 
-#### Download model 
+==== Download model 
 
 Mistral 7B Instruct v0.2
 
-#### Run
+==== Run
 
 On left goto "local server", select the model in dropdown combo on the top, then start server
 
-### Use Ollama
+=== Use Ollama
 
 Running Ollama with the llama3.1 model:
 
-```shell
+[source,bash]
+----
 $CONTAINER_ENGINE= podman | docker
 $CONTAINER_ENGINE run -d --rm --name ollama --replace --pull=always -p 11434:11434 -v ollama:/root/.ollama --stop-signal=SIGKILL docker.io/ollama/ollama
 $CONTAINER_ENGINE exec -it ollama ollama run llama3.1
-```
+----
 
-### Run the examples
+=== Run the examples
 
 Go to each example READEM.md to see how to execute the example.
 
-## Contributing
+== Contributing
 If you want to contribute, please have a look to [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## License
+== License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
