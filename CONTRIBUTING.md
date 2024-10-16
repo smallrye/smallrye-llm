@@ -11,7 +11,7 @@ Welcome to the smallrye-llm project! We welcome contributions from the community
 
 ## Contributing Guidelines
 
-Please refer to our Wiki for the https://github.com/smallrye/smallrye/[Contribution Guidelines].
+Please refer to our Wiki for the [Contribution Guidelines](https://github.com/smallrye/smallrye/).
 
 
 ## Issues
