@@ -11,7 +11,7 @@
     <name>SmallRye LLM Examples: Helidon Car Booking Portable Extension</name>
 
     <properties>
-        <version.io.helidon>4.0.7</version.io.helidon>
+        <version.io.helidon>4.0.12</version.io.helidon>
         <mainClass>io.helidon.Main</mainClass>
     </properties>
 
