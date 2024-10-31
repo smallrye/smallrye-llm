@@ -1,120 +1,175 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>io.smallrye.llm.examples</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+  	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.smallrye.llm.examples</groupId>
+		<artifactId>examples</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>liberty-car-booking</artifactId>
-    <packaging>war</packaging>
-    <name>SmallRye LLM Examples: Liberty Car Booking</name>
+  	<artifactId>liberty-car-booking</artifactId>
+  	<packaging>war</packaging>
+	<name>SmallRye LLM Examples: Liberty Car Booking</name>
 
-    <developers>
-        <developer>
-            <name>Buhake Sindi</name>
-            <timezone>+2</timezone>
-            <roles>
-                <role>PROJECT LEAD</role>
-            </roles>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>Buhake Sindi</name>
+			<timezone>+2</timezone>
+			<roles>
+				<role>PROJECT LEAD</role>
+			</roles>
+		</developer>
+	</developers>
 	
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
-        <jakartaee-api.version>10.0.0</jakartaee-api.version>
-        <microprofile-api.version>6.1</microprofile-api.version>
-        <war-plugin.version>3.4.0</war-plugin.version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+		<jakartaee-api.version>10.0.0</jakartaee-api.version>
+		<microprofile-api.version>6.1</microprofile-api.version>
+		<compiler-plugin.version>3.13.0</compiler-plugin.version>
+		<war-plugin.version>3.4.0</war-plugin.version>
+		<dev.langchain4j.version>0.34.0</dev.langchain4j.version>
 
-        <!--Strictly for OpenLiberty-->
-        <liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
-    </properties>
-
+		<!--Strictly for OpenLiberty-->
+		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
+	</properties>
 	
-    <dependencyManagement>
-        <dependencies>
-            <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>${jakartaee-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
+	<dependencyManagement>
+		<dependencies>
+		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-api</artifactId>
+				<version>${jakartaee-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
 			
-            <dependency>
-                <groupId>org.eclipse.microprofile</groupId>
-                <artifactId>microprofile</artifactId>
-                <version>${microprofile-api.version}</version>
-                <type>pom</type>
-                <scope>provided</scope>
-            </dependency>
+			<dependency>
+				<groupId>org.eclipse.microprofile</groupId>
+				<artifactId>microprofile</artifactId>
+				<version>${microprofile-api.version}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			
+			<!--
+			<dependency>
+				<groupId>io.smallrye.llm.liberty-bundle</groupId>
+				<artifactId>smallrye-llm-langchain4j-features-bom</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<type>pom</type>
+			</dependency>
+			-->
+			
+	        <dependency>
+	            <groupId>io.smallrye.llm</groupId>
+	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+	            <version>1.0.0-SNAPSHOT</version>
+	        </dependency>
 
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-hugging-face</artifactId>
-                <version>${dev.langchain4j.version}</version>
-            </dependency>
-	        
-            <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-azure-open-ai</artifactId>
-                <version>${dev.langchain4j.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>io.smallrye.llm</groupId>
+				<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<!--
+			<dependency>
+				<groupId>io.smallrye.llm</groupId>
+			 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+			 	<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			-->
 			
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-open-ai</artifactId>
-                <version>${dev.langchain4j.version}</version>
-            </dependency>
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
 	        
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
-                <version>${dev.langchain4j.version}</version>
-            </dependency>
+	         <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-hugging-face</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+	        
+	        <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
+			<dependency>
+			    <groupId>dev.langchain4j</groupId>
+			    <artifactId>langchain4j-azure-open-ai</artifactId>
+			    <version>${dev.langchain4j.version}</version>
+			</dependency>
+			
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-open-ai</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
         
-            <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-            <dependency>
-                <groupId>ai.djl.huggingface</groupId>
-                <artifactId>tokenizers</artifactId>
-                <version>0.30.0</version>
-            </dependency>
+	        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
+			<dependency>
+			    <groupId>ai.djl.huggingface</groupId>
+			    <artifactId>tokenizers</artifactId>
+			    <version>0.30.0</version>
+			</dependency>
 	        
-            <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-jdk14</artifactId>
-                <scope>runtime</scope>
-                <version>2.0.9</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	        <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-jdk14</artifactId>
+	            <scope>runtime</scope>
+	            <version>2.0.9</version>
+	        </dependency>
+		</dependencies>
+	</dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.eclipse.microprofile</groupId>
-            <artifactId>microprofile</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>mp-ai-api</artifactId>
-        </dependency>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+		<!--
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
 		
+		<dependency>
+			<groupId>org.eclipse.microprofile</groupId>
+			<artifactId>microprofile</artifactId>
+			<type>pom</type>
+		</dependency>
 		
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
         </dependency>
 		
-        <dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-        </dependency>
-
+		<dependency>
+			<groupId>io.smallrye.llm</groupId>
+			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+		</dependency>
+		
+		<!--		
+		<dependency>
+			<groupId>io.smallrye.llm</groupId>
+		 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+		</dependency>
+		-->
+		
+		<!--
+		<dependency>
+			<groupId>io.smallrye.llm.liberty-bundle</groupId>
+			<artifactId>smallrye-llm-langchain4j-feature</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		-->
+		
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -134,10 +189,10 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
-        <dependency>
-            <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-azure-open-ai</artifactId>
-        </dependency>
+		<dependency>
+		    <groupId>dev.langchain4j</groupId>
+		    <artifactId>langchain4j-azure-open-ai</artifactId>
+		</dependency>
 		
         <dependency>
             <groupId>dev.langchain4j</groupId>
@@ -150,10 +205,10 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-        <dependency>
-            <groupId>ai.djl.huggingface</groupId>
-            <artifactId>tokenizers</artifactId>
-        </dependency>
+		<dependency>
+		    <groupId>ai.djl.huggingface</groupId>
+		    <artifactId>tokenizers</artifactId>
+		</dependency>
         
         <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
         <dependency>
@@ -161,38 +216,43 @@
             <artifactId>slf4j-jdk14</artifactId>
             <scope>runtime</scope>
         </dependency>
-    </dependencies>
+	</dependencies>
 	
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <pluginManagement>
-            <plugins>
-                <!-- https://mvnrepository.com/artifact/io.openliberty.tools/liberty-maven-plugin -->
-                <plugin>
-                    <groupId>io.openliberty.tools</groupId>
-                    <artifactId>liberty-maven-plugin</artifactId>
-                    <version>3.10.3</version>
-                    <configuration>
-                        <bootstrapProperties>
-                            <project.name>${project.build.finalName}</project.name>
-                            <docragdir>${project.basedir}/docs-for-rag</docragdir>
-                        </bootstrapProperties>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<pluginManagement>
+			<plugins>
+				<!-- https://mvnrepository.com/artifact/io.openliberty.tools/liberty-maven-plugin -->
+				<plugin>
+					<groupId>io.openliberty.tools</groupId>
+					<artifactId>liberty-maven-plugin</artifactId>
+					<version>3.10.3</version>
+					<configuration>
+						<bootstrapProperties>
+							<project.name>${project.build.finalName}</project.name>
+							<docragdir>${project.basedir}/docs-for-rag</docragdir>
+						</bootstrapProperties>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 
-        <plugins>
-            <plugin>
-                <groupId>io.openliberty.tools</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-            </plugin>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+				<groupId>io.openliberty.tools</groupId>
+				<artifactId>liberty-maven-plugin</artifactId>
+			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${war-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -11,8 +11,8 @@
     <name>SmallRye LLM Examples: Helidon Car Booking Portable Extension</name>
 
     <properties>
-        <version.io.helidon>4.0.7</version.io.helidon>
         <mainClass>io.helidon.Main</mainClass>
+        <dev.langchain4j.version>0.34.0</dev.langchain4j.version>
     </properties>
 
     <dependencyManagement>
@@ -20,14 +20,14 @@
             <dependency>
                 <groupId>io.helidon</groupId>
                 <artifactId>helidon-bom</artifactId>
-                <version>${version.io.helidon}</version>
+                <version>4.0.7</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.helidon</groupId>
                 <artifactId>helidon-dependencies</artifactId>
-                <version>${version.io.helidon}</version>
+                <version>4.0.7</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -35,17 +35,15 @@
     </dependencyManagement>
 
     <dependencies>
-    	<dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>mp-ai-api</artifactId>
-        </dependency>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- Adds all features available in MicroProfile -->
         <dependency>

@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.eclipse.microprofile.ai.llm.Tool;
-
 import jakarta.enterprise.context.ApplicationScoped;
+
+import dev.langchain4j.agent.tool.Tool;
 import lombok.extern.java.Log;
 
 @ApplicationScoped
