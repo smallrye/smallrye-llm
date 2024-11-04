@@ -1,12 +1,13 @@
 package io.jefrajames.booking;
 
-import org.eclipse.microprofile.ai.llm.RegisterAIService;
-import org.eclipse.microprofile.ai.llm.SystemMessage;
-import org.eclipse.microprofile.ai.llm.UserMessage;
-import org.eclipse.microprofile.ai.llm.V;
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.V;
+import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(chatMemoryMaxMessages = 5,
+
         chatLanguageModelName = "chat-model")
 public interface FraudAiService {
 

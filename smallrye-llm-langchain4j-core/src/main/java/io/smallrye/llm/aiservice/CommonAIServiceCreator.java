@@ -7,13 +7,13 @@ import java.util.List;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 
-import org.eclipse.microprofile.ai.llm.RegisterAIService;
 import org.jboss.logging.Logger;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 import io.smallrye.llm.core.langchain4j.core.config.spi.ChatMemoryFactoryProvider;
+import io.smallrye.llm.spi.RegisterAIService;
 
 public class CommonAIServiceCreator {
 

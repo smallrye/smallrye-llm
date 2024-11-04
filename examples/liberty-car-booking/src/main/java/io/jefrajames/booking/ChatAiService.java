@@ -2,11 +2,12 @@ package io.jefrajames.booking;
 
 import java.time.temporal.ChronoUnit;
 
-import org.eclipse.microprofile.ai.llm.RegisterAIService;
-import org.eclipse.microprofile.ai.llm.SystemMessage;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
+
+import dev.langchain4j.service.SystemMessage;
+import io.smallrye.llm.spi.RegisterAIService;
 
 //@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(tools = BookingService.class, chatMemoryMaxMessages = 10)
@@ -37,4 +38,5 @@ public interface ChatAiService {
                 "Sorry, I am not able to answer your request %s at the moment. Please try again later.",
                 question);
     }
+
 }
