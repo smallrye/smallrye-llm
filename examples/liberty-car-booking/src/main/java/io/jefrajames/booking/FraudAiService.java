@@ -1,14 +1,18 @@
 package io.jefrajames.booking;
 
+import java.time.temporal.ChronoUnit;
+
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
+
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import io.smallrye.llm.spi.RegisterAIService;
 
-@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(chatMemoryMaxMessages = 5,
-
-        chatLanguageModelName = "chat-model")
+//@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
+@RegisterAIService(chatMemoryMaxMessages = 5, chatLanguageModelName = "chat-model")
 public interface FraudAiService {
 
     @SystemMessage("""
@@ -44,6 +48,9 @@ public interface FraudAiService {
 
             You must not wrap JSON response in backticks, markdown, or in any other way, but return it as plain text.
             """)
+    @Timeout(unit = ChronoUnit.MINUTES, value = 5)
+    @Retry(maxRetries = 2)
+    @Fallback(fallbackMethod = "fraudFallback")
     FraudResponse detectFraudForCustomer(@V("name") String name, @V("surname") String surname);
 
     default FraudResponse fraudFallback(String name, String surname) {

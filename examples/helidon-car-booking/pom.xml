@@ -12,7 +12,7 @@
 
     <properties>
         <mainClass>io.helidon.Main</mainClass>
-        <dev.langchain4j.version>0.34.0</dev.langchain4j.version>
+        <dev.langchain4j.version>0.36.0</dev.langchain4j.version>
     </properties>
 
     <dependencyManagement>

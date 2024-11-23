@@ -40,9 +40,7 @@ public class CarBookingResource {
     @Path("/fraud")
     public FraudResponse detectFraudForCustomer(
             @QueryParam("name") String name,
-
             @QueryParam("surname") String surname) {
         return fraudService.detectFraudForCustomer(name, surname);
     }
-
 }

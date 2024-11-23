@@ -24,7 +24,7 @@
 		<microprofile-api.version>6.1</microprofile-api.version>
 		<compiler-plugin.version>3.13.0</compiler-plugin.version>
 		<war-plugin.version>3.4.0</war-plugin.version>
-		<dev.langchain4j.version>0.34.0</dev.langchain4j.version>
+		<dev.langchain4j.version>0.36.0</dev.langchain4j.version>
         
         <!-- We need only javac to use the release parameter. OpenLiberty doesn't depend on maven-compiler-plugin.' -->
         <maven.compiler.source combine.self="override" />
@@ -52,15 +52,6 @@
 				<scope>provided</scope>
 			</dependency>
 			
-			<!--
-			<dependency>
-				<groupId>io.smallrye.llm.liberty-bundle</groupId>
-				<artifactId>smallrye-llm-langchain4j-features-bom</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-				<type>pom</type>
-			</dependency>
-			-->
-			
 	        <dependency>
 	            <groupId>io.smallrye.llm</groupId>
 	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
@@ -72,11 +63,12 @@
 				<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
+			
 			<!--
 			<dependency>
 				<groupId>io.smallrye.llm</groupId>
-			 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
-			 	<version>1.0.0-SNAPSHOT</version>
+				<artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 			-->
 			
@@ -129,15 +121,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
-		<!--
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		-->
-		
 		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
@@ -154,20 +137,10 @@
 			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
 		</dependency>
 		
-		<!--		
-		<dependency>
-			<groupId>io.smallrye.llm</groupId>
-		 	<artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
-		</dependency>
-		-->
-		
 		<!--
 		<dependency>
-			<groupId>io.smallrye.llm.liberty-bundle</groupId>
-			<artifactId>smallrye-llm-langchain4j-feature</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<type>pom</type>
-			<scope>provided</scope>
+			<groupId>io.smallrye.llm</groupId>
+			<artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
 		</dependency>
 		-->
 		
@@ -175,7 +148,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.32</version>
-            <scope>provided</scope>
         </dependency>
         
         <!-- langchain4j dependencies -->
