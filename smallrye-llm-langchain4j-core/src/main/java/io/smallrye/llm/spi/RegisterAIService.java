@@ -30,8 +30,8 @@ public @interface RegisterAIService {
     String embeddingStoreName() default "";
 
     String contentRetrieverName() default "";
-    
+
     String moderationModelName() default "";
-    
+
     String chatMemoryStoreName() default "";
 }
