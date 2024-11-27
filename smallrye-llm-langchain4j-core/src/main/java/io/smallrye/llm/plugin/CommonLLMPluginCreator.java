@@ -5,8 +5,12 @@ import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.VALUE;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,10 +19,14 @@ import java.util.stream.Collectors;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
-import jakarta.enterprise.inject.spi.CDI;
+import jakarta.enterprise.util.TypeLiteral;
 
 import org.jboss.logging.Logger;
 
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.listener.ChatModelListener;
+import dev.langchain4j.store.embedding.EmbeddingStore;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
 
@@ -33,6 +41,13 @@ smallrye.llm.plugin.content-retriever.config.embedding-model=lookup:my-model
 public class CommonLLMPluginCreator {
 
     public static final Logger LOGGER = Logger.getLogger(CommonLLMPluginCreator.class);
+    
+    private static final Map<Class<?>, TypeLiteral<?>> TYPE_LITERALS = new HashMap<>();
+
+    static {
+        TYPE_LITERALS.put(EmbeddingStore.class, new TypeLiteral<EmbeddingStore<TextSegment>>() {
+        });
+    }
 
     @SuppressWarnings("unchecked")
     public static void createAllLLMBeans(LLMConfig llmConfig, Consumer<BeanData> beanBuilder) throws ClassNotFoundException {
@@ -62,11 +77,13 @@ public class CommonLLMPluginCreator {
                 }
                 beanBuilder.accept(
                         new BeanData(targetClass, builderCLass, scopeClass, beanName,
-                                (Instance<Object> creationalContext) -> CommonLLMPluginCreator.create(
-                                        creationalContext,
-                                        beanName,
-                                        targetClass,
-                                        builderCLass)));
+                                (Instance<Object> creationalContext) -> {
+                                    return CommonLLMPluginCreator.create(
+                                            creationalContext,
+                                            beanName,
+                                            targetClass,
+                                            builderCLass);
+                                }));
             }
         }
     }
@@ -109,6 +126,7 @@ public class CommonLLMPluginCreator {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static Object create(Instance<Object> lookup, String beanName, Class<?> targetClass, Class<?> builderClass) {
         LLMConfig llmConfig = LLMConfigProvider.getLlmConfig();
         LOGGER.info(
@@ -130,17 +148,40 @@ public class CommonLLMPluginCreator {
                 } else {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
-                        if (stringValue.startsWith("lookup:")) {
+                        if ("listeners".equals(property)) {
+                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
+                                    ? ChatModelListener.class
+                                    : parameterType.getTypeParameters()[0].getGenericDeclaration();
+                            List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(),
+                                    typeParameterClass);
+                            if ("@all".equals(stringValue.trim())) {
+                                Instance<Object> inst = (Instance<Object>) getInstance(lookup, typeParameterClass);
+                                if (inst != null) {
+                                    inst.forEach(listeners::add);
+                                }
+                            } else {
+                                try {
+                                    for (String className : stringValue.split(",")) {
+                                        Instance<?> inst = getInstance(lookup, loadClass(className.trim()));
+                                        listeners.add(inst.get());
+                                    }
+                                } catch (ClassNotFoundException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            if (listeners != null && !listeners.isEmpty()) {
+                                listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
+                                methodToCall.invoke(builder, listeners);
+                            }
+                        } else if (stringValue.startsWith("lookup:")) {
                             String lookupableBean = stringValue.substring("lookup:".length());
                             LOGGER.info("Lookup " + lookupableBean + " " + parameterType);
                             Instance<?> inst;
                             if ("default".equals(lookupableBean)) {
-                                inst = lookup.select(parameterType);
-                                if (!inst.isResolvable()) {
-                                    inst = CDI.current().select(parameterType);
-                                }
+                                inst = getInstance(lookup, parameterType);
                             } else {
-                                inst = lookup.select(parameterType, NamedLiteral.of(lookupableBean));
+                                inst = getInstance(lookup, parameterType, lookupableBean);
                             }
                             methodToCall.invoke(builder, inst.get());
                             break;
@@ -162,7 +203,20 @@ public class CommonLLMPluginCreator {
         }
     }
 
-    private static Class<?> loadClass(String scopeClassName) throws ClassNotFoundException {
-        return Thread.currentThread().getContextClassLoader().loadClass(scopeClassName);
+    private static Class<?> loadClass(String className) throws ClassNotFoundException {
+        return Thread.currentThread().getContextClassLoader().loadClass(className);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Instance<T> getInstance(Instance<Object> lookup, Class<T> clazz) {
+        if (TYPE_LITERALS.containsKey(clazz))
+            return (Instance<T>) lookup.select(TYPE_LITERALS.get(clazz));
+        return lookup.select(clazz);
+    }
+
+    private static <T> Instance<T> getInstance(Instance<Object> lookup, Class<T> clazz, String lookupName) {
+        if (lookupName == null || lookupName.isBlank())
+            return getInstance(lookup, clazz);
+        return lookup.select(clazz, NamedLiteral.of(lookupName));
     }
 }

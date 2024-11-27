@@ -3,16 +3,24 @@
     	<!-- Eclipse Microprofile 6.1 -->
     	<!-- See details here: https://openliberty.io/docs/ref/feature/#microProfile-6.1.html -->
     	<feature>microProfile-6.1</feature>
+    	<feature>mpTelemetry-2.0</feature>
     </featureManager>
     
     <webApplication location="${project.name}.war" contextRoot="/">
     	<appProperties>
-     		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
+     		<property name="app.docs-for-rag.dir" value="${docragdir}" />
   		</appProperties>
+  		
+  		<!-- enable visibility to third party apis -->
+  		<classloader apiTypeVisibility="+third-party"/>
     </webApplication>
     
 	<applicationMonitor updateTrigger="mbean" /><!-- Or "disabled. This is required since liberty-maven-plugin causes the application to deploy twice in dev mode. -->
 	
     <mpMetrics authentication="false"/>
+    <mpTelemetry source="message, trace, ffdc"/>
+    
+    <!--
     <logging consoleLogLevel="INFO"/>
+    -->
 </server>
