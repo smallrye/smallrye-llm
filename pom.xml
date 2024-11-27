@@ -35,8 +35,9 @@
 
     <properties>
         <version.eclipse.microprofile.config>3.1</version.eclipse.microprofile.config>
+        <version.eclipse.microprofile.telemetry>2.0.1</version.eclipse.microprofile.telemetry>
         <version.smallrye.common>2.9.0</version.smallrye.common>
-        <version.asm>9.7</version.asm>
+		<version.asm>9.7</version.asm>
         <version.smallrye.testing>2.3.1</version.smallrye.testing>
         <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
         <weld-junit5.version>4.0.3.Final</weld-junit5.version>
@@ -79,6 +80,8 @@
         <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
+        <module>smallrye-llm-langchain4j-metrics</module>
+		<module>smallrye-llm-langchain4j-telemetry</module>
     </modules>
 
     <dependencyManagement>
@@ -88,6 +91,17 @@
                 <artifactId>microprofile-config-api</artifactId>
                 <version>${version.eclipse.microprofile.config}</version>
             </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile.metrics</groupId>
+                <artifactId>microprofile-metrics-api</artifactId>
+                <version>${version.eclipse.microprofile.metrics}</version>
+            </dependency>
+			<dependency>
+				<groupId>org.eclipse.microprofile.telemetry</groupId>
+				<artifactId>microprofile-telemetry-api</artifactId>
+				<version>${version.eclipse.microprofile.telemetry}</version>
+				<type>pom</type>
+			</dependency>
             <dependency>
                 <groupId>io.smallrye.common</groupId>
                 <artifactId>smallrye-common-bom</artifactId>
