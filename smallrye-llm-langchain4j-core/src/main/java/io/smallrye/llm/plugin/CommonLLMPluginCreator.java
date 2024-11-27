@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
@@ -22,6 +23,8 @@ import jakarta.enterprise.util.TypeLiteral;
 import org.jboss.logging.Logger;
 
 import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.listener.ChatModelListener;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
@@ -141,7 +144,20 @@ public class CommonLLMPluginCreator {
                 } else {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
-                        if (stringValue.startsWith("lookup:")) {
+                        if ("listeners".equals(property) && "@all".equals(stringValue)) {
+                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
+                                    ? ChatModelListener.class
+                                    : parameterType.getTypeParameters()[0].getGenericDeclaration();
+                            Instance<?> inst = getInstance(lookup, typeParameterClass);
+                            if (inst != null) {
+                                List<?> listeners = StreamSupport.stream(inst.spliterator(), false)
+                                        .collect(Collectors.toList());
+                                if (listeners != null && !listeners.isEmpty()) {
+                                    listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
+                                    methodToCall.invoke(builder, listeners);
+                                }
+                            }
+                        } else if (stringValue.startsWith("lookup:")) {
                             String lookupableBean = stringValue.substring("lookup:".length());
                             LOGGER.info("Lookup " + lookupableBean + " " + parameterType);
                             Instance<?> inst;
