@@ -66,12 +66,6 @@
 			
 			<dependency>
 				<groupId>io.smallrye.llm</groupId>
-				<artifactId>smallrye-llm-langchain4j-metrics</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>io.smallrye.llm</groupId>
 				<artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
@@ -139,11 +133,6 @@
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
 			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>io.smallrye.llm</groupId>
-			<artifactId>smallrye-llm-langchain4j-metrics</artifactId>
 		</dependency>
 		
 		<dependency>

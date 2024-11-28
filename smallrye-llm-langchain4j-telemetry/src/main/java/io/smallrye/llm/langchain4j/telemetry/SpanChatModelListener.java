@@ -11,6 +11,7 @@ import dev.langchain4j.model.chat.listener.ChatModelResponse;
 import dev.langchain4j.model.chat.listener.ChatModelResponseContext;
 import dev.langchain4j.model.output.TokenUsage;
 import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.SpanBuilder;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
 
@@ -41,12 +42,18 @@ public class SpanChatModelListener implements ChatModelListener {
     public void onRequest(ChatModelRequestContext requestContext) {
         // TODO Auto-generated method stub
         final ChatModelRequest request = requestContext.request();
-        Span span = tracer.spanBuilder("chat " + request.model())
-                .setAttribute("gen_ai.operation.name", "chat")
-                .setAttribute("gen_ai.request.max_tokens", request.maxTokens())
-                .setAttribute("gen_ai.request.temperature", request.temperature())
-                .setAttribute("gen_ai.request.top_p", request.topP())
-                .startSpan();
+        SpanBuilder spanBuilder = tracer.spanBuilder("chat " + request.model())
+                .setAttribute("gen_ai.operation.name", "chat");
+        if (request.maxTokens() != null)
+            spanBuilder.setAttribute("gen_ai.request.max_tokens", request.maxTokens());
+
+        if (request.temperature() != null)
+            spanBuilder.setAttribute("gen_ai.request.temperature", request.temperature());
+
+        if (request.topP() != null)
+            spanBuilder.setAttribute("gen_ai.request.top_p", request.topP());
+
+        Span span = spanBuilder.startSpan();
         Scope scope = span.makeCurrent();
 
         requestContext.attributes().put(OTEL_SCOPE_KEY_NAME, scope);
