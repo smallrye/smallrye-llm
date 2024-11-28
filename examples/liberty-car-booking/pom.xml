@@ -46,29 +46,71 @@
                 <scope>provided</scope>
             </dependency>
 			
-            <!--
-            <dependency>
-                    <groupId>io.smallrye.llm.liberty-bundle</groupId>
-                    <artifactId>smallrye-llm-langchain4j-features-bom</artifactId>
-                    <version>1.0.0-SNAPSHOT</version>
-                    <type>pom</type>
-            </dependency>
-            -->
-            <!--
-            <dependency>
-                    <groupId>io.smallrye.llm</groupId>
-                    <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
-                    <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-            -->
-            <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-            <dependency>
-                <groupId>ai.djl.huggingface</groupId>
-                <artifactId>tokenizers</artifactId>
-                <version>0.30.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	        <dependency>
+	            <groupId>io.smallrye.llm</groupId>
+	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+	            <version>1.0.0-SNAPSHOT</version>
+	        </dependency>
+
+			<dependency>
+				<groupId>io.smallrye.llm</groupId>
+				<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>io.smallrye.llm</groupId>
+				<artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+	        
+	         <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-hugging-face</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+	        
+	        <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
+			<dependency>
+			    <groupId>dev.langchain4j</groupId>
+			    <artifactId>langchain4j-azure-open-ai</artifactId>
+			    <version>${dev.langchain4j.version}</version>
+			</dependency>
+			
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-open-ai</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>dev.langchain4j</groupId>
+	            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+	            <version>${dev.langchain4j.version}</version>
+	        </dependency>
+        
+	        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
+			<dependency>
+			    <groupId>ai.djl.huggingface</groupId>
+			    <artifactId>tokenizers</artifactId>
+			    <version>0.30.0</version>
+			</dependency>
+	        
+	        <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-jdk14</artifactId>
+	            <scope>runtime</scope>
+	            <version>2.0.9</version>
+	        </dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -103,11 +145,6 @@
                 <scope>provided</scope>
         </dependency>
         -->
-		
-		<dependency>
-			<groupId>io.smallrye.llm</groupId>
-			<artifactId>smallrye-llm-langchain4j-metrics</artifactId>
-		</dependency>
 		
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
