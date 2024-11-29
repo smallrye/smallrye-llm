@@ -1,5 +1,6 @@
 package io.smallrye.llm.langchain4j.telemetry;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import jakarta.annotation.PostConstruct;
@@ -35,27 +36,25 @@ public class MetricsChatModelListener implements ChatModelListener {
     private static final String METRIC_CLIENT_TOKEN_USAGE_NAME = "gen_ai.client.token.usage";
     private static final String METRIC_CLIENT_OPERATION_DURATION_NAME = "gen_ai.client.operation.duration";
 
-    private LongHistogram inputTokenUsage;
-    private LongHistogram outputTokenUsage;
-    private DoubleHistogram duration;
+    private LongHistogram clientTokenUsage;
+    private DoubleHistogram clientOperationDuration;
 
     @Inject
     private Meter meter;
 
     @PostConstruct
     private void init() {
-        inputTokenUsage = meter.histogramBuilder(METRIC_CLIENT_TOKEN_USAGE_NAME)
+        clientTokenUsage = meter.histogramBuilder(METRIC_CLIENT_TOKEN_USAGE_NAME)
                 .ofLongs()
-                .setDescription("Measures number of input tokens used")
+                .setDescription("Measures number of input and output tokens used")
+                .setExplicitBucketBoundariesAdvice(List.of(1L, 4L, 16L, 64L, 256L, 1024L, 4096L, 16384L, 65536L, 262144L,
+                        1048576L, 4194304L, 16777216L, 67108864L))
                 .build();
 
-        outputTokenUsage = meter.histogramBuilder(METRIC_CLIENT_TOKEN_USAGE_NAME)
-                .ofLongs()
-                .setDescription("Measures number of output tokens used")
-                .build();
-
-        duration = meter.histogramBuilder(METRIC_CLIENT_OPERATION_DURATION_NAME)
+        clientOperationDuration = meter.histogramBuilder(METRIC_CLIENT_OPERATION_DURATION_NAME)
                 .setDescription("GenAI operation duration")
+                .setExplicitBucketBoundariesAdvice(
+                        List.of(0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64, 1.28, 2.56, 5.12, 10.24, 20.48, 40.96, 81.92))
                 .setUnit("s")
                 .build();
     }
@@ -92,7 +91,7 @@ public class MetricsChatModelListener implements ChatModelListener {
                 AttributeKey.stringKey("gen_ai.response.model"), response.model(),
                 AttributeKey.stringKey("gen_ai.token.type"), "input");
         //Record
-        inputTokenUsage.record(response.tokenUsage().inputTokenCount(), inputTokenCountAttributes);
+        clientTokenUsage.record(response.tokenUsage().inputTokenCount(), inputTokenCountAttributes);
 
         Attributes outputTokenCountAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
                 AttributeKey.stringKey("gen_ai.request.model"), request.model(),
@@ -100,13 +99,13 @@ public class MetricsChatModelListener implements ChatModelListener {
                 AttributeKey.stringKey("gen_ai.token.type"), "output");
 
         //Record
-        outputTokenUsage.record(response.tokenUsage().outputTokenCount(), outputTokenCountAttributes);
+        clientTokenUsage.record(response.tokenUsage().outputTokenCount(), outputTokenCountAttributes);
 
         //Record duration
         Attributes durationAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
                 AttributeKey.stringKey("gen_ai.request.model"), request.model(),
                 AttributeKey.stringKey("gen_ai.response.model"), response.model());
-        recordDuration(startTime, endTime, durationAttributes);
+        recordClientOperationDuration(startTime, endTime, durationAttributes);
     }
 
     /*
@@ -136,10 +135,10 @@ public class MetricsChatModelListener implements ChatModelListener {
                 AttributeKey.stringKey("gen_ai.request.model"), request.model(),
                 AttributeKey.stringKey("gen_ai.response.model"), response.model(),
                 AttributeKey.stringKey("error.type"), sb.toString());
-        recordDuration(startTime, endTime, durationAttributes);
+        recordClientOperationDuration(startTime, endTime, durationAttributes);
     }
 
-    private void recordDuration(final long startTime, long endTime, final Attributes attributes) {
-        duration.record(TimeUnit.SECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS), attributes);
+    private void recordClientOperationDuration(final long startTime, long endTime, final Attributes attributes) {
+        clientOperationDuration.record(TimeUnit.SECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS), attributes);
     }
 }
