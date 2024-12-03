@@ -8,7 +8,7 @@
     
     <webApplication location="${project.name}.war" contextRoot="/">
     	<appProperties>
-     		<property name="app.docs-for-rag.dir" value="${docragdir}"/>
+     		<property name="app.docs-for-rag.dir" value="${docragdir}" />
   		</appProperties>
   		
   		<!-- enable visibility to third party apis -->
@@ -18,5 +18,9 @@
 	<applicationMonitor updateTrigger="mbean" /><!-- Or "disabled. This is required since liberty-maven-plugin causes the application to deploy twice in dev mode. -->
 	
     <mpMetrics authentication="false"/>
+    <mpTelemetry source="message, trace, ffdc"/>
+    
+    <!--
     <logging consoleLogLevel="INFO"/>
+    -->
 </server>

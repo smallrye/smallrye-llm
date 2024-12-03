@@ -46,6 +46,21 @@
                 <scope>provided</scope>
             </dependency>
 			
+			<!-- https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api -->
+			<dependency>
+			    <groupId>io.opentelemetry</groupId>
+			    <artifactId>opentelemetry-api</artifactId>
+			    <version>1.44.1</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+			    <groupId>io.opentelemetry.instrumentation</groupId>
+			    <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+			    <version>2.10.0</version>
+				<scope>provided</scope>
+			</dependency>
+
 	        <dependency>
 	            <groupId>io.smallrye.llm</groupId>
 	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
@@ -117,6 +132,17 @@
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
 			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.opentelemetry</groupId>
+		    <artifactId>opentelemetry-api</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-instrumentation-annotations -->
+		<dependency>
+		    <groupId>io.opentelemetry.instrumentation</groupId>
+		    <artifactId>opentelemetry-instrumentation-annotations</artifactId>
 		</dependency>
 		
         <dependency>
