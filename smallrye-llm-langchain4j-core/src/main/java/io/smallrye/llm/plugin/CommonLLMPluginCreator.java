@@ -15,12 +15,10 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
-import jakarta.enterprise.inject.spi.DeploymentException;
 import jakarta.enterprise.util.TypeLiteral;
 
 import org.jboss.logging.Logger;
@@ -80,17 +78,12 @@ public class CommonLLMPluginCreator {
                 beanBuilder.accept(
                         new BeanData(targetClass, builderCLass, scopeClass, beanName,
                                 (Instance<Object> creationalContext) -> {
-									try {
-										return CommonLLMPluginCreator.create(
-										        creationalContext,
-										        beanName,
-										        targetClass,
-										        builderCLass);
-									} catch (ClassNotFoundException e) {
-										// TODO Auto-generated catch block
-										throw new DeploymentException(e);
-									}
-								}));
+                                    return CommonLLMPluginCreator.create(
+                                            creationalContext,
+                                            beanName,
+                                            targetClass,
+                                            builderCLass);
+                                }));
             }
         }
     }
@@ -134,7 +127,7 @@ public class CommonLLMPluginCreator {
     }
 
     @SuppressWarnings("unchecked")
-	public static Object create(Instance<Object> lookup, String beanName, Class<?> targetClass, Class<?> builderClass) throws ClassNotFoundException {
+    public static Object create(Instance<Object> lookup, String beanName, Class<?> targetClass, Class<?> builderClass) {
         LLMConfig llmConfig = LLMConfigProvider.getLlmConfig();
         LOGGER.info(
                 "Create instance config:" + beanName + ", target class : " + targetClass + ", builderClass : " + builderClass);
@@ -156,24 +149,27 @@ public class CommonLLMPluginCreator {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
                         if ("listeners".equals(property)) {
-                        	Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
+                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
                                     ? ChatModelListener.class
                                     : parameterType.getTypeParameters()[0].getGenericDeclaration();
-                            List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(), typeParameterClass);
+                            List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(),
+                                    typeParameterClass);
                             if ("@all".equals(stringValue.trim())) {
-                            	Instance<Object> inst = (Instance<Object>) getInstance(lookup, typeParameterClass);
-                            	if (inst != null) {
-                            		inst.forEach(listeners::add);
-                            		listeners = StreamSupport.stream(inst.spliterator(), false)
-                                        .collect(Collectors.toList());
-                            	}
+                                Instance<Object> inst = (Instance<Object>) getInstance(lookup, typeParameterClass);
+                                if (inst != null) {
+                                    inst.forEach(listeners::add);
+                                }
                             } else {
-                            	for (String className : stringValue.split(",")) {
-                            		Instance<?> inst = getInstance(lookup, loadClass(className.trim()));
-                            		listeners.add(inst.get());
-                            	}
+                                try {
+                                    for (String className : stringValue.split(",")) {
+                                        Instance<?> inst = getInstance(lookup, loadClass(className.trim()));
+                                        listeners.add(inst.get());
+                                    }
+                                } catch (ClassNotFoundException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
-                            
+
                             if (listeners != null && !listeners.isEmpty()) {
                                 listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
                                 methodToCall.invoke(builder, listeners);
