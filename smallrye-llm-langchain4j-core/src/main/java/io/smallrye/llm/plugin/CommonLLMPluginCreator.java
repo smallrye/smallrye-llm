@@ -5,7 +5,9 @@ import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.VALUE;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import java.util.stream.StreamSupport;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
+import jakarta.enterprise.inject.spi.DeploymentException;
 import jakarta.enterprise.util.TypeLiteral;
 
 import org.jboss.logging.Logger;
@@ -76,11 +79,18 @@ public class CommonLLMPluginCreator {
                 }
                 beanBuilder.accept(
                         new BeanData(targetClass, builderCLass, scopeClass, beanName,
-                                (Instance<Object> creationalContext) -> CommonLLMPluginCreator.create(
-                                        creationalContext,
-                                        beanName,
-                                        targetClass,
-                                        builderCLass)));
+                                (Instance<Object> creationalContext) -> {
+									try {
+										return CommonLLMPluginCreator.create(
+										        creationalContext,
+										        beanName,
+										        targetClass,
+										        builderCLass);
+									} catch (ClassNotFoundException e) {
+										// TODO Auto-generated catch block
+										throw new DeploymentException(e);
+									}
+								}));
             }
         }
     }
@@ -123,7 +133,8 @@ public class CommonLLMPluginCreator {
         }
     }
 
-    public static Object create(Instance<Object> lookup, String beanName, Class<?> targetClass, Class<?> builderClass) {
+    @SuppressWarnings("unchecked")
+	public static Object create(Instance<Object> lookup, String beanName, Class<?> targetClass, Class<?> builderClass) throws ClassNotFoundException {
         LLMConfig llmConfig = LLMConfigProvider.getLlmConfig();
         LOGGER.info(
                 "Create instance config:" + beanName + ", target class : " + targetClass + ", builderClass : " + builderClass);
@@ -144,18 +155,28 @@ public class CommonLLMPluginCreator {
                 } else {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
-                        if ("listeners".equals(property) && "@all".equals(stringValue)) {
-                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
+                        if ("listeners".equals(property)) {
+                        	Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
                                     ? ChatModelListener.class
                                     : parameterType.getTypeParameters()[0].getGenericDeclaration();
-                            Instance<?> inst = getInstance(lookup, typeParameterClass);
-                            if (inst != null) {
-                                List<?> listeners = StreamSupport.stream(inst.spliterator(), false)
+                            List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(), typeParameterClass);
+                            if ("@all".equals(stringValue.trim())) {
+                            	Instance<Object> inst = (Instance<Object>) getInstance(lookup, typeParameterClass);
+                            	if (inst != null) {
+                            		inst.forEach(listeners::add);
+                            		listeners = StreamSupport.stream(inst.spliterator(), false)
                                         .collect(Collectors.toList());
-                                if (listeners != null && !listeners.isEmpty()) {
-                                    listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
-                                    methodToCall.invoke(builder, listeners);
-                                }
+                            	}
+                            } else {
+                            	for (String className : stringValue.split(",")) {
+                            		Instance<?> inst = getInstance(lookup, loadClass(className.trim()));
+                            		listeners.add(inst.get());
+                            	}
+                            }
+                            
+                            if (listeners != null && !listeners.isEmpty()) {
+                                listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
+                                methodToCall.invoke(builder, listeners);
                             }
                         } else if (stringValue.startsWith("lookup:")) {
                             String lookupableBean = stringValue.substring("lookup:".length());
@@ -186,8 +207,8 @@ public class CommonLLMPluginCreator {
         }
     }
 
-    private static Class<?> loadClass(String scopeClassName) throws ClassNotFoundException {
-        return Thread.currentThread().getContextClassLoader().loadClass(scopeClassName);
+    private static Class<?> loadClass(String className) throws ClassNotFoundException {
+        return Thread.currentThread().getContextClassLoader().loadClass(className);
     }
 
     @SuppressWarnings("unchecked")
