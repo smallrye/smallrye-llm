@@ -5,22 +5,26 @@ import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.VALUE;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.jboss.logging.Logger;
+
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.chat.listener.ChatModelListener;
+import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
+import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
 import jakarta.enterprise.inject.spi.CDI;
-
-import org.jboss.logging.Logger;
-
-import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
-import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
 
 /*
 smallrye.llm.plugin.content-retriever.class=dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever
@@ -130,7 +134,33 @@ public class CommonLLMPluginCreator {
                 } else {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
-                        if (stringValue.startsWith("lookup:")) {
+                        if ("listeners".equals(property)) {
+                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass) || StreamingChatLanguageModel.class.isAssignableFrom(targetClass)
+                                    ? ChatModelListener.class
+                                    : parameterType.getTypeParameters()[0].getGenericDeclaration();
+                            List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(),
+                                    typeParameterClass);
+                            if ("@all".equals(stringValue.trim())) {
+                                Instance<Object> inst = (Instance<Object>) getInstance(lookup, typeParameterClass);
+                                if (inst != null) {
+                                    inst.forEach(listeners::add);
+                                }
+                            } else {
+                                try {
+                                    for (String className : stringValue.split(",")) {
+                                        Instance<?> inst = getInstance(lookup, loadClass(className.trim()));
+                                        listeners.add(inst.get());
+                                    }
+                                } catch (ClassNotFoundException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            if (listeners != null && !listeners.isEmpty()) {
+                                listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
+                                methodToCall.invoke(builder, listeners);
+                            }
+                        } else if (stringValue.startsWith("lookup:")) {
                             String lookupableBean = stringValue.substring("lookup:".length());
                             LOGGER.info("Lookup " + lookupableBean + " " + parameterType);
                             Instance<?> inst;
