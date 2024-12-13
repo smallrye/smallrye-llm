@@ -6,9 +6,7 @@ import dev.langchain4j.service.V;
 import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(chatMemoryMaxMessages = 5,
-
-        chatLanguageModelName = "chat-model")
+@RegisterAIService(chatLanguageModelName = "chat-model") // had chatMemoryMaxMessages = 5
 public interface FraudAiService {
 
     @SystemMessage("""

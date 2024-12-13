@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.literal.NamedLiteral;
+
 import org.jboss.logging.Logger;
 
 import dev.langchain4j.memory.ChatMemory;
@@ -15,8 +18,6 @@ import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 import io.smallrye.llm.spi.RegisterAIService;
-import jakarta.enterprise.inject.Instance;
-import jakarta.enterprise.inject.literal.NamedLiteral;
 
 public class CommonAIServiceCreator {
 
@@ -54,35 +55,35 @@ public class CommonAIServiceCreator {
                 List<Object> tools = new ArrayList<>(annotation.tools().length);
                 for (Class<?> toolClass : annotation.tools()) {
                     try {
-                        tools.add(toolClass.getConstructor((Class<?>[])null).newInstance((Object[])null));
+                        tools.add(toolClass.getConstructor((Class<?>[]) null).newInstance((Object[]) null));
                     } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
                             | IllegalArgumentException | InvocationTargetException ex) {
                     }
                 }
                 aiServices.tools(tools);
             }
-            
+
             Instance<ChatMemory> chatMemory = getInstance(lookup, ChatMemory.class,
                     annotation.chatMemoryName());
             if (chatMemory != null && chatMemory.isResolvable()) {
                 LOGGER.info("ChatMemory " + chatMemory.get());
                 aiServices.chatMemory(chatMemory.get());
-            } 
+            }
 
             Instance<ChatMemoryProvider> chatMemoryProvider = getInstance(lookup, ChatMemoryProvider.class,
-            		annotation.chatMemoryProviderName());
+                    annotation.chatMemoryProviderName());
             if (chatMemoryProvider != null && chatMemoryProvider.isResolvable()) {
-            	LOGGER.info("ChatMemoryProvider " + chatMemoryProvider.get());
+                LOGGER.info("ChatMemoryProvider " + chatMemoryProvider.get());
                 aiServices.chatMemoryProvider(chatMemoryProvider.get());
-            } 
+            }
 
             Instance<ModerationModel> moderationModelInstance = getInstance(lookup, ModerationModel.class,
-            		annotation.moderationModelName());
+                    annotation.moderationModelName());
             if (moderationModelInstance != null && moderationModelInstance.isResolvable()) {
-            	LOGGER.info("ModerationModel " + moderationModelInstance.get());
+                LOGGER.info("ModerationModel " + moderationModelInstance.get());
                 aiServices.moderationModel(moderationModelInstance.get());
             }
-        
+
             return aiServices.build();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -92,12 +93,12 @@ public class CommonAIServiceCreator {
     private static <X> Instance<X> getInstance(Instance<Object> lookup, Class<X> type, String name) {
         LOGGER.info("CDI get instance of type '" + type + "' with name '" + name + "'");
         if (name != null && !name.isBlank()) {
-        	if ("#default".equals(name)) 
-        		return lookup.select(type);
-        	
-        	return lookup.select(type, NamedLiteral.of(name));
+            if ("#default".equals(name))
+                return lookup.select(type);
+
+            return lookup.select(type, NamedLiteral.of(name));
         }
-        
+
         return null;
     }
 }

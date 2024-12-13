@@ -20,7 +20,7 @@ public @interface RegisterAIService {
     Class<?>[] tools() default {};
 
     String chatLanguageModelName() default "#default";
-    
+
     String streamingChatLanguageModelName() default "";
 
     String contentRetrieverModelName() default "";
@@ -30,8 +30,8 @@ public @interface RegisterAIService {
     String moderationModelName() default "";
 
     String chatMemoryName() default "";
-    
+
     String chatMemoryProviderName() default "";
-    
+
     String retrievalAugmentorName() default "";
 }

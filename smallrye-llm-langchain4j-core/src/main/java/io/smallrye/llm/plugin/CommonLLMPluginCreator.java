@@ -16,6 +16,11 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.literal.NamedLiteral;
+import jakarta.enterprise.util.TypeLiteral;
+
 import org.jboss.logging.Logger;
 
 import dev.langchain4j.data.segment.TextSegment;
@@ -25,10 +30,6 @@ import dev.langchain4j.model.chat.listener.ChatModelListener;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Instance;
-import jakarta.enterprise.inject.literal.NamedLiteral;
-import jakarta.enterprise.util.TypeLiteral;
 
 /*
 smallrye.llm.plugin.content-retriever.class=dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever
@@ -149,9 +150,10 @@ public class CommonLLMPluginCreator {
                     for (Method methodToCall : methodsToCall) {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
                         if ("listeners".equals(property)) {
-                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass) || StreamingChatLanguageModel.class.isAssignableFrom(targetClass)
-                                    ? ChatModelListener.class
-                                    : parameterType.getTypeParameters()[0].getGenericDeclaration();
+                            Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
+                                    || StreamingChatLanguageModel.class.isAssignableFrom(targetClass)
+                                            ? ChatModelListener.class
+                                            : parameterType.getTypeParameters()[0].getGenericDeclaration();
                             List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(),
                                     typeParameterClass);
                             if ("@all".equals(stringValue.trim())) {

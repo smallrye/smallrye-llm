@@ -1,21 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>io.smallrye.llm.examples</groupId>
-		<artifactId>examples</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.smallrye.llm.examples</groupId>
+        <artifactId>examples</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-  	<artifactId>liberty-car-booking</artifactId>
-  	<packaging>war</packaging>
-	<name>SmallRye LLM Examples: Liberty Car Booking</name>
+    <artifactId>liberty-car-booking</artifactId>
+    <packaging>war</packaging>
+    <name>SmallRye LLM Examples: Liberty Car Booking</name>
 
-	<developers>
-		<developer>
-			<name>Buhake Sindi</name>
-			<timezone>+2</timezone>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Buhake Sindi</name>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,23 +34,23 @@
 		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
 	</properties>
 	
-	<dependencyManagement>
-		<dependencies>
-		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
-			<dependency>
-				<groupId>jakarta.platform</groupId>
-				<artifactId>jakarta.jakartaee-api</artifactId>
-				<version>${jakartaee-api.version}</version>
-				<scope>provided</scope>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>${jakartaee-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
 			
-			<dependency>
-				<groupId>org.eclipse.microprofile</groupId>
-				<artifactId>microprofile</artifactId>
-				<version>${microprofile-api.version}</version>
-				<type>pom</type>
-				<scope>provided</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile</groupId>
+                <artifactId>microprofile</artifactId>
+                <version>${microprofile-api.version}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
 			
 			<!-- https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api -->
 			<dependency>
@@ -156,10 +156,10 @@
             <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
         </dependency>
 		
-		<dependency>
-			<groupId>io.smallrye.llm</groupId>
-			<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+        </dependency>
 		
 		<dependency>
 			<groupId>io.smallrye.llm</groupId>
@@ -169,7 +169,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
         </dependency>
         
         <!-- langchain4j dependencies -->
@@ -184,10 +183,10 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
-		<dependency>
-		    <groupId>dev.langchain4j</groupId>
-		    <artifactId>langchain4j-azure-open-ai</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-azure-open-ai</artifactId>
+        </dependency>
 		
         <dependency>
             <groupId>dev.langchain4j</groupId>
@@ -200,10 +199,10 @@
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
-		<dependency>
-		    <groupId>ai.djl.huggingface</groupId>
-		    <artifactId>tokenizers</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>ai.djl.huggingface</groupId>
+            <artifactId>tokenizers</artifactId>
+        </dependency>
         
         <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
         <dependency>
@@ -211,43 +210,43 @@
             <artifactId>slf4j-jdk14</artifactId>
             <scope>runtime</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
 	
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<pluginManagement>
-			<plugins>
-				<!-- https://mvnrepository.com/artifact/io.openliberty.tools/liberty-maven-plugin -->
-				<plugin>
-					<groupId>io.openliberty.tools</groupId>
-					<artifactId>liberty-maven-plugin</artifactId>
-					<version>3.10.3</version>
-					<configuration>
-						<bootstrapProperties>
-							<project.name>${project.build.finalName}</project.name>
-							<docragdir>${project.basedir}/docs-for-rag</docragdir>
-						</bootstrapProperties>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <!-- https://mvnrepository.com/artifact/io.openliberty.tools/liberty-maven-plugin -->
+                <plugin>
+                    <groupId>io.openliberty.tools</groupId>
+                    <artifactId>liberty-maven-plugin</artifactId>
+                    <version>3.10.3</version>
+                    <configuration>
+                        <bootstrapProperties>
+                            <project.name>${project.build.finalName}</project.name>
+                            <docragdir>${project.basedir}/docs-for-rag</docragdir>
+                        </bootstrapProperties>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
 			
-			<plugin>
-				<groupId>io.openliberty.tools</groupId>
-				<artifactId>liberty-maven-plugin</artifactId>
-			</plugin>
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${war-plugin.version}</version>
-			</plugin>
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${war-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
