@@ -19,4 +19,71 @@
         <module>glassfish-car-booking</module>
         <module>liberty-car-booking</module>
     </modules>
+
+    <properties>
+        <dev.langchain4j.version>0.36.2</dev.langchain4j.version>
+    </properties>
+ 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.36</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-azure-open-ai</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-hugging-face</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-open-ai</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-xml</artifactId>
+                <version>1.0.0-beta.3</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>2.0.16</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
