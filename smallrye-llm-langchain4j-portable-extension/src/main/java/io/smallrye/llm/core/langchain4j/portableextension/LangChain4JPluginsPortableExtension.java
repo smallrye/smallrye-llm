@@ -21,13 +21,14 @@ public class LangChain4JPluginsPortableExtension implements Extension {
 
     void afterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery, BeanManager beanManager)
             throws ClassNotFoundException {
-        if (llmConfig == null)
+        if (llmConfig == null) {
             llmConfig = LLMConfigProvider.getLlmConfig();
+        }
 
         CommonLLMPluginCreator.createAllLLMBeans(
                 llmConfig,
                 beanData -> {
-                    LOGGER.info("Add Bean " + beanData.getTargetClass() + " " + beanData.getScopeClass() + " "
+                    LOGGER.debug("Add Bean " + beanData.getTargetClass() + " " + beanData.getScopeClass() + " "
                             + beanData.getBeanName());
 
                     afterBeanDiscovery.addBean()
