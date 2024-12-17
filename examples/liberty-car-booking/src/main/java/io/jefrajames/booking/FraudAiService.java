@@ -11,7 +11,6 @@ import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import io.smallrye.llm.spi.RegisterAIService;
 
-//@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(chatMemoryMaxMessages = 5, chatLanguageModelName = "chat-model")
 public interface FraudAiService {
 

@@ -52,7 +52,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
         return aiServiceInterfaceClass.getName();
     }
 
@@ -63,7 +62,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public T create(CreationalContext<T> creationalContext) {
-        // TODO Auto-generated method stub
         InterceptionFactory<T> factory = beanManager.createInterceptionFactory(creationalContext, aiServiceInterfaceClass);
         factory.configure().add(new Literal());
         return factory.createInterceptedInstance(CommonAIServiceCreator.create(CDI.current(), aiServiceInterfaceClass));
@@ -77,8 +75,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public void destroy(T instance, CreationalContext<T> creationalContext) {
-        // TODO Auto-generated method stub
-
     }
 
     /*
@@ -88,7 +84,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Set<Type> getTypes() {
-        // TODO Auto-generated method stub
         return Collections.singleton(aiServiceInterfaceClass);
     }
 
@@ -99,7 +94,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Set<Annotation> getQualifiers() {
-        // TODO Auto-generated method stub
         Set<Annotation> annotations = new HashSet<>();
         annotations.add(new AnnotationLiteral<Default>() {
         });
@@ -115,7 +109,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Class<? extends Annotation> getScope() {
-        // TODO Auto-generated method stub
         return scope;
     }
 
@@ -126,7 +119,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
         return "registeredAIService-" + aiServiceInterfaceClass.getName();
     }
 
@@ -137,7 +129,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Set<Class<? extends Annotation>> getStereotypes() {
-        // TODO Auto-generated method stub
         return Collections.singleton(RegisterAIService.class);
     }
 
@@ -148,7 +139,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public boolean isAlternative() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -159,7 +149,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Class<?> getBeanClass() {
-        // TODO Auto-generated method stub
         return aiServiceInterfaceClass;
     }
 
@@ -170,7 +159,6 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public Set<InjectionPoint> getInjectionPoints() {
-        // TODO Auto-generated method stub
         return Collections.emptySet();
     }
 
