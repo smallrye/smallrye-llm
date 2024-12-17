@@ -1,6 +1,6 @@
 package io.smallrye.llm.plugin;
 
-import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.VALUE;
+import static io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig.PRODUCER;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -21,6 +21,7 @@ import org.jboss.logging.Logger;
 
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfigProvider;
+import io.smallrye.llm.core.langchain4j.core.config.spi.ProducerFunction;
 
 /*
 smallrye.llm.plugin.content-retriever.class=dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever
@@ -47,10 +48,12 @@ public class CommonLLMPluginCreator {
             }
             Class<? extends Annotation> scopeClass = (Class<? extends Annotation>) loadClass(scopeClassName);
             Class<?> targetClass = loadClass(className);
-            Object bean = llmConfig.getBeanPropertyValue(beanName, VALUE, targetClass);
-            if (bean != null) {
+            ProducerFunction<Object> producer = llmConfig.getBeanPropertyValue(beanName, PRODUCER,
+                    ProducerFunction.class);
+            if (producer != null) {
                 beanBuilder.accept(
-                        new BeanData(targetClass, null, scopeClass, beanName, (Instance<Object> creationalContext) -> bean));
+                        new BeanData(targetClass, null, scopeClass, beanName,
+                                (Instance<Object> creationalContext) -> producer.produce(creationalContext, beanName)));
             } else {
                 // test if there is an inner static class Builder
                 Class<?> builderCLass = Arrays.stream(targetClass.getDeclaredClasses())
