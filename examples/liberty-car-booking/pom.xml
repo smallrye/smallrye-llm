@@ -49,11 +49,6 @@
                 <type>pom</type>
                 <scope>provided</scope>
             </dependency>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> dcf66ac (Enable the Fault Tolerance Interceptor.)
 			<dependency>
 			    <groupId>ai.djl.huggingface</groupId>
 			    <artifactId>tokenizers</artifactId>
