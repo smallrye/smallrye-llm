@@ -50,13 +50,6 @@ public class CommonLLMPluginCreator {
         });
     }
 
-    private static final Map<Class<?>, TypeLiteral<?>> TYPE_LITERALS = new HashMap<>();
-
-    static {
-        TYPE_LITERALS.put(EmbeddingStore.class, new TypeLiteral<EmbeddingStore<TextSegment>>() {
-        });
-    }
-
     @SuppressWarnings("unchecked")
     public static void createAllLLMBeans(LLMConfig llmConfig, Consumer<BeanData> beanBuilder) throws ClassNotFoundException {
         Set<String> beanNameToCreate = llmConfig.getBeanNames();
