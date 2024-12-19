@@ -10,7 +10,6 @@ import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.AfterBeanDiscovery;
 import jakarta.enterprise.inject.spi.BeanManager;
-import jakarta.enterprise.inject.spi.CDI;
 import jakarta.enterprise.inject.spi.Extension;
 import jakarta.enterprise.inject.spi.InjectionPoint;
 import jakarta.enterprise.inject.spi.ProcessAnnotatedType;
@@ -19,7 +18,6 @@ import jakarta.enterprise.inject.spi.WithAnnotations;
 
 import org.jboss.logging.Logger;
 
-import io.smallrye.llm.aiservice.CommonAIServiceCreator;
 import io.smallrye.llm.spi.RegisterAIService;
 
 public class LangChain4JAIServicePortableExtension implements Extension {
@@ -63,13 +61,8 @@ public class LangChain4JAIServicePortableExtension implements Extension {
     void afterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery, BeanManager beanManager)
             throws ClassNotFoundException {
         for (Class<?> aiServiceClass : detectedAIServicesDeclaredInterfaces) {
-            LOGGER.info("afterBeanDiscovery create synthetic :  " + aiServiceClass.getName());
-            final RegisterAIService annotation = aiServiceClass.getAnnotation(RegisterAIService.class);
-            afterBeanDiscovery.addBean()
-                    .types(aiServiceClass)
-                    .scope(annotation.scope())
-                    .name("registeredAIService-" + aiServiceClass.getName()) //Without this, the container won't create a CreationalContext
-                    .createWith(creationalContext -> CommonAIServiceCreator.create(CDI.current(), aiServiceClass));
+            LOGGER.info("afterBeanDiscovery create synthetic:  " + aiServiceClass.getName());
+            afterBeanDiscovery.addBean(new LangChain4JAIServiceBean<>(aiServiceClass, beanManager));
         }
     }
 

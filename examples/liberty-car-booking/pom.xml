@@ -17,20 +17,23 @@
         </developer>
     </developers>
 	
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
-        <jakartaee-api.version>10.0.0</jakartaee-api.version>
-        <microprofile-api.version>6.1</microprofile-api.version>
-        <compiler-plugin.version>3.13.0</compiler-plugin.version>
-        <war-plugin.version>3.4.0</war-plugin.version>
-        <!--Strictly for OpenLiberty-->
-        <liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+		<jakartaee-api.version>10.0.0</jakartaee-api.version>
+		<microprofile-api.version>6.1</microprofile-api.version>
+		<compiler-plugin.version>3.13.0</compiler-plugin.version>
+		<war-plugin.version>3.4.0</war-plugin.version>
+        <!-- We need only javac to use the release parameter. OpenLiberty doesn't depend on maven-compiler-plugin.' -->
+        <maven.compiler.source combine.self="override" />
+        <maven.compiler.target combine.self="override" />
+
+		<!--Strictly for OpenLiberty-->
+		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
+	</properties>
 	
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
             <dependency>
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-api</artifactId>
@@ -45,104 +48,18 @@
                 <type>pom</type>
                 <scope>provided</scope>
             </dependency>
-			
-			<!-- https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api -->
-			<dependency>
-			    <groupId>io.opentelemetry</groupId>
-			    <artifactId>opentelemetry-api</artifactId>
-			    <version>1.44.1</version>
-				<scope>provided</scope>
-			</dependency>
-			
-			<dependency>
-			    <groupId>io.opentelemetry.instrumentation</groupId>
-			    <artifactId>opentelemetry-instrumentation-annotations</artifactId>
-			    <version>2.10.0</version>
-				<scope>provided</scope>
-			</dependency>
-
-	        <dependency>
-	            <groupId>io.smallrye.llm</groupId>
-	            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
-	            <version>1.0.0-SNAPSHOT</version>
-	        </dependency>
-
-			<dependency>
-				<groupId>io.smallrye.llm</groupId>
-				<artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>io.smallrye.llm</groupId>
-				<artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			
-	        <dependency>
-	            <groupId>dev.langchain4j</groupId>
-	            <artifactId>langchain4j</artifactId>
-	            <version>${dev.langchain4j.version}</version>
-	        </dependency>
-	        
-	         <dependency>
-	            <groupId>dev.langchain4j</groupId>
-	            <artifactId>langchain4j-hugging-face</artifactId>
-	            <version>${dev.langchain4j.version}</version>
-	        </dependency>
-	        
-	        <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
-			<dependency>
-			    <groupId>dev.langchain4j</groupId>
-			    <artifactId>langchain4j-azure-open-ai</artifactId>
-			    <version>${dev.langchain4j.version}</version>
-			</dependency>
-			
-	        <dependency>
-	            <groupId>dev.langchain4j</groupId>
-	            <artifactId>langchain4j-open-ai</artifactId>
-	            <version>${dev.langchain4j.version}</version>
-	        </dependency>
-	        
-	        <dependency>
-	            <groupId>dev.langchain4j</groupId>
-	            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
-	            <version>${dev.langchain4j.version}</version>
-	        </dependency>
-        
-	        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
 			<dependency>
 			    <groupId>ai.djl.huggingface</groupId>
 			    <artifactId>tokenizers</artifactId>
 			    <version>0.30.0</version>
 			</dependency>
-	        
-	        <!-- SLF4J messages from langchain4j and Azure OpenAI SDK backed by JUL -->
-	        <dependency>
-	            <groupId>org.slf4j</groupId>
-	            <artifactId>slf4j-jdk14</artifactId>
-	            <scope>runtime</scope>
-	            <version>2.0.9</version>
-	        </dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.microprofile</groupId>
 			<artifactId>microprofile</artifactId>
 			<type>pom</type>
-		</dependency>
-		
-		<dependency>
-		    <groupId>io.opentelemetry</groupId>
-		    <artifactId>opentelemetry-api</artifactId>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-instrumentation-annotations -->
-		<dependency>
-		    <groupId>io.opentelemetry.instrumentation</groupId>
-		    <artifactId>opentelemetry-instrumentation-annotations</artifactId>
 		</dependency>
 		
         <dependency>
@@ -155,32 +72,9 @@
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
         </dependency>
 		
-        <!--		
-        <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
-        </dependency>
-        -->
-		
-        <!--
-        <dependency>
-                <groupId>io.smallrye.llm.liberty-bundle</groupId>
-                <artifactId>smallrye-llm-langchain4j-feature</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>provided</scope>
-        </dependency>
-        -->
-		
-		<dependency>
-			<groupId>io.smallrye.llm</groupId>
-			<artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
-		</dependency>
-		
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
         
         <!-- langchain4j dependencies -->
@@ -194,7 +88,6 @@
             <artifactId>langchain4j-hugging-face</artifactId>
         </dependency>
         
-        <!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-azure-open-ai -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-azure-open-ai</artifactId>
@@ -210,7 +103,6 @@
             <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
         </dependency>
         
-        <!-- https://mvnrepository.com/artifact/ai.djl.huggingface/tokenizers -->
         <dependency>
             <groupId>ai.djl.huggingface</groupId>
             <artifactId>tokenizers</artifactId>
@@ -220,7 +112,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 	
@@ -228,7 +119,6 @@
         <finalName>${project.artifactId}</finalName>
         <pluginManagement>
             <plugins>
-                <!-- https://mvnrepository.com/artifact/io.openliberty.tools/liberty-maven-plugin -->
                 <plugin>
                     <groupId>io.openliberty.tools</groupId>
                     <artifactId>liberty-maven-plugin</artifactId>
