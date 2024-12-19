@@ -42,7 +42,7 @@ public class LLMConfigMPConfig implements LLMConfig {
 
     @Override
     public <T> T getBeanPropertyValue(String beanName, String propertyName, Class<T> type) {
-        if (VALUE.equals(propertyName)) {
+        if (PRODUCER.equals(propertyName)) {
             return null;
         }
         T value = config.getOptionalValue(getBeanPropertyName(beanName, propertyName), type).orElse(null);
