@@ -16,8 +16,10 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
+import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import lombok.extern.java.Log;
@@ -32,9 +34,7 @@ public class DocRagIngestor {
 
     // Used by ContentRetriever
     @Produces
-    private InMemoryEmbeddingStore embeddingStore = new InMemoryEmbeddingStore<>();
-
-    //    private File docs = new File(System.getProperty("docragdir"));
+    private EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
     @Inject
     @ConfigProperty(name = "app.docs-for-rag.dir")
@@ -59,10 +59,5 @@ public class DocRagIngestor {
 
         log.info(String.format("DEMO %d documents ingested in %d msec", docs.size(),
                 System.currentTimeMillis() - start));
-    }
-
-    public static void main(String[] args) {
-
-        System.out.println(InMemoryEmbeddingStore.class.getInterfaces()[0]);
     }
 }
