@@ -23,8 +23,9 @@ public class LangChain4JPluginsBuildCompatibleExtension implements BuildCompatib
     @SuppressWarnings({ "unused", "unchecked" })
     @Synthesis
     public void createSynthetics(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
-        if (llmConfig == null)
+        if (llmConfig == null) {
             llmConfig = LLMConfigProvider.getLlmConfig();
+        }
         LOGGER.info("CDI BCE Langchain4j plugin");
 
         /*
