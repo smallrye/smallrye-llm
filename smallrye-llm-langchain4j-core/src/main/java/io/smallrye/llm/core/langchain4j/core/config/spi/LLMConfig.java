@@ -15,7 +15,7 @@ smallrye.llm.plugin.content-retriever.config.embedding-model=lookup:my-model
 public interface LLMConfig {
 
     String PREFIX = "smallrye.llm.plugin";
-    String VALUE = "defined_bean_value";
+    String PRODUCER = "defined_bean_producer";
 
     void init();
 
