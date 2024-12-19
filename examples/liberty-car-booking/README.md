@@ -39,7 +39,7 @@ To package the application in JVM mode run: `mvn package`.
 
 ## Configuration
 
-All configuration is centralized in `microprofile-config.properties`(found is `resources\META-INF` folder) and can be redefined using environment variables.
+All configuration is centralized in `microprofile-config.properties` (found is `resources\META-INF` folder) and can be redefined using environment variables.
 
 ## Running the application
 
