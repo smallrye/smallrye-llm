@@ -42,7 +42,7 @@
         <weld-junit5.version>4.0.3.Final</weld-junit5.version>
         <version.weld>5.1.4.Final</version.weld>
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
-        <dev.langchain4j.version>0.36.2</dev.langchain4j.version>
+        <dev.langchain4j.version>1.0.0-alpha1</dev.langchain4j.version>
 
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
