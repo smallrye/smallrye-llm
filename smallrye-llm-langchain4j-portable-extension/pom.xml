@@ -30,12 +30,12 @@
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
         </dependency>
-         <!-- https://mvnrepository.com/artifact/io.smallrye/smallrye-fault-tolerance -->
-		<dependency>
-		    <groupId>io.smallrye</groupId>
-		    <artifactId>smallrye-fault-tolerance</artifactId>
-		    <version>6.6.2</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/io.smallrye/smallrye-fault-tolerance -->
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-fault-tolerance</artifactId>
+            <version>6.6.2</version>
+        </dependency>
 
         <!-- TEST -->
         <dependency>
