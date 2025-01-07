@@ -29,6 +29,7 @@ public class DummyLLConfig implements LLMConfig {
                 .collect(Collectors.toSet());
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T getBeanPropertyValue(String beanName, String propertyName, Class<T> type) {
         String value = properties.getProperty(PREFIX + "." + beanName + "." + propertyName);
