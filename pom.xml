@@ -35,6 +35,7 @@
 
     <properties>
         <version.eclipse.microprofile.config>3.1</version.eclipse.microprofile.config>
+        <version.eclipse.microprofile.telemetry>2.0.1</version.eclipse.microprofile.telemetry>
         <version.smallrye.common>2.9.0</version.smallrye.common>
         <version.asm>9.7</version.asm>
         <version.smallrye.testing>2.3.1</version.smallrye.testing>
@@ -42,8 +43,8 @@
         <weld-junit5.version>4.0.3.Final</weld-junit5.version>
         <version.weld>5.1.4.Final</version.weld>
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
-        <dev.langchain4j.version>1.0.0-alpha1</dev.langchain4j.version>
-
+        <version.dev.langchain4j>1.0.0-alpha1</version.dev.langchain4j>
+        <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
@@ -79,6 +80,7 @@
         <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
+        <module>smallrye-llm-langchain4j-telemetry</module>
     </modules>
 
     <dependencyManagement>
@@ -87,6 +89,12 @@
                 <groupId>org.eclipse.microprofile.config</groupId>
                 <artifactId>microprofile-config-api</artifactId>
                 <version>${version.eclipse.microprofile.config}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile.telemetry</groupId>
+                <artifactId>microprofile-telemetry-api</artifactId>
+                <version>${version.eclipse.microprofile.telemetry}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>io.smallrye.common</groupId>
@@ -136,7 +144,38 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${version.dev.langchain4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.config</groupId>
+                <artifactId>smallrye-config</artifactId>
+                <version>${version.io.smallrye.config}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
