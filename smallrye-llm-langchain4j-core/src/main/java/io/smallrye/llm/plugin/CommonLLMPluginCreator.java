@@ -50,13 +50,6 @@ public class CommonLLMPluginCreator {
         });
     }
 
-    private static final Map<Class<?>, TypeLiteral<?>> TYPE_LITERALS = new HashMap<>();
-
-    static {
-        TYPE_LITERALS.put(EmbeddingStore.class, new TypeLiteral<EmbeddingStore<TextSegment>>() {
-        });
-    }
-
     @SuppressWarnings("unchecked")
     public static void createAllLLMBeans(LLMConfig llmConfig, Consumer<BeanData> beanBuilder) throws ClassNotFoundException {
         Set<String> beanNameToCreate = llmConfig.getBeanNames();
@@ -215,19 +208,6 @@ public class CommonLLMPluginCreator {
 
     private static Class<?> loadClass(String className) throws ClassNotFoundException {
         return Thread.currentThread().getContextClassLoader().loadClass(className);
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T> Instance<T> getInstance(Instance<Object> lookup, Class<T> clazz) {
-        if (TYPE_LITERALS.containsKey(clazz))
-            return (Instance<T>) lookup.select(TYPE_LITERALS.get(clazz));
-        return lookup.select(clazz);
-    }
-
-    private static <T> Instance<T> getInstance(Instance<Object> lookup, Class<T> clazz, String lookupName) {
-        if (lookupName == null || lookupName.isBlank())
-            return getInstance(lookup, clazz);
-        return lookup.select(clazz, NamedLiteral.of(lookupName));
     }
 
     @SuppressWarnings("unchecked")

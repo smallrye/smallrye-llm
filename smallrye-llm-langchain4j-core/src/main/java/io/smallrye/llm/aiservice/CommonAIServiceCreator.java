@@ -32,6 +32,7 @@ public class CommonAIServiceCreator {
                 annotation.contentRetrieverName());
         Instance<RetrievalAugmentor> retrievalAugmentor = getInstance(lookup, RetrievalAugmentor.class,
                 annotation.retrievalAugmentorName());
+<<<<<<< HEAD
         
         AiServices<X> aiServices = AiServices.builder(interfaceClass);
         if (chatLanguageModel != null && chatLanguageModel.isResolvable()) {
@@ -57,9 +58,65 @@ public class CommonAIServiceCreator {
                     tools.add(toolClass.getConstructor((Class<?>[])null).newInstance((Object[])null));
                 } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
                         | IllegalArgumentException | InvocationTargetException ex) {
+=======
+        try {
+            AiServices<X> aiServices = AiServices.builder(interfaceClass);
+            if (chatLanguageModel != null && chatLanguageModel.isResolvable()) {
+                LOGGER.info("ChatLanguageModel " + chatLanguageModel.get());
+                aiServices.chatLanguageModel(chatLanguageModel.get());
+            }
+            if (streamingChatLanguageModel != null && streamingChatLanguageModel.isResolvable()) {
+                LOGGER.info("StreamingChatLanguageModel " + streamingChatLanguageModel.get());
+                aiServices.streamingChatLanguageModel(streamingChatLanguageModel.get());
+            }
+            if (contentRetriever != null && contentRetriever.isResolvable()) {
+                LOGGER.info("ContentRetriever " + contentRetriever.get());
+                aiServices.contentRetriever(contentRetriever.get());
+            }
+            if (retrievalAugmentor != null && retrievalAugmentor.isResolvable()) {
+                LOGGER.info("RetrievalAugmentor " + retrievalAugmentor.get());
+                aiServices.retrievalAugmentor(retrievalAugmentor.get());
+            }
+            if (annotation.tools() != null && annotation.tools().length > 0) {
+                List<Object> tools = new ArrayList<>(annotation.tools().length);
+                for (Class toolClass : annotation.tools()) {
+                    try {
+                        tools.add(toolClass.getConstructor((Class<?>[])null).newInstance((Object[])null));
+                    } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
+                            | IllegalArgumentException | InvocationTargetException ex) {
+                    }
+>>>>>>> 0e91b10e3401dbfb81281fa976dcf94bee00b67f
                 }
             }
+<<<<<<< HEAD
             aiServices.tools(tools);
+=======
+            
+            Instance<ChatMemory> chatMemory = getInstance(lookup, ChatMemory.class,
+                    annotation.chatMemoryName());
+            if (chatMemory != null && chatMemory.isResolvable()) {
+                LOGGER.info("ChatMemory " + chatMemory.get());
+                aiServices.chatMemory(chatMemory.get());
+            } 
+
+            Instance<ChatMemoryProvider> chatMemoryProvider = getInstance(lookup, ChatMemoryProvider.class,
+            		annotation.chatMemoryProviderName());
+            if (chatMemoryProvider != null && chatMemoryProvider.isResolvable()) {
+            	LOGGER.info("ChatMemoryProvider " + chatMemoryProvider.get());
+                aiServices.chatMemoryProvider(chatMemoryProvider.get());
+            } 
+
+            Instance<ModerationModel> moderationModelInstance = getInstance(lookup, ModerationModel.class,
+            		annotation.moderationModelName());
+            if (moderationModelInstance != null && moderationModelInstance.isResolvable()) {
+            	LOGGER.info("ModerationModel " + moderationModelInstance.get());
+                aiServices.moderationModel(moderationModelInstance.get());
+            }
+        
+            return aiServices.build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+>>>>>>> 0e91b10e3401dbfb81281fa976dcf94bee00b67f
         }
         
         Instance<ChatMemory> chatMemory = getInstance(lookup, ChatMemory.class,
