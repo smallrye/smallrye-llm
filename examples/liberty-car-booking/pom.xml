@@ -17,29 +17,23 @@
         </developer>
     </developers>
 	
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
-		<jakartaee-api.version>10.0.0</jakartaee-api.version>
-		<microprofile-api.version>6.1</microprofile-api.version>
-		<compiler-plugin.version>3.13.0</compiler-plugin.version>
-		<war-plugin.version>3.4.0</war-plugin.version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+        <microprofile-api.version>6.1</microprofile-api.version>
+        <compiler-plugin.version>3.13.0</compiler-plugin.version>
+        <war-plugin.version>3.4.0</war-plugin.version>
         <!-- We need only javac to use the release parameter. OpenLiberty doesn't depend on maven-compiler-plugin.' -->
         <maven.compiler.source combine.self="override" />
         <maven.compiler.target combine.self="override" />
 
-		<!--Strictly for OpenLiberty-->
-		<liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
-	</properties>
+        <!--Strictly for OpenLiberty-->
+        <liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
+    </properties>
 	
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>${jakartaee-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
 			
             <dependency>
                 <groupId>org.eclipse.microprofile</groupId>
@@ -48,19 +42,40 @@
                 <type>pom</type>
                 <scope>provided</scope>
             </dependency>
-			<dependency>
-			    <groupId>ai.djl.huggingface</groupId>
-			    <artifactId>tokenizers</artifactId>
-			    <version>0.30.0</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.microprofile</groupId>
-			<artifactId>microprofile</artifactId>
-			<type>pom</type>
-		</dependency>
+			
+            <!-- https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api -->
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-api</artifactId>
+                <version>1.44.1</version>
+                <scope>provided</scope>
+            </dependency>
+			
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+                <version>2.10.0</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-api</artifactId>
+        </dependency>
+		
+        <!-- https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-instrumentation-annotations -->
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+        </dependency>
 		
         <dependency>
             <groupId>io.smallrye.llm</groupId>
@@ -70,6 +85,12 @@
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+        </dependency>
+		
+		
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
         </dependency>
 		
         <dependency>
