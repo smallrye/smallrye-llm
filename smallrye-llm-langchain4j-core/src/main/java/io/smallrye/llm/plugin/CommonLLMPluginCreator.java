@@ -25,6 +25,7 @@ import org.jboss.logging.Logger;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.chat.listener.ChatModelListener;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
@@ -153,8 +154,9 @@ public class CommonLLMPluginCreator {
                         Class<?> parameterType = methodToCall.getParameterTypes()[0];
                         if ("listeners".equals(property)) {
                             Class<?> typeParameterClass = ChatLanguageModel.class.isAssignableFrom(targetClass)
-                                    ? ChatModelListener.class
-                                    : parameterType.getTypeParameters()[0].getGenericDeclaration();
+                                    || StreamingChatLanguageModel.class.isAssignableFrom(targetClass)
+                                            ? ChatModelListener.class
+                                            : parameterType.getTypeParameters()[0].getGenericDeclaration();
                             List<Object> listeners = (List<Object>) Collections.checkedList(new ArrayList<>(),
                                     typeParameterClass);
                             if ("@all".equals(stringValue.trim())) {
@@ -222,5 +224,4 @@ public class CommonLLMPluginCreator {
             return getInstance(lookup, clazz);
         return lookup.select(clazz, NamedLiteral.of(lookupName));
     }
-
 }

@@ -12,7 +12,7 @@ import dev.langchain4j.service.SystemMessage;
 import io.smallrye.llm.spi.RegisterAIService;
 
 //@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(scope = ApplicationScoped.class, tools = BookingService.class, chatMemoryMaxMessages = 10)
+@RegisterAIService(scope = ApplicationScoped.class, tools = BookingService.class, chatMemoryName = "chat-ai-service-memory")
 public interface ChatAiService {
 
     @SystemMessage("""

@@ -12,7 +12,7 @@ import dev.langchain4j.service.V;
 import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(chatMemoryMaxMessages = 5)
+@RegisterAIService(chatMemoryName = "fraud-ai-service-memory")
 public interface FraudAiService {
 
     @SystemMessage("""
