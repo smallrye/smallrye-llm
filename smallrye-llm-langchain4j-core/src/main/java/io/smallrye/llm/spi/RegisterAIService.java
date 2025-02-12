@@ -19,19 +19,17 @@ public @interface RegisterAIService {
 
     Class<?>[] tools() default {};
 
-    String chatLanguageModelName() default "";
+    String chatLanguageModelName() default "#default";
 
-    String contentRetrieverModelName() default "";
-
-    int chatMemoryMaxMessages() default 10;
-
-    String embeddingModelName() default "";
-
-    String embeddingStoreName() default "";
+    String streamingChatLanguageModelName() default "";
 
     String contentRetrieverName() default "";
 
     String moderationModelName() default "";
 
-    String chatMemoryStoreName() default "";
+    String chatMemoryName() default "";
+
+    String chatMemoryProviderName() default "";
+
+    String retrievalAugmentorName() default "";
 }

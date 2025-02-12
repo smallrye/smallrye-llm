@@ -6,7 +6,7 @@ import io.smallrye.llm.spi.RegisterAIService;
 import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(tools = BookingService.class, chatMemoryMaxMessages = 10, chatLanguageModelName = "chat-model")
+@RegisterAIService(tools = BookingService.class, chatMemoryName = "chat-ai-service-memory", chatLanguageModelName = "chat-model")
 public interface ChatAiService {
 
     @SystemMessage("""
