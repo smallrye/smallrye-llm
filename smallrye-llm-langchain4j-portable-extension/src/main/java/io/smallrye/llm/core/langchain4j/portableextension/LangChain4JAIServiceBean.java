@@ -17,7 +17,6 @@ import jakarta.enterprise.inject.spi.InterceptionFactory;
 import jakarta.enterprise.inject.spi.PassivationCapable;
 import jakarta.enterprise.util.AnnotationLiteral;
 
-import io.smallrye.faulttolerance.FaultToleranceBinding.Literal;
 import io.smallrye.llm.aiservice.CommonAIServiceCreator;
 import io.smallrye.llm.spi.RegisterAIService;
 
@@ -32,6 +31,8 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
     private final BeanManager beanManager;
 
     private final Class<? extends Annotation> scope;
+
+    private Set<Annotation> interceptorBindings;
 
     /**
      * @param aiServiceInterfaceClass
@@ -62,9 +63,14 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
      */
     @Override
     public T create(CreationalContext<T> creationalContext) {
-        InterceptionFactory<T> factory = beanManager.createInterceptionFactory(creationalContext, aiServiceInterfaceClass);
-        factory.configure().add(new Literal());
-        return factory.createInterceptedInstance(CommonAIServiceCreator.create(CDI.current(), aiServiceInterfaceClass));
+        T instance = CommonAIServiceCreator.create(CDI.current(), aiServiceInterfaceClass);
+        if (!getInterceptorBindings().isEmpty()) {
+            InterceptionFactory<T> factory = beanManager.createInterceptionFactory(creationalContext, aiServiceInterfaceClass);
+            interceptorBindings.stream().forEach(factory.configure()::add);
+            instance = factory.createInterceptedInstance(instance);
+        }
+
+        return instance;
     }
 
     /*
@@ -160,6 +166,15 @@ public class LangChain4JAIServiceBean<T> implements Bean<T>, PassivationCapable 
     @Override
     public Set<InjectionPoint> getInjectionPoints() {
         return Collections.emptySet();
+    }
+
+    /**
+     * @return the interceptorBindings
+     */
+    public Set<Annotation> getInterceptorBindings() {
+        if (interceptorBindings == null)
+            interceptorBindings = new HashSet<>();
+        return interceptorBindings;
     }
 
     @Override

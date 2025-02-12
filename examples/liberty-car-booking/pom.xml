@@ -34,7 +34,6 @@
 	
     <dependencyManagement>
         <dependencies>
-			
             <dependency>
                 <groupId>org.eclipse.microprofile</groupId>
                 <artifactId>microprofile</artifactId>
@@ -43,7 +42,6 @@
                 <scope>provided</scope>
             </dependency>
 			
-            <!-- https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api -->
             <dependency>
                 <groupId>io.opentelemetry</groupId>
                 <artifactId>opentelemetry-api</artifactId>
@@ -71,7 +69,6 @@
             <artifactId>opentelemetry-api</artifactId>
         </dependency>
 		
-        <!-- https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-instrumentation-annotations -->
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
             <artifactId>opentelemetry-instrumentation-annotations</artifactId>
@@ -87,7 +84,11 @@
             <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
         </dependency>
 		
-		
+		<dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>io.smallrye.llm</groupId>
             <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
