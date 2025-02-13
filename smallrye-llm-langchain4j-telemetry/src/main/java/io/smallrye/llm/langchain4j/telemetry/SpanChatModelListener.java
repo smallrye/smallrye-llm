@@ -1,17 +1,21 @@
 package io.smallrye.llm.langchain4j.telemetry;
 
+import java.util.Arrays;
+
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 import dev.langchain4j.model.chat.listener.ChatModelErrorContext;
 import dev.langchain4j.model.chat.listener.ChatModelListener;
-import dev.langchain4j.model.chat.listener.ChatModelRequest;
 import dev.langchain4j.model.chat.listener.ChatModelRequestContext;
-import dev.langchain4j.model.chat.listener.ChatModelResponse;
 import dev.langchain4j.model.chat.listener.ChatModelResponseContext;
+import dev.langchain4j.model.chat.request.ChatRequest;
+import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.output.TokenUsage;
+import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanBuilder;
+import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
 
@@ -41,17 +45,31 @@ public class SpanChatModelListener implements ChatModelListener {
     @Override
     public void onRequest(ChatModelRequestContext requestContext) {
         // TODO Auto-generated method stub
-        final ChatModelRequest request = requestContext.request();
-        SpanBuilder spanBuilder = tracer.spanBuilder("chat " + request.model())
+        final ChatRequest request = requestContext.chatRequest();
+        SpanBuilder spanBuilder = tracer.spanBuilder("chat " + request.parameters().modelName())
+                .setSpanKind(SpanKind.CLIENT)
                 .setAttribute("gen_ai.operation.name", "chat");
-        if (request.maxTokens() != null)
-            spanBuilder.setAttribute("gen_ai.request.max_tokens", request.maxTokens());
+        if (request.parameters().maxOutputTokens() != null)
+            spanBuilder.setAttribute("gen_ai.request.max_tokens", request.parameters().maxOutputTokens());
 
-        if (request.temperature() != null)
-            spanBuilder.setAttribute("gen_ai.request.temperature", request.temperature());
+        if (request.parameters().temperature() != null)
+            spanBuilder.setAttribute("gen_ai.request.temperature", request.parameters().temperature());
 
-        if (request.topP() != null)
-            spanBuilder.setAttribute("gen_ai.request.top_p", request.topP());
+        if (request.parameters().topK() != null)
+            spanBuilder.setAttribute("gen_ai.request.top_k", request.parameters().topK());
+
+        if (request.parameters().topP() != null)
+            spanBuilder.setAttribute("gen_ai.request.top_p", request.parameters().topP());
+
+        if (request.parameters().presencePenalty() != null)
+            spanBuilder.setAttribute("gen_ai.request.presence_penalty", request.parameters().presencePenalty());
+
+        if (request.parameters().frequencyPenalty() != null)
+            spanBuilder.setAttribute("gen_ai.request.frequency_penalty", request.parameters().frequencyPenalty());
+
+        if (request.parameters().stopSequences() != null)
+            spanBuilder.setAttribute(AttributeKey.stringArrayKey("gen_ai.request.stop_sequences"),
+                    request.parameters().stopSequences());
 
         Span span = spanBuilder.startSpan();
         Scope scope = span.makeCurrent();
@@ -71,13 +89,14 @@ public class SpanChatModelListener implements ChatModelListener {
         // TODO Auto-generated method stub
         Span span = (Span) responseContext.attributes().get(OTEL_SPAN_KEY_NAME);
         if (span != null) {
-            ChatModelResponse response = responseContext.response();
-            span.setAttribute("gen_ai.response.id", response.id())
-                    .setAttribute("gen_ai.response.model", response.model());
+            ChatResponse response = responseContext.chatResponse();
+            span.setAttribute("gen_ai.response.id", response.metadata().id())
+                    .setAttribute("gen_ai.response.model", response.metadata().modelName());
             if (response.finishReason() != null) {
-                span.setAttribute("gen_ai.response.finish_reasons", response.finishReason().toString());
+                span.setAttribute(AttributeKey.stringArrayKey("gen_ai.response.finish_reasons"),
+                        Arrays.asList(response.metadata().finishReason().toString()));
             }
-            TokenUsage tokenUsage = response.tokenUsage();
+            TokenUsage tokenUsage = response.metadata().tokenUsage();
             if (tokenUsage != null) {
                 span.setAttribute("gen_ai.usage.output_tokens", tokenUsage.outputTokenCount())
                         .setAttribute("gen_ai.usage.input_tokens", tokenUsage.inputTokenCount());

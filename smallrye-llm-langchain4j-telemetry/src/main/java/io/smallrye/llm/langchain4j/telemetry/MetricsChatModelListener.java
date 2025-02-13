@@ -10,10 +10,11 @@ import jakarta.inject.Inject;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.model.chat.listener.ChatModelErrorContext;
 import dev.langchain4j.model.chat.listener.ChatModelListener;
-import dev.langchain4j.model.chat.listener.ChatModelRequest;
 import dev.langchain4j.model.chat.listener.ChatModelRequestContext;
 import dev.langchain4j.model.chat.listener.ChatModelResponse;
 import dev.langchain4j.model.chat.listener.ChatModelResponseContext;
+import dev.langchain4j.model.chat.request.ChatRequest;
+import dev.langchain4j.model.chat.response.ChatResponse;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.DoubleHistogram;
@@ -69,19 +70,19 @@ public class MetricsChatModelListener implements ChatModelListener {
         final long endTime = System.nanoTime();
         final long startTime = (Long) responseContext.attributes().get(MP_AI_METRIC_START_TIME_NAME);
 
-        final ChatModelRequest request = responseContext.request();
-        final ChatModelResponse response = responseContext.response();
+        final ChatRequest request = responseContext.chatRequest();
+        final ChatResponse response = responseContext.chatResponse();
 
         Attributes inputTokenCountAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
-                AttributeKey.stringKey("gen_ai.request.model"), request.model(),
-                AttributeKey.stringKey("gen_ai.response.model"), response.model(),
+                AttributeKey.stringKey("gen_ai.request.model"), request.parameters().modelName(),
+                AttributeKey.stringKey("gen_ai.response.model"), response.metadata().modelName(),
                 AttributeKey.stringKey("gen_ai.token.type"), "input");
         //Record
         clientTokenUsage.record(response.tokenUsage().inputTokenCount(), inputTokenCountAttributes);
 
         Attributes outputTokenCountAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
-                AttributeKey.stringKey("gen_ai.request.model"), request.model(),
-                AttributeKey.stringKey("gen_ai.response.model"), response.model(),
+                AttributeKey.stringKey("gen_ai.request.model"), request.parameters().modelName(),
+                AttributeKey.stringKey("gen_ai.response.model"), response.metadata().modelName(),
                 AttributeKey.stringKey("gen_ai.token.type"), "output");
 
         //Record
@@ -89,8 +90,8 @@ public class MetricsChatModelListener implements ChatModelListener {
 
         //Record duration
         Attributes durationAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
-                AttributeKey.stringKey("gen_ai.request.model"), request.model(),
-                AttributeKey.stringKey("gen_ai.response.model"), response.model());
+                AttributeKey.stringKey("gen_ai.request.model"), request.parameters().modelName(),
+                AttributeKey.stringKey("gen_ai.response.model"), response.metadata().modelName());
         recordClientOperationDuration(startTime, endTime, durationAttributes);
     }
 
@@ -104,7 +105,7 @@ public class MetricsChatModelListener implements ChatModelListener {
     public void onError(ChatModelErrorContext errorContext) {
         final long endTime = System.nanoTime();
         final long startTime = (Long) errorContext.attributes().get(MP_AI_METRIC_START_TIME_NAME);
-        final ChatModelRequest request = errorContext.request();
+        final ChatRequest request = errorContext.chatRequest();
         final ChatModelResponse response = errorContext.partialResponse();
 
         StringBuilder sb = new StringBuilder()
@@ -117,7 +118,7 @@ public class MetricsChatModelListener implements ChatModelListener {
 
         //Record duration
         Attributes durationAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
-                AttributeKey.stringKey("gen_ai.request.model"), request.model(),
+                AttributeKey.stringKey("gen_ai.request.model"), request.parameters().modelName(),
                 AttributeKey.stringKey("gen_ai.response.model"), response.model(),
                 AttributeKey.stringKey("error.type"), sb.toString());
         recordClientOperationDuration(startTime, endTime, durationAttributes);
