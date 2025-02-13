@@ -62,6 +62,10 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         if (info.type().isClass()) {
             ClassType classType = info.type().asClass();
             ClassInfo classInfo = classType.declaration();
+            if (classInfo.name().equals(Object.class.getName())) {
+                return;
+            }
+            LOGGER.debug("Detecting RegisterAIService on type " + classInfo.name());
             AnnotationInfo annotationInfo = classInfo.annotation(RegisterAIService.class);
             if (annotationInfo != null) {
                 registerAIService(classInfo);

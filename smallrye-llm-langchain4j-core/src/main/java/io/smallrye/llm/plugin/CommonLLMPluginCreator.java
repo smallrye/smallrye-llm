@@ -174,7 +174,6 @@ public class CommonLLMPluginCreator {
                                     throw new RuntimeException(e);
                                 }
                             }
-
                             if (listeners != null && !listeners.isEmpty()) {
                                 listeners.stream().forEach(l -> LOGGER.info("Adding listener: " + l.getClass().getName()));
                                 methodToCall.invoke(builder, listeners);
