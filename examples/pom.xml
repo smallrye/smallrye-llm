@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <dev.langchain4j.version>0.36.2</dev.langchain4j.version>
+        <dev.langchain4j.version>1.0.0-alpha1</dev.langchain4j.version>
     </properties>
  
     <dependencyManagement>
@@ -39,6 +39,11 @@
             <dependency>
                 <groupId>io.smallrye.llm</groupId>
                 <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -7,9 +7,9 @@
         <artifactId>smallrye-llm-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
-    <name>SmallRye LLM: LangChain4j MP Telemetry</name>
-
+    <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+    <name>SmallRye LLM: LangChain4j Fault Tolerance</name>
+	
     <dependencies>
         <dependency>
             <groupId>jakarta.enterprise</groupId>
@@ -17,14 +17,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.microprofile.telemetry</groupId>
-            <artifactId>microprofile-telemetry-api</artifactId>
-            <type>pom</type>
-            <scope>provided</scope>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-fault-tolerance</artifactId>
         </dependency>
         <dependency>
             <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-core</artifactId>
+            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
         </dependency>
     </dependencies>
 </project>

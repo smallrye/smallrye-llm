@@ -29,12 +29,6 @@
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.smallrye/smallrye-fault-tolerance -->
-        <dependency>
-            <groupId>io.smallrye</groupId>
-            <artifactId>smallrye-fault-tolerance</artifactId>
-            <version>6.6.2</version>
-        </dependency>
 
         <!-- TEST -->
         <dependency>
@@ -45,7 +39,6 @@
         <dependency>
             <groupId>io.smallrye.config</groupId>
             <artifactId>smallrye-config</artifactId>
-            <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
