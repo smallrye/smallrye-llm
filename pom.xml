@@ -45,6 +45,8 @@
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
         <version.dev.langchain4j>1.0.0-alpha1</version.dev.langchain4j>
         <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
+        <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
+        <version.io.smallrye.fault-tolerance>6.7.3</version.io.smallrye.fault-tolerance>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
@@ -80,7 +82,7 @@
         <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
-		<module>smallrye-llm-langchain4j-fault-tolerance</module>
+        <module>smallrye-llm-langchain4j-fault-tolerance</module>
         <module>smallrye-llm-langchain4j-telemetry</module>
     </modules>
 
@@ -173,10 +175,20 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.smallrye.llm</groupId>
+                <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.smallrye.config</groupId>
                 <artifactId>smallrye-config</artifactId>
                 <version>${version.io.smallrye.config}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-fault-tolerance</artifactId>
+                <version>${version.io.smallrye.fault-tolerance}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
