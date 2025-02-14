@@ -1,4 +1,4 @@
 name: SmallRye LLM
 release:
-  current-version: 0.0.2
+  current-version: 0.0.3
   next-version: 1.0.0-SNAPSHOT
