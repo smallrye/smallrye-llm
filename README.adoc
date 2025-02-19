@@ -30,19 +30,19 @@ Running Ollama with the llama3.1 model:
 
 [source,bash]
 ----
-$CONTAINER_ENGINE= podman | docker
+CONTAINER_ENGINE=$(command -v podman || command -v docker)
 $CONTAINER_ENGINE run -d --rm --name ollama --replace --pull=always -p 11434:11434 -v ollama:/root/.ollama --stop-signal=SIGKILL docker.io/ollama/ollama
 $CONTAINER_ENGINE exec -it ollama ollama run llama3.1
 ----
 
 === Run the examples
 
-Go to each example READEM.md to see how to execute the example.
+Go to each example `README.md` to see how to execute the example.
 
 == Contributing
-If you want to contribute, please have a look to [CONTRIBUTING.md](CONTRIBUTING.md)
+
+If you want to contribute, please have a look at link:CONTRIBUTING.md[CONTRIBUTING.md].
 
 == License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
+This project is licensed under the Apache License 2.0 - see the link:LICENSE[LICENSE] file for details.
