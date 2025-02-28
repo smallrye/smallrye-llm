@@ -17,6 +17,7 @@ import dev.langchain4j.model.moderation.ModerationModel;
 import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.tool.ToolProvider;
 import io.smallrye.llm.spi.RegisterAIService;
 
 public class CommonAIServiceCreator {
@@ -33,25 +34,32 @@ public class CommonAIServiceCreator {
                 annotation.contentRetrieverName());
         Instance<RetrievalAugmentor> retrievalAugmentor = getInstance(lookup, RetrievalAugmentor.class,
                 annotation.retrievalAugmentorName());
+        Instance<ToolProvider> toolProvider = getInstance(lookup, ToolProvider.class, annotation.toolProviderName());
 
         AiServices<X> aiServices = AiServices.builder(interfaceClass);
         if (chatLanguageModel != null && chatLanguageModel.isResolvable()) {
-            LOGGER.info("ChatLanguageModel " + chatLanguageModel.get());
+            LOGGER.debug("ChatLanguageModel " + chatLanguageModel.get());
             aiServices.chatLanguageModel(chatLanguageModel.get());
         }
         if (streamingChatLanguageModel != null && streamingChatLanguageModel.isResolvable()) {
-            LOGGER.info("StreamingChatLanguageModel " + streamingChatLanguageModel.get());
+            LOGGER.debug("StreamingChatLanguageModel " + streamingChatLanguageModel.get());
             aiServices.streamingChatLanguageModel(streamingChatLanguageModel.get());
         }
         if (contentRetriever != null && contentRetriever.isResolvable()) {
-            LOGGER.info("ContentRetriever " + contentRetriever.get());
+            LOGGER.debug("ContentRetriever " + contentRetriever.get());
             aiServices.contentRetriever(contentRetriever.get());
         }
         if (retrievalAugmentor != null && retrievalAugmentor.isResolvable()) {
-            LOGGER.info("RetrievalAugmentor " + retrievalAugmentor.get());
+            LOGGER.debug("RetrievalAugmentor " + retrievalAugmentor.get());
             aiServices.retrievalAugmentor(retrievalAugmentor.get());
         }
-        if (annotation.tools() != null && annotation.tools().length > 0) {
+        boolean noToolProvider = true;
+        if (toolProvider != null && toolProvider.isResolvable()) {
+            LOGGER.debug("ToolProvider " + toolProvider.get());
+            aiServices.toolProvider(toolProvider.get());
+            noToolProvider = false;
+        }
+        if (annotation.tools() != null && annotation.tools().length > 0 && noToolProvider) {
             List<Object> tools = new ArrayList<>(annotation.tools().length);
             for (Class<?> toolClass : annotation.tools()) {
                 try {
@@ -62,7 +70,6 @@ public class CommonAIServiceCreator {
             }
             aiServices.tools(tools);
         }
-
         Instance<ChatMemory> chatMemory = getInstance(lookup, ChatMemory.class,
                 annotation.chatMemoryName());
         if (chatMemory != null && chatMemory.isResolvable()) {
