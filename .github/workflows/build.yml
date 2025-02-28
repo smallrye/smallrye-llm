@@ -9,14 +9,12 @@ on:
       - 'CODEOWNERS'
       - 'LICENSE'
       - 'NOTICE'
-      - 'README*'
   pull_request:
     paths-ignore:
       - '.gitignore'
       - 'CODEOWNERS'
       - 'LICENSE'
       - 'NOTICE'
-      - 'README*'
 
 jobs:
   build:
