@@ -3,7 +3,7 @@
     <parent>
         <groupId>io.smallrye.llm</groupId>
         <artifactId>smallrye-llm-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.0.4</version>
     </parent>
     <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
     <name>SmallRye LLM: LangChain4j Fault Tolerance</name>
