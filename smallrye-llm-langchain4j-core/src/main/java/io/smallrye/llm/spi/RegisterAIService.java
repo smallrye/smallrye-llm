@@ -32,4 +32,7 @@ public @interface RegisterAIService {
     String chatMemoryProviderName() default "";
 
     String retrievalAugmentorName() default "";
+
+    String toolProviderName() default "";
+
 }
