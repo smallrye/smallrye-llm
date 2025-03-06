@@ -1,3 +1,5 @@
+It is based on a simplified car booking application inspired from the [Java meets AI](https://www.youtube.com/watch?v=BD1MSLbs9KE) talk from [Lize Raes](https://www.linkedin.com/in/lize-raes-a8a34110/) at Devoxx Belgium 2023. 
+
 # Car Booking (Open Liberty)
 
 These are the steps to run this service.
