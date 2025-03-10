@@ -9,7 +9,7 @@ import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import dev.langchain4j.service.SystemMessage;
-import io.smallrye.llm.spi.RegisterAIService;
+import dev.langchain4j.spi.RegisterAIService;
 
 //@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(scope = ApplicationScoped.class, tools = BookingService.class, chatMemoryName = "chat-ai-service-memory")

@@ -25,12 +25,12 @@
         <version>46</version>
     </parent>
 
-    <groupId>io.smallrye.llm</groupId>
-    <artifactId>smallrye-llm-parent</artifactId>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-microprofile-jakarta-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <name>SmallRye LLM: Parent</name>
+    <name>Langchain4J Microprofile JakartaEE Parent</name>
     <url>https://smallrye.io</url>
 
     <properties>
@@ -78,12 +78,12 @@
 
     <modules>
         <module>examples</module>
-        <module>smallrye-llm-langchain4j-portable-extension</module>
-        <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
-        <module>smallrye-llm-langchain4j-core</module>
-        <module>smallrye-llm-langchain4j-config-mpconfig</module>
-        <module>smallrye-llm-langchain4j-fault-tolerance</module>
-        <module>smallrye-llm-langchain4j-telemetry</module>
+        <module>langchain4j-microprofile-jakartaee-portable-extension</module>
+        <module>langchain4j-microprofile-jakartaee-buildcompatible-extension</module>
+        <module>langchain4j-microprofile-jakartaee-core</module>
+        <module>langchain4j-microprofile-config</module>
+        <module>langchain4j-microprofile-fault-tolerance</module>
+        <module>langchain4j-microprofile-telemetry</module>
     </modules>
 
     <dependencyManagement>
@@ -150,33 +150,33 @@
                 <version>${version.dev.langchain4j}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-jakartaee-buildcompatible-extension</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-core</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-jakartaee-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-config</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-jakartaee-portable-extension</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-telemetry</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
