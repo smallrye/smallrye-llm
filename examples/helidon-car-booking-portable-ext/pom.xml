@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.smallrye.llm.examples</groupId>
-        <artifactId>examples</artifactId>
+        <groupId>dev.langchain4j.examples</groupId>
+        <artifactId>langchain4j-microprofile-examples</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>helidon-car-booking-portable-ext</artifactId>
-    <name>SmallRye LLM Examples: Helidon Car Booking Portable Extension</name>
+    <name>Langchain4J Microprofile JakartaEE Examples: Helidon Car Booking Portable Extension</name>
 
     <properties>
         <mainClass>io.helidon.Main</mainClass>
@@ -35,12 +35,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-microprofile-jakartaee-portable-extension</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-microprofile-config</artifactId>
         </dependency>
         <!-- Adds all features available in MicroProfile -->
         <dependency>
