@@ -3,7 +3,7 @@ package io.jefrajames.booking;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import io.smallrye.llm.spi.RegisterAIService;
+import dev.langchain4j.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(chatMemoryName = "fraud-ai-service-memory", chatLanguageModelName = "chat-model")

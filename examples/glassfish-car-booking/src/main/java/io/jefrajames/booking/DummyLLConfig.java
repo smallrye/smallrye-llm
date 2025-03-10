@@ -1,6 +1,6 @@
 package io.jefrajames.booking;
 
-import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
+import dev.langchain4j.core.config.spi.LLMConfig;
 
 import java.io.FileReader;
 import java.io.IOException;

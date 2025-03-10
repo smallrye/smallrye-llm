@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.smallrye.llm</groupId>
-        <artifactId>smallrye-llm-parent</artifactId>
+        <groupId>dev.langchain4j</groupId>
+        <artifactId>langchain4j-microprofile-jakarta-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>examples</artifactId>
-    <groupId>io.smallrye.llm.examples</groupId>
-    <name>SmallRye LLM Examples: Parent</name>
+    <artifactId>langchain4j-microprofile-examples</artifactId>
+    <groupId>dev.langchain4j.examples</groupId>
+    <name>Langchain4J Examples: Parent</name>
 
     <packaging>pom</packaging>
 
@@ -27,28 +27,28 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-buildcompatible-extension</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-jakartaee-buildcompatible-extension</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-config-mpconfig</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-config</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-jakartaee-portable-extension</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-fault-tolerance</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.llm</groupId>
-                <artifactId>smallrye-llm-langchain4j-telemetry</artifactId>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-microprofile-telemetry</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

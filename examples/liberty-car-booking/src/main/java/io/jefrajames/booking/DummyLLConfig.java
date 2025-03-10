@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import io.smallrye.llm.core.langchain4j.core.config.spi.LLMConfig;
+import dev.langchain4j.core.config.spi.LLMConfig;
 
 public class DummyLLConfig implements LLMConfig {
     Properties properties = new Properties();

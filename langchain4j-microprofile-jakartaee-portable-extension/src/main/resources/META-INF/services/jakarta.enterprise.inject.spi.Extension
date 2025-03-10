@@ -1,0 +1,2 @@
+dev.langchain4j.core.spi.portableextension.LangChain4JPluginsPortableExtension
+dev.langchain4j.core.spi.portableextension.LangChain4JAIServicePortableExtension
