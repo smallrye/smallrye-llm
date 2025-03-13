@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <dev.langchain4j.version>1.0.0-beta1</dev.langchain4j.version>
+        <dev.langchain4j.version>1.0.0-beta2</dev.langchain4j.version>
     </properties>
  
     <dependencyManagement>
