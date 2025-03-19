@@ -3,12 +3,12 @@
     <parent>
         <groupId>dev.langchain4j</groupId>
         <artifactId>langchain4j-microprofile-jakarta-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-beta2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>langchain4j-microprofile-examples</artifactId>
     <groupId>dev.langchain4j.examples</groupId>
-    <name>Langchain4J Examples: Parent</name>
+    <name>Langchain4J Microprofile Jakarta Examples: Parent</name>
 
     <packaging>pom</packaging>
 
@@ -20,10 +20,6 @@
         <module>liberty-car-booking</module>
         <module>payara-car-booking</module>
     </modules>
-
-    <properties>
-        <dev.langchain4j.version>1.0.0-beta1</dev.langchain4j.version>
-    </properties>
  
     <dependencyManagement>
         <dependencies>
@@ -34,7 +30,7 @@
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-microprofile-config</artifactId>
+                <artifactId>langchain4j-microprofile-mpconfig</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -55,27 +51,27 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-azure-open-ai</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-hugging-face</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-open-ai</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>ai.djl.huggingface</groupId>

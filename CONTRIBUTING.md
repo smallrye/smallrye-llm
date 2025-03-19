@@ -1,5 +1,5 @@
-Contributing to smallrye-llm
-==================================
+Contributing to langchain4j-microprofile-jakarta
+===================================================
 
 Welcome to the smallrye-llm project! We welcome contributions from the community. This guide will walk you through the steps for getting started on our project.
 
