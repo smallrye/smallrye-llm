@@ -1,15 +1,13 @@
-    #  LangChain4j with Helidon
-
 ## Introduction
 
-This example demonstrates [LangChain4J](https://docs.langchain4j.dev/) with [Helidon](https://helidon.io/docs/v4/about/doc_overview). It aims at studying how to leverage LLMs (impressive) capabilities in Java applications. In particular, it illustrates how to use RAG and Function Calling.
+This example demonstrates [LangChain4J](https://docs.langchain4j.dev/) with [Quarkus](https://quarkus.io/). It aims at studying how to leverage LLMs (impressive) capabilities in Java applications. In particular, it illustrates how to use RAG and Function Calling.
 
 It is derived from my [Quarkus-LangChain4j](https://github.com/jefrajames/car-booking) example used to illustrate my talk at [JChateau 2024](https://www.jchateau.org).
 
 It is based on a simplified car booking application inspired from the [Java meets AI](https://www.youtube.com/watch?v=BD1MSLbs9KE) talk from [Lize Raes](https://www.linkedin.com/in/lize-raes-a8a34110/) at Devoxx Belgium 2023 with additional work from [Jean-François James](http://jefrajames.fr/). The original demo is from [Dmytro Liubarskyi](https://www.linkedin.com/in/dmytro-liubarskyi/). The car booking company is called "Miles of Smiles" and the application exposes two AI services:
 
-. a chat service to freely discuss with a customer assistant
-. a fraud service to determine if a customer is a frauder.
+ 1. a chat service to freely discuss with a customer assistant
+ 2. a fraud service to determine if a customer is a frauder.
 
 For the sake of simplicity, there is no database interaction, the application is standalone and can be used "as is". Of course thanks to Quarkus, it can  easily be extended according to your needs.
 
@@ -17,7 +15,7 @@ Warning: you must first configure the application to connect to an LLM that supp
 
 ## Technical context
 
-The project has been developped and tested with:
+The project has been developed and tested with:
 
 * Java 22 (Temurin OpenJDK distro)
 * Helidon 4.0.7
