@@ -25,7 +25,7 @@
 
     <packaging>pom</packaging>
     <name>langchain4j-microprofile-jakarta-parent Parent POM</name>
-    <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta-parent</url>
+    <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta</url>
 
     <properties>
         <version.eclipse.microprofile.config>3.1</version.eclipse.microprofile.config>
@@ -61,13 +61,13 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta-parent/issues</url>
+        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta/issues</url>
     </issueManagement>
 
     <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
-        <connection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta-parent.git</connection>
-        <developerConnection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta-parent.git</developerConnection>
-        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta-parent</url>
+        <connection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta.git</connection>
+        <developerConnection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta.git</developerConnection>
+        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta</url>
         <tag>HEAD</tag>
     </scm>
 
