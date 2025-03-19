@@ -41,14 +41,15 @@ To setup your development environment you need to:
 
 2. To build `langchain4j-microprofile-jakarta` run:
     
+    ```
     mvn clean install
-
+    ```
 
 3. To run the tests:   
         
-
+    ```
     mvn test
-        
+    ```
 
 ## Code Reviews
 
