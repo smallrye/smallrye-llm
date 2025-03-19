@@ -95,11 +95,11 @@
                 <type>pom</type>
             </dependency>
             <dependency>
-                <groupId>io.smallrye.common</groupId>
-                <artifactId>smallrye-common-bom</artifactId>
-                <version>${version.smallrye.common}</version>
-                <scope>import</scope>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${project.version}</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- Test Dependencies -->
