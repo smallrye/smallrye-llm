@@ -3,7 +3,7 @@
     <parent>
         <groupId>dev.langchain4j.examples</groupId>
         <artifactId>langchain4j-microprofile-examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-beta2</version>
     </parent>
 
     <artifactId>liberty-car-booking</artifactId>
@@ -76,7 +76,7 @@
 		
         <dependency>
             <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-microprofile-config</artifactId>
+            <artifactId>langchain4j-microprofile-mpconfig</artifactId>
         </dependency>
 		
         <dependency>

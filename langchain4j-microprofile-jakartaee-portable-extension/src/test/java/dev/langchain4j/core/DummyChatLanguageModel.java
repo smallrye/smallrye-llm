@@ -2,11 +2,10 @@ package dev.langchain4j.core;
 
 import java.util.List;
 
-import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.output.Response;
 
 public class DummyChatLanguageModel implements ChatLanguageModel {
     private String apiKey;
@@ -32,7 +31,7 @@ public class DummyChatLanguageModel implements ChatLanguageModel {
     }
 
     @Override
-    public Response<AiMessage> generate(List<ChatMessage> list) {
+    public ChatResponse chat(List<ChatMessage> list) {
         return null;
     }
 

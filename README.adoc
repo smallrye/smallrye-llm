@@ -4,7 +4,7 @@ image:https://github.com/smallrye/smallrye-llm/workflows/SmallRye%20Build/badge.
 image:https://img.shields.io/github/license/smallrye/smallrye-llm.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0"]
 image:https://img.shields.io/maven-central/v/io.smallrye.llm/smallrye-llm?color=green["Maven", link="https://central.sonatype.com/search?q=io.smallrye.llm%3Asmallrye-llm-parent"]
 
-= 🚀 Smallrye LLM
+= 🚀 langchain4j-microprofile-jakarta
 
 Experimentation around LLM and MicroProfile
 
