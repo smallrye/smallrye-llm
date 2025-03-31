@@ -98,12 +98,10 @@
                 <configuration>
                     <container>
                         <containerId>payara</containerId>
-                        <version>6.25.0</version>
                         <zipUrlInstaller>
                             <url>https://repo1.maven.org/maven2/fish/payara/distributions/payara/6.2025.3/payara-6.2025.3.zip</url>
                             <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
                         </zipUrlInstaller>
-
                         <systemProperties>
                             <docragdir>${project.basedir}/docs-for-rag</docragdir>
                             <llmconfigfile>${project.basedir}/config/llm-config.properties</llmconfigfile>
