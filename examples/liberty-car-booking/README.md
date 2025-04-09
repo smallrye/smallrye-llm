@@ -4,7 +4,7 @@ This example is based on a simplified car booking application inspired from the 
 
 These are the steps to run this service.
 
-1. Go to the root `langchain4j-microprofile-jakarta` directory, then build it using the command:
+1. Go to the root `langchain4j-microprofile` directory, then build it using the command:
  	> `mvn clean install -e`
 2. Once the project is built, move to directory `cd langchain4j-microprofile-examples/liberty-car-booking` and run the following command to install the bundle as a user liberty feature:
  	> `mvn liberty:dev -e`
@@ -12,8 +12,8 @@ These are the steps to run this service.
 ## Application requirements:
 - JDK 17 and higher
 - Maven 3.9.9 and higher
-- LangChain4j 0.33.0 or higher.
-- Testing against GPT 3.5 and 4.0 on a dedicated Azure instance (to be customized in your context). 
+- LangChain4j 1.0.0-beta2 or higher.
+- Testing against GPT 4.0 on a dedicated Azure instance (to be customized in your context). 
 
 Then you can access the application through the browser of your choice.
 

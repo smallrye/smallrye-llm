@@ -13,8 +13,8 @@ import jakarta.enterprise.inject.spi.ProcessSyntheticBean;
 
 import org.eclipse.microprofile.faulttolerance.exceptions.FaultToleranceDefinitionException;
 
-import dev.langchain4j.core.spi.portableextension.LangChain4JAIServiceBean;
-import dev.langchain4j.spi.RegisterAIService;
+import dev.langchain4j.cdi.portableextension.LangChain4JAIServiceBean;
+import dev.langchain4j.microprofile.spi.RegisterAIService;
 import io.smallrye.faulttolerance.FaultToleranceBinding;
 import io.smallrye.faulttolerance.autoconfig.FaultToleranceMethod;
 import io.smallrye.faulttolerance.config.FaultToleranceMethods;

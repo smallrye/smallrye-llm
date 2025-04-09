@@ -12,6 +12,8 @@ import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Produces;
 
+import org.jboss.logging.Logger;
+
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
@@ -23,6 +25,8 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
 @ApplicationScoped
 public class DocRagIngestor {
+	
+	private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
 
 	private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
 	

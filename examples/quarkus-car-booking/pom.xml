@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>langchain4j-microprofile-examples</artifactId>
-        <groupId>dev.langchain4j.examples</groupId>
+        <groupId>dev.langchain4j.microprofile.examples</groupId>
         <version>1.0.0-beta2</version>
     </parent>
 
     <artifactId>quarkus-car-booking</artifactId>
-    <name>Langchain4J Microprofile JakartaEE Examples: Quarkus Car Booking</name>
+    <name>Langchain4J Microprofile Examples: Quarkus Car Booking</name>
 
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>
@@ -35,20 +35,25 @@
 
     <dependencies>
         <dependency>
-            <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-microprofile-jakartaee-buildcompatible-extension</artifactId>
+            <groupId>dev.langchain4j.microprofile</groupId>
+            <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
         </dependency>
         <dependency>
-            <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-microprofile-mpconfig</artifactId>
+            <groupId>dev.langchain4j.microprofile</groupId>
+            <artifactId>langchain4j-microprofile-config</artifactId>
         </dependency>
         <dependency>
-            <groupId>dev.langchain4j</groupId>
+            <groupId>dev.langchain4j.microprofile</groupId>
             <artifactId>langchain4j-microprofile-fault-tolerance</artifactId>
         </dependency>
         <dependency>
+<<<<<<< HEAD
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-microprofile-jakartaee-core</artifactId>
+=======
+            <groupId>dev.langchain4j.microprofile</groupId>
+            <artifactId>langchain4j-microprofile-core</artifactId>
+>>>>>>> cdcf62d (Renamed project according to finalised name (See Microprofile AI Minutes - 08 April 2025))
         </dependency>
         <!-- langchain4j dependencies -->
         <dependency>

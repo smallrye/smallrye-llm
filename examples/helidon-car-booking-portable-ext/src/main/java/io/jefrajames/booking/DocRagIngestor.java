@@ -25,6 +25,8 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
 @ApplicationScoped
 public class DocRagIngestor {
+	
+	private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
 
     private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
 

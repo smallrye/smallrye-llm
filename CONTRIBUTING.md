@@ -1,7 +1,7 @@
-Contributing to langchain4j-microprofile-jakarta
+Contributing to langchain4j-microprofile
 ===================================================
 
-Welcome to the smallrye-llm project! We welcome contributions from the community. This guide will walk you through the steps for getting started on our project.
+Welcome to the langchain4j-microprofile project! We welcome contributions from the community. This guide will walk you through the steps for getting started on our project.
 
 - [Contributing Guidelines](#contributing-guidelines)
 - [Issues](#issues)
@@ -37,9 +37,9 @@ You will need:
 
 To setup your development environment you need to:
 
-1. First `cd` to the directory where you cloned the project (eg: `cd langchain4j-microprofile-jakarta`)
+1. First `cd` to the directory where you cloned the project (eg: `cd langchain4j-microprofile`)
 
-2. To build `langchain4j-microprofile-jakarta` run:
+2. To build `langchain4j-microprofile` run:
     
     ```
     mvn clean install
