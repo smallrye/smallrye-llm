@@ -1,0 +1,2 @@
+dev.langchain4j.cdi.portableextension.LangChain4JPluginsPortableExtension
+dev.langchain4j.cdi.portableextension.LangChain4JAIServicePortableExtension

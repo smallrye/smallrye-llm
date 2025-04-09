@@ -3,9 +3,6 @@ package io.jefrajames.booking;
 import java.time.LocalDate;
 import java.util.Objects;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Booking {
 
     private String bookingNumber;

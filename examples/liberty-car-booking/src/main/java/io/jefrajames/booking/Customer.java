@@ -2,10 +2,6 @@ package io.jefrajames.booking;
 
 import java.util.Objects;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@EqualsAndHashCode(of = { "name", "surname" })
 public class Customer {
     private String name;
     private String surname;
