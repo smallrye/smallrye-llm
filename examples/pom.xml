@@ -18,6 +18,7 @@
         <module>quarkus-car-booking</module>
         <module>glassfish-car-booking</module>
         <module>liberty-car-booking</module>
+        <module>payara-car-booking</module>
     </modules>
 
     <properties>
