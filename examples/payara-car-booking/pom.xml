@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.smallrye.llm.examples</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>dev.langchain4j.microprofile.examples</groupId>
+        <artifactId>langchain4j-microprofile-examples</artifactId>
+        <version>1.0.0-beta2</version>
     </parent>
 
     <artifactId>payara-car-booking</artifactId>
     <packaging>war</packaging>
-    <name>SmallRye LLM Examples: Payara Car Booking</name>
+    <name>Langchain4J Microprofile Examples: Payara Car Booking</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,8 +26,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.smallrye.llm</groupId>
-            <artifactId>smallrye-llm-langchain4j-portable-extension</artifactId>
+            <groupId>dev.langchain4j.microprofile</groupId>
+        	<artifactId>langchain4j-cdi-portable-ext</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>jakarta.enterprise</groupId>
