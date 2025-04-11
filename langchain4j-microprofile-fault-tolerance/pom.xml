@@ -3,7 +3,7 @@
     <parent>
         <groupId>dev.langchain4j.microprofile</groupId>
         <artifactId>langchain4j-microprofile-parent</artifactId>
-        <version>1.0.0-beta2</version>
+        <version>1.0.0-beta3</version>
     </parent>
     <artifactId>langchain4j-microprofile-fault-tolerance</artifactId>
     <name>LangChain4J Microprofile Fault Tolerance</name>

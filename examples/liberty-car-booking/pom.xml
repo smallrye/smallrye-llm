@@ -3,7 +3,7 @@
     <parent>
         <groupId>dev.langchain4j.microprofile.examples</groupId>
         <artifactId>langchain4j-microprofile-examples</artifactId>
-        <version>1.0.0-beta2</version>
+        <version>1.0.0-beta3</version>
     </parent>
 
     <artifactId>liberty-car-booking</artifactId>
