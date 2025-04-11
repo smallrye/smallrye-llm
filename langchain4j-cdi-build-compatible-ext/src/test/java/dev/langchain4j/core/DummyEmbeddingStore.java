@@ -37,4 +37,9 @@ public class DummyEmbeddingStore implements EmbeddingStore<TextSegment> {
     public EmbeddingSearchResult<TextSegment> search(EmbeddingSearchRequest request) {
         return null;
     }
+
+	@Override
+	public EmbeddingSearchResult<TextSegment> search(EmbeddingSearchRequest request) {
+		return null;
+	}
 }
