@@ -3,15 +3,9 @@ package io.smallrye.llm.langchain4j.telemetry;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.Dependent;
-import jakarta.inject.Inject;
-
-import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.model.chat.listener.ChatModelErrorContext;
 import dev.langchain4j.model.chat.listener.ChatModelListener;
 import dev.langchain4j.model.chat.listener.ChatModelRequestContext;
-import dev.langchain4j.model.chat.listener.ChatModelResponse;
 import dev.langchain4j.model.chat.listener.ChatModelResponseContext;
 import dev.langchain4j.model.chat.request.ChatRequest;
 import dev.langchain4j.model.chat.response.ChatResponse;
@@ -20,6 +14,9 @@ import io.opentelemetry.api.common.Attributes;
 import io.opentelemetry.api.metrics.DoubleHistogram;
 import io.opentelemetry.api.metrics.LongHistogram;
 import io.opentelemetry.api.metrics.Meter;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 
 /**
  * Creates metrics that follow the
@@ -95,31 +92,19 @@ public class MetricsChatModelListener implements ChatModelListener {
         recordClientOperationDuration(startTime, endTime, durationAttributes);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * dev.langchain4j.model.chat.listener.ChatModelListener#onError(dev.langchain4j.model.chat.listener.ChatModelErrorContext)
-     */
     @Override
     public void onError(ChatModelErrorContext errorContext) {
         final long endTime = System.nanoTime();
         final long startTime = (Long) errorContext.attributes().get(MP_AI_METRIC_START_TIME_NAME);
         final ChatRequest request = errorContext.chatRequest();
-        final ChatModelResponse response = errorContext.partialResponse();
 
         StringBuilder sb = new StringBuilder()
-                .append(errorContext.error().getClass().getName());
-
-        AiMessage aiMessage = errorContext.partialResponse().aiMessage();
-        if (aiMessage != null) {
-            sb.append(";").append(aiMessage.text());
-        }
+                .append(errorContext.error().getClass().getName())
+                .append(";").append(errorContext.error().getLocalizedMessage());
 
         //Record duration
         Attributes durationAttributes = Attributes.of(AttributeKey.stringKey("gen_ai.operation.name"), "chat",
                 AttributeKey.stringKey("gen_ai.request.model"), request.parameters().modelName(),
-                AttributeKey.stringKey("gen_ai.response.model"), response.model(),
                 AttributeKey.stringKey("error.type"), sb.toString());
         recordClientOperationDuration(startTime, endTime, durationAttributes);
     }
