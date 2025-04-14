@@ -33,11 +33,6 @@ public class DummyEmbeddingStore implements EmbeddingStore<TextSegment> {
         return Collections.emptyList();
     }
 
-    @Override
-    public EmbeddingSearchResult<TextSegment> search(EmbeddingSearchRequest request) {
-        return null;
-    }
-
 	@Override
 	public EmbeddingSearchResult<TextSegment> search(EmbeddingSearchRequest request) {
 		return null;
