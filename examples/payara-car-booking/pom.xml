@@ -111,6 +111,7 @@
                         <home>${project.build.directory}/payara-home</home>
                         <properties>
                             <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+                            <cargo.jvmargs>-Xmx2048m -Xms512m</cargo.jvmargs>
                             <cargo.glassfish.domain.debug>true</cargo.glassfish.domain.debug>
                         </properties>
                     </configuration>
