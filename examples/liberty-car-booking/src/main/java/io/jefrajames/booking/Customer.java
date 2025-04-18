@@ -2,10 +2,6 @@ package io.jefrajames.booking;
 
 import java.util.Objects;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@EqualsAndHashCode(of = { "name", "surname" })
 public class Customer {
     private String name;
     private String surname;
@@ -15,7 +11,6 @@ public class Customer {
      */
     public Customer() {
         super();
-        //TODO Auto-generated constructor stub
     }
 
     /**
@@ -56,21 +51,10 @@ public class Customer {
         this.surname = surname;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         return Objects.hash(name, surname);
     }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
 
     @Override
     public boolean equals(Object obj) {
@@ -83,12 +67,6 @@ public class Customer {
         Customer other = (Customer) obj;
         return Objects.equals(name, other.name) && Objects.equals(surname, other.surname);
     }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#toString()
-     */
 
     @Override
     public String toString() {

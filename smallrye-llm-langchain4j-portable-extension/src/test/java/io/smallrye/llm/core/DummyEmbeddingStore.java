@@ -3,12 +3,13 @@ package io.smallrye.llm.core;
 import java.util.Collections;
 import java.util.List;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
 import dev.langchain4j.store.embedding.EmbeddingSearchResult;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class DummyEmbeddingStore implements EmbeddingStore<TextSegment> {

@@ -94,11 +94,6 @@
             <artifactId>jandex</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <!-- langchain4j dependencies -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
