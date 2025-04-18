@@ -26,8 +26,6 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class DocRagIngestor {
 	
-	private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
-
     private static final Logger LOGGER = Logger.getLogger(DocRagIngestor.class.getName());
 
     // Used by ContentRetriever

@@ -15,8 +15,6 @@ import dev.langchain4j.agent.tool.Tool;
 @ApplicationScoped
 public class BookingService {
 	
-	private static final Logger LOGGER = Logger.getLogger(BookingService.class.getName());
-
     private static final Logger LOGGER = Logger.getLogger(BookingService.class.getName());
 
     // Pseudo database

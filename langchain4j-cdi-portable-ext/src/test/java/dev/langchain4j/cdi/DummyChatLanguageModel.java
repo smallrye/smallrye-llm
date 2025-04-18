@@ -2,10 +2,11 @@ package dev.langchain4j.cdi;
 
 import java.util.List;
 
+import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.output.Response;
 
 public class DummyChatLanguageModel implements ChatLanguageModel {
     private String apiKey;

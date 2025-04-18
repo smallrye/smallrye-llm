@@ -93,11 +93,6 @@
             <groupId>dev.langchain4j.microprofile</groupId>
             <artifactId>langchain4j-microprofile-telemetry</artifactId>
         </dependency>
-<<<<<<< HEAD
-		
-=======
-        
->>>>>>> cdcf62d (Renamed project according to finalised name (See Microprofile AI Minutes - 08 April 2025))
         <!-- langchain4j dependencies -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
