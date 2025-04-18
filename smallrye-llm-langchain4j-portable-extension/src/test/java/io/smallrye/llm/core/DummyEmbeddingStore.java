@@ -3,13 +3,15 @@ package io.smallrye.llm.core;
 import java.util.Collections;
 import java.util.List;
 
+import dev.langchain4j.data.embedding.Embedding;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
+import dev.langchain4j.store.embedding.EmbeddingSearchResult;
+import dev.langchain4j.store.embedding.EmbeddingStore;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.langchain4j.data.embedding.Embedding;
-import dev.langchain4j.store.embedding.EmbeddingStore;
-
 @ApplicationScoped
-public class DummyEmbeddingStore implements EmbeddingStore {
+public class DummyEmbeddingStore implements EmbeddingStore<TextSegment> {
 
     @Override
     public String add(Embedding embedding) {
@@ -21,17 +23,17 @@ public class DummyEmbeddingStore implements EmbeddingStore {
     }
 
     @Override
-    public String add(Embedding embedding, Object embd) {
+    public String add(Embedding embedding, TextSegment embd) {
         return null;
     }
 
     @Override
-    public List addAll(List list) {
+    public List<String> addAll(List<Embedding> list) {
         return Collections.emptyList();
     }
 
     @Override
-    public List addAll(List list, List list1) {
-        return Collections.emptyList();
+    public EmbeddingSearchResult<TextSegment> search(EmbeddingSearchRequest request) {
+        return null;
     }
 }
