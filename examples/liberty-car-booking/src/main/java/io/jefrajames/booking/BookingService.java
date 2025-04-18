@@ -13,7 +13,6 @@ import org.jboss.logging.Logger;
 import dev.langchain4j.agent.tool.Tool;
 
 @ApplicationScoped
-//@Log
 public class BookingService {
 
     private static final Logger LOGGER = Logger.getLogger(BookingService.class.getName());

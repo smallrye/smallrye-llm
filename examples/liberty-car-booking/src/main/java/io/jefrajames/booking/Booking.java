@@ -3,9 +3,6 @@ package io.jefrajames.booking;
 import java.time.LocalDate;
 import java.util.Objects;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Booking {
 
     private String bookingNumber;
@@ -20,7 +17,6 @@ public class Booking {
      */
     public Booking() {
         super();
-        //TODO Auto-generated constructor stub
     }
 
     /**
@@ -126,21 +122,10 @@ public class Booking {
         this.carModel = carModel;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         return Objects.hash(bookingNumber, canceled, carModel, customer, end, start);
     }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
 
     @Override
     public boolean equals(Object obj) {
@@ -156,11 +141,6 @@ public class Booking {
                 && Objects.equals(end, other.end) && Objects.equals(start, other.start);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
         return "Booking [bookingNumber=" + bookingNumber + ", start=" + start + ", end=" + end + ", customer="
