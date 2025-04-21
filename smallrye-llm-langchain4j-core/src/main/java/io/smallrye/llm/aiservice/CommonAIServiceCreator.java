@@ -73,8 +73,9 @@ public class CommonAIServiceCreator {
         Instance<ChatMemory> chatMemory = getInstance(lookup, ChatMemory.class,
                 annotation.chatMemoryName());
         if (chatMemory != null && chatMemory.isResolvable()) {
-            LOGGER.info("ChatMemory " + chatMemory.get());
-            aiServices.chatMemory(chatMemory.get());
+            ChatMemory chatMemoryInstance = chatMemory.get();
+            LOGGER.info("ChatMemory " + chatMemoryInstance);
+            aiServices.chatMemory(chatMemoryInstance);
         }
 
         Instance<ChatMemoryProvider> chatMemoryProvider = getInstance(lookup, ChatMemoryProvider.class,

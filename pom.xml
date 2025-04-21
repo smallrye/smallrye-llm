@@ -52,7 +52,6 @@
         <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
         <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
         <maven.compiler.release>17</maven.compiler.release>
-
         <!-- Sonar settings -->
         <sonar.projectName>SmallRye LLM</sonar.projectName>
     </properties>
@@ -84,6 +83,7 @@
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
         <module>smallrye-llm-langchain4j-fault-tolerance</module>
         <module>smallrye-llm-langchain4j-telemetry</module>
+        <module>smallrye-llm-langchain4j-integration-tests</module>
     </modules>
 
     <dependencyManagement>

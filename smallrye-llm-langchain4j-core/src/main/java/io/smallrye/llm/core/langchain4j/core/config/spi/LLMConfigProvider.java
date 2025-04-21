@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
+import org.jboss.logging.Logger;
+
 public class LLMConfigProvider {
 
     private static LLMConfig llmConfig;
     private static volatile boolean initialized = false;
+    private static final Logger LOGGER = Logger.getLogger(LLMConfigProvider.class);
 
     static {
         ServiceLoader<LLMConfig> loader = ServiceLoader.load(LLMConfig.class,
@@ -19,6 +22,7 @@ public class LLMConfigProvider {
             throw new RuntimeException("No service Found for LLMConfig interface");
         } else {
             llmConfig = factories.iterator().next(); //loader.findFirst().orElse(null);
+            LOGGER.info("Found LLMConfig interface: " + llmConfig.getClass().getName());
         }
     }
 
