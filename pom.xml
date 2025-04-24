@@ -40,10 +40,10 @@
         <version.asm>9.7</version.asm>
         <version.smallrye.testing>2.3.1</version.smallrye.testing>
         <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
-        <weld-junit5.version>4.0.3.Final</weld-junit5.version>
+        <weld-junit5.version>4.0.4.Final</weld-junit5.version>
         <version.weld>5.1.5.Final</version.weld>
         <version.org.jboss.logging>3.5.3.Final</version.org.jboss.logging>
-        <version.dev.langchain4j>1.0.0-beta1</version.dev.langchain4j>
+        <version.dev.langchain4j>1.0.0-beta3</version.dev.langchain4j>
         <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
         <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
         <version.io.smallrye.fault-tolerance>6.7.3</version.io.smallrye.fault-tolerance>

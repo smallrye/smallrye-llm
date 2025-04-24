@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import org.jboss.logging.Logger;
+
 import dev.langchain4j.agent.tool.Tool;
-import lombok.extern.java.Log;
 
 @ApplicationScoped
-@Log
 public class BookingService {
+
+    private static final Logger LOGGER = Logger.getLogger(BookingService.class.getName());
 
     // Pseudo database
     private static final Map<String, Booking> BOOKINGS = new HashMap<>();
@@ -44,14 +46,14 @@ public class BookingService {
 
     @Tool("Get booking details given a booking number and customer name and surname")
     public Booking getBookingDetails(String bookingNumber, String name, String surname) {
-        log.info("DEMO: Calling Tool-getBookingDetails: " + bookingNumber + " and customer: "
+        LOGGER.info("DEMO: Calling Tool-getBookingDetails: " + bookingNumber + " and customer: "
                 + name + " " + surname);
         return checkBookingExists(bookingNumber, name, surname);
     }
 
     @Tool("Get all booking ids for a customer given his name and surname")
     public List<String> getBookingsForCustomer(String name, String surname) {
-        log.info("DEMO: Calling Tool-getBookingsForCustomer: " + name + " " + surname);
+        LOGGER.info("DEMO: Calling Tool-getBookingsForCustomer: " + name + " " + surname);
         Customer customer = new Customer(name, surname);
         return BOOKINGS.values()
                 .stream()
@@ -77,7 +79,7 @@ public class BookingService {
 
     @Tool("Cancel a booking given its booking number and customer name and surname")
     public Booking cancelBooking(String bookingNumber, String name, String surname) {
-        log.info("DEMO: Calling Tool-cancelBooking " + bookingNumber + " for customer: " + name
+        LOGGER.info("DEMO: Calling Tool-cancelBooking " + bookingNumber + " for customer: " + name
                 + " " + surname);
 
         Booking booking = checkBookingExists(bookingNumber, name, surname);

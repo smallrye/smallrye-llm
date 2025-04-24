@@ -36,12 +36,6 @@ public class SpanChatModelListener implements ChatModelListener {
     @Inject
     private Tracer tracer;
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see dev.langchain4j.model.chat.listener.ChatModelListener#onRequest(dev.langchain4j.model.chat.listener.
-     * ChatModelRequestContext)
-     */
     @Override
     public void onRequest(ChatModelRequestContext requestContext) {
         // TODO Auto-generated method stub
@@ -78,12 +72,6 @@ public class SpanChatModelListener implements ChatModelListener {
         requestContext.attributes().put(OTEL_SPAN_KEY_NAME, span);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see dev.langchain4j.model.chat.listener.ChatModelListener#onResponse(dev.langchain4j.model.chat.listener.
-     * ChatModelResponseContext)
-     */
     @Override
     public void onResponse(ChatModelResponseContext responseContext) {
         // TODO Auto-generated method stub
@@ -107,12 +95,6 @@ public class SpanChatModelListener implements ChatModelListener {
         closeScope((Scope) responseContext.attributes().get(OTEL_SCOPE_KEY_NAME));
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * dev.langchain4j.model.chat.listener.ChatModelListener#onError(dev.langchain4j.model.chat.listener.ChatModelErrorContext)
-     */
     @Override
     public void onError(ChatModelErrorContext errorContext) {
         // TODO Auto-generated method stub
