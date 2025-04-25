@@ -34,7 +34,6 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         return detectedAIServicesDeclaredInterfaces;
     }
 
-    @SuppressWarnings("unused")
     @Enhancement(types = Object.class, withSubtypes = true)
     @Priority(20)
     public void protectedToolsToBePurgedByQuarkus(ClassConfig classConfig) throws ClassNotFoundException {
@@ -47,7 +46,6 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         }
     }
 
-    @SuppressWarnings("unused")
     @Enhancement(types = Object.class, withAnnotations = RegisterAIService.class, withSubtypes = true)
     @Priority(10)
     public void detectRegisterAIService(ClassConfig classConfig) throws ClassNotFoundException {
@@ -93,7 +91,7 @@ public class Langchain4JAIServiceBuildCompatibleExtension implements BuildCompat
         return Thread.currentThread().getContextClassLoader().loadClass(className);
     }
 
-    @SuppressWarnings({ "unused", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
     @Synthesis
     public void synthesisAllRegisterAIServices(SyntheticComponents syntheticComponents) throws ClassNotFoundException {
         LOGGER.info("synthesisAllRegisterAIServices");
