@@ -79,7 +79,7 @@ public class BceExtensionTest {
 
     @Test
     void callEffectiveCreation() {
-        Assertions.assertNotNull(myDummyAIService.toString());
+        Assertions.assertNotNull(requestContextCaller.run(() -> myDummyAIService.toString()));
 
     }
 
