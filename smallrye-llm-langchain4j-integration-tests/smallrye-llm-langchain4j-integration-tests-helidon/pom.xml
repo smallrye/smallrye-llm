@@ -8,6 +8,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>smallrye-llm-langchain4j-integration-tests-helidon</artifactId>
+    <name>SmallRye LLM Integration Tests: Helidon 4</name>
 
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>

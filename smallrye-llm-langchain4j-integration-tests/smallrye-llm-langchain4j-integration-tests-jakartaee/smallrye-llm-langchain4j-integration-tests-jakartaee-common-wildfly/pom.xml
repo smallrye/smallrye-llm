@@ -8,6 +8,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <name>SmallRye LLM Integration Tests: JakartaEE - Common and Wildfly</name>
+
     <artifactId>smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly</artifactId>
     <packaging>jar</packaging>
 

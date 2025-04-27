@@ -11,7 +11,7 @@
     <artifactId>smallrye-llm-langchain4j-integration-tests-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>smallrye-llm-langchain4j-integration-tests-common</name>
+    <name>SmallRye LLM Integration Tests: commons</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

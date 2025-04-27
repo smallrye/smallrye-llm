@@ -12,7 +12,7 @@
 
     <artifactId>smallrye-llm-langchain4j-integration-tests</artifactId>
     <packaging>pom</packaging>
-    <name>SmallRye LLM Langchain4j Integration Tests</name>
+    <name>SmallRye LLM Integration Tests: Parent</name>
     <modules>
         <module>smallrye-llm-langchain4j-integration-tests-common</module>
         <module>smallrye-llm-langchain4j-integration-tests-jakartaee</module>
