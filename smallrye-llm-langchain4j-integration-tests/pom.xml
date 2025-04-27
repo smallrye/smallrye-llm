@@ -69,4 +69,15 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>onJdk21</id>
+            <activation>
+                <jdk>[21,)</jdk>
+            </activation>
+            <modules>
+                <module>smallrye-llm-langchain4j-integration-tests-helidon</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
