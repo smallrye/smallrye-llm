@@ -17,7 +17,6 @@
         <module>smallrye-llm-langchain4j-integration-tests-common</module>
         <module>smallrye-llm-langchain4j-integration-tests-jakartaee</module>
         <module>smallrye-llm-langchain4j-integration-tests-quarkus</module>
-        <module>smallrye-llm-langchain4j-integration-tests-helidon</module>
     </modules>
 
     <dependencies>
