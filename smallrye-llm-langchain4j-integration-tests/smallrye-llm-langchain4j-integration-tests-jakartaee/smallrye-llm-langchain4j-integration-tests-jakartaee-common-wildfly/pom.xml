@@ -15,23 +15,11 @@
 
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakartaee-api.version>10.0.0</jakartaee-api.version>
-
-        <!-- Payara -->
-        <payara.version>6.2025.4</payara.version>
-        <payara-arquillian.version>3.1</payara-arquillian.version>
-
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.8.0.Final</arquillian-bom.version>
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <assertj.version>3.25.3</assertj.version>
         <awaitility.version>4.2.1</awaitility.version>
-
-        <!-- Glassfish server -->
-        <glassfish.version>7.0.14</glassfish.version>
-        <eclipselink.version>4.0.2</eclipselink.version>
-        <arquillian-glassfish-jakarta.version>7.0.13</arquillian-glassfish-jakarta.version>
 
         <!-- WildFly -->
         <wildfly.version>31.0.1.Final</wildfly.version>

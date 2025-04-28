@@ -22,7 +22,7 @@ public class LLMConfigProvider {
             throw new RuntimeException("No service Found for LLMConfig interface");
         } else {
             llmConfig = factories.iterator().next(); //loader.findFirst().orElse(null);
-            LOGGER.info("Found LLMConfig interface: " + llmConfig.getClass().getName());
+            LOGGER.debug("Found LLMConfig interface: " + llmConfig.getClass().getName());
         }
     }
 

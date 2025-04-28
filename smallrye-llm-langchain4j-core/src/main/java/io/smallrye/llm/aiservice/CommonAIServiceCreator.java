@@ -3,6 +3,7 @@ package io.smallrye.llm.aiservice;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.literal.NamedLiteral;
@@ -27,7 +28,7 @@ public class CommonAIServiceCreator {
     public static <X> X create(Instance<Object> lookup, Class<X> interfaceClass) {
         RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
         Instance<ChatLanguageModel> chatLanguageModel = getInstance(lookup, ChatLanguageModel.class,
-                annotation.chatLanguageModelName());
+                Objects.requireNonNull(annotation).chatLanguageModelName());
         Instance<StreamingChatLanguageModel> streamingChatLanguageModel = getInstance(lookup, StreamingChatLanguageModel.class,
                 annotation.streamingChatLanguageModelName());
         Instance<ContentRetriever> contentRetriever = getInstance(lookup, ContentRetriever.class,
@@ -66,6 +67,7 @@ public class CommonAIServiceCreator {
                     tools.add(toolClass.getConstructor((Class<?>[]) null).newInstance((Object[]) null));
                 } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
                         | IllegalArgumentException | InvocationTargetException ex) {
+                    LOGGER.error("Can't add toolClass " + toolClass + " for " + interfaceClass + " : " + ex.getMessage(), ex);
                 }
             }
             aiServices.tools(tools);
@@ -74,21 +76,21 @@ public class CommonAIServiceCreator {
                 annotation.chatMemoryName());
         if (chatMemory != null && chatMemory.isResolvable()) {
             ChatMemory chatMemoryInstance = chatMemory.get();
-            LOGGER.info("ChatMemory " + chatMemoryInstance);
+            LOGGER.debug("ChatMemory " + chatMemoryInstance);
             aiServices.chatMemory(chatMemoryInstance);
         }
 
         Instance<ChatMemoryProvider> chatMemoryProvider = getInstance(lookup, ChatMemoryProvider.class,
                 annotation.chatMemoryProviderName());
         if (chatMemoryProvider != null && chatMemoryProvider.isResolvable()) {
-            LOGGER.info("ChatMemoryProvider " + chatMemoryProvider.get());
+            LOGGER.debug("ChatMemoryProvider " + chatMemoryProvider.get());
             aiServices.chatMemoryProvider(chatMemoryProvider.get());
         }
 
         Instance<ModerationModel> moderationModelInstance = getInstance(lookup, ModerationModel.class,
                 annotation.moderationModelName());
         if (moderationModelInstance != null && moderationModelInstance.isResolvable()) {
-            LOGGER.info("ModerationModel " + moderationModelInstance.get());
+            LOGGER.debug("ModerationModel " + moderationModelInstance.get());
             aiServices.moderationModel(moderationModelInstance.get());
         }
 
@@ -96,7 +98,7 @@ public class CommonAIServiceCreator {
     }
 
     private static <X> Instance<X> getInstance(Instance<Object> lookup, Class<X> type, String name) {
-        LOGGER.info("CDI get instance of type '" + type + "' with name '" + name + "'");
+        LOGGER.debug("CDI get instance of type '" + type + "' with name '" + name + "'");
         if (name != null && !name.isBlank()) {
             if ("#default".equals(name))
                 return lookup.select(type);
