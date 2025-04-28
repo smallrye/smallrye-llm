@@ -11,12 +11,10 @@
     <name>SmallRye LLM Integration Tests: Helidon 4</name>
 
     <properties>
-        <compiler-plugin.version>3.12.1</compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <helidon.version>4.2.1</helidon.version>
         <skipITs>true</skipITs>
-        <surefire-plugin.version>3.2.5</surefire-plugin.version>
     </properties>
 
     <dependencyManagement>

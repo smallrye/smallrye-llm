@@ -35,27 +35,36 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakartaee-api.version>10.0.0</jakartaee-api.version>
 
+        <version.dev.langchain4j>1.0.0-beta3</version.dev.langchain4j>
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+        <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
+
+        <!-- MP -->
         <version.eclipse.microprofile.config>3.1</version.eclipse.microprofile.config>
         <version.eclipse.microprofile.telemetry>2.0.1</version.eclipse.microprofile.telemetry>
-        <version.smallrye.common>2.9.0</version.smallrye.common>
+
         <version.asm>9.7</version.asm>
-        <version.smallrye.testing>2.3.1</version.smallrye.testing>
-        <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
         <weld-junit5.version>4.0.4.Final</weld-junit5.version>
         <version.weld>5.1.5.Final</version.weld>
         <version.org.jboss.logging>3.6.1.Final</version.org.jboss.logging>
-        <version.dev.langchain4j>1.0.0-beta3</version.dev.langchain4j>
+
+        <!-- SmallRye -->
+        <version.smallrye.common>2.9.0</version.smallrye.common>
         <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
         <version.io.smallrye.config>3.8.1</version.io.smallrye.config>
         <version.io.smallrye.fault-tolerance>6.7.3</version.io.smallrye.fault-tolerance>
+        <version.smallrye.testing>2.3.1</version.smallrye.testing>
+
+        <!-- Maven -->
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.testTarget>${maven.compiler.target}</maven.compiler.testTarget>
         <maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
         <maven.compiler.release>17</maven.compiler.release>
-        <!-- Sonar settings -->
+        <surefire-plugin.version>3.5.3</surefire-plugin.version>
+        <compiler-plugin.version>3.14.0</compiler-plugin.version>
+
         <sonar.projectName>SmallRye LLM</sonar.projectName>
     </properties>
 
