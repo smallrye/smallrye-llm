@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.smallrye.llm</groupId>
+        <artifactId>smallrye-llm-langchain4j-integration-tests-jakartaee</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>smallrye-llm-langchain4j-integration-tests-jakartaee-openliberty</artifactId>
+    <packaging>jar</packaging>
+
+    <name>SmallRye LLM Integration Tests: JakartaEE - OpenLiberty</name>
+
+    <properties>
+        <!-- OpenLiberty -->
+        <openliberty.version>25.0.0.4</openliberty.version>
+        <liberty-maven-plugin.version>3.11.3</liberty-maven-plugin.version>
+        <arquillian-liberty.version>2.1.3</arquillian-liberty.version>
+    </properties>
+
+
+    <dependencies>
+        <!-- OpenLiberty dependencies -->
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-managed-jakarta</artifactId>
+            <version>2.1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+            <version>${arquillian-bom.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
+            <version>${arquillian-bom.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <sourceDirectory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/main/java
+        </sourceDirectory>
+        <testSourceDirectory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/test/java
+        </testSourceDirectory>
+
+        <resources>
+            <resource>
+                <directory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources-openliberty</directory>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>io.openliberty</groupId>
+                                    <artifactId>openliberty-runtime</artifactId>
+                                    <version>${openliberty.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>io.openliberty.arquillian</groupId>
+                                    <artifactId>arquillian-liberty-support-jakarta</artifactId>
+                                    <version>${arquillian-liberty.version}</version>
+                                    <type>zip</type>
+                                    <classifier>feature</classifier>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-resource-one</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/wlp/usr/servers/defaultServer</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/resources-openliberty</directory>
+                                    <includes>
+                                        <include>server.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <liberty.home>${project.build.directory}/wlp</liberty.home>
+                        <wlp.install.dir>${project.build.directory}/wlp</wlp.install.dir>
+                        <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

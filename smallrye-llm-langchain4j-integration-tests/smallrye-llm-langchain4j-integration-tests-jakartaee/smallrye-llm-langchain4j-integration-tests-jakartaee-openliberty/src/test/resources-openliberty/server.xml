@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="OpenLiberty Server for Arquillian Tests">
+    <featureManager>
+        <feature>restfulWS-3.1</feature>
+        <feature>localConnector-1.0</feature>
+        <feature>usr:arquillian-support-jakarta-3.0</feature> <!-- Optional, needed for reliable reporting of correct DeploymentExceptions -->
+
+        <feature>cdi</feature>
+
+        <!--Enable the following features to run tests with Arquillian managed container-->
+        <feature>servlet</feature>
+
+    </featureManager>
+    <applicationMonitor updateTrigger="mbean"/>
+    <variable name="http.port" defaultValue="9080" />
+    <variable name="https.port" defaultValue="9443" />
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*"
+                  httpPort="${http.port}"
+                  httpsPort="${https.port}" />
+</server>

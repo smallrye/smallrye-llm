@@ -11,8 +11,6 @@
     <name>SmallRye LLM Examples: Glassfish Car Booking</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakarta.jakartaee-api.version>10.0.0</jakarta.jakartaee-api.version>
         <format.skip>true</format.skip> <!-- war plugin with sorts import do not support java 21-->
         <cargo.servlet.port>8080</cargo.servlet.port>
         <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs</cargo.zipUrlInstaller.downloadDir>
@@ -22,7 +20,7 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakarta.jakartaee-api.version}</version>
+            <version>${jakartaee-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
