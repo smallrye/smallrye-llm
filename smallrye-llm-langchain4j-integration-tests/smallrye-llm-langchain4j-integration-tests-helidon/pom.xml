@@ -47,7 +47,7 @@
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-core</artifactId>
-            <version>1.0.0-beta3</version>
+            <version>${dev.langchain4j.version}</version> <!-- We MUST force the version because helidon embed a previous version -->
         </dependency>
         <!-- Logging dependency -->
         <dependency>
