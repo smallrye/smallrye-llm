@@ -32,29 +32,28 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian-bom.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
-            <version>${arquillian-bom.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.llm</groupId>
+            <artifactId>smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly</artifactId>
+            <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
 
     <build>
-        <sourceDirectory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/main/java
-        </sourceDirectory>
-        <testSourceDirectory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/test/java
-        </testSourceDirectory>
-
-        <resources>
-            <resource>
-                <directory>../smallrye-llm-langchain4j-integration-tests-jakartaee-common-wildfly/src/main/resources</directory>
-            </resource>
-        </resources>
         <testResources>
             <testResource>
                 <directory>src/test/resources-openliberty</directory>
