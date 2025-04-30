@@ -1,32 +1,16 @@
-# Reporting of CVEs and Security Issues
+# Security Policy
 
-## The Smallrye LLM community takes security bugs very seriously
+## Supported Versions
 
-We aim to take immediate action to address serious security-related problems that involve our project. 
+Only the latest stable version of LangChain4j is supported with security updates.
 
-Note that we will only fix such issues in the most recent minor release of Smallrye LLM.
+| Version   | Supported          |
+| --------- | ------------------ |
+| 1.0.x     | :white_check_mark: |
+| < 1.0.0   | :x:                |
 
-## Reporting of Security Issues
+## Reporting a Vulnerability
 
-When reporting a security vulnerability it is important to not accidentally broadcast to the world that
-the issue exists, as this makes it easier for people to exploit it. The software industry uses the term
-<a href="https://www.redhat.com/en/blog/security-embargoes-red-hat">embargo</a> to describe the time a
-security issue is known internally until it is public knowledge.
-
-Our preferred way of reporting security issues in Smallrye LLM is listed below.
-
-### Email the Smallrye LLM team
-
-To report a security issue, please email <a href="mailto:ehugonne@redhat.com">ehugonne@redhat.com</a> and/or
-<a href="mailto:yann.blazart@bycode.fr">yann.blazart@bycode.fr</a>. A member of the Smallrye LLM team will
-open the required issues.
-    
-### Other considerations
-
-If you would like to work with us on a fix for the security vulnerability, please include your GitHub username
-in the above email, and we will provide you access to a temporary private fork where we can collaborate on a
-fix without it being disclosed publicly, **including in your own publicly visible git repository**.
-
-Do not open a public issue, send a pull request, or disclose any information about the suspected vulnerability
-publicly, **including in your own publicly visible git repository**. If you discover any publicly disclosed
-security vulnerabilities, please notify us immediately through the emails listed in the section above.
+Please do not report security issues to the public issue tracker. 
+If you think you have found a security vulnerability, please send security issues to [info@langchain4j.dev](mailto:info@langchain4j.dev).
+We will do our best to get back to you as soon as possible.
