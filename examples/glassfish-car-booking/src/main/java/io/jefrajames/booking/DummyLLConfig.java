@@ -1,13 +1,13 @@
 package io.jefrajames.booking;
 
-import dev.langchain4j.microprofile.config.spi.LLMConfig;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import dev.langchain4j.cdi.config.spi.LLMConfig;
 
 public class DummyLLConfig implements LLMConfig {
     Properties properties = new Properties();
@@ -29,9 +29,8 @@ public class DummyLLConfig implements LLMConfig {
                 .collect(Collectors.toSet());
     }
 
-
-
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public <T> T getBeanPropertyValue(String beanName, String propertyName, Class<T> type) {
         String value=properties.getProperty(PREFIX + "." + beanName + "." + propertyName);
         if ( value==null)

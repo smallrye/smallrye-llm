@@ -1,7 +1,7 @@
-Contributing to langchain4j-microprofile
+Contributing to langchain4j-cdi
 ===================================================
 
-Welcome to the langchain4j-microprofile project! We welcome contributions from the community. This guide will walk you through the steps for getting started on our project.
+Welcome to the langchain4j-cdi project! We welcome contributions from the community. This guide will walk you through the steps for getting started on our project.
 
 - [Contributing Guidelines](#contributing-guidelines)
 - [Issues](#issues)
@@ -11,7 +11,7 @@ Welcome to the langchain4j-microprofile project! We welcome contributions from t
 
 ## Contributing Guidelines
 
-Please refer to our Wiki for the [Contribution Guidelines](https://github.com/langchain4j/langchain4j-microprofile-jakarta).
+Please refer to our Wiki for the [Contribution Guidelines](https://github.com/langchain4j/langchain4j-cdi).
 
 
 ## Issues
@@ -21,11 +21,11 @@ To create a new issue, comment on an existing issue, or assign an issue to yours
 
 
 ### Good First Issues
-Want to contribute to the langchain4j-microprofile-jakarta project but aren't quite sure where to start? Check out our issues with the `good first issue` label. These are a triaged set of issues that are great for getting started on our project. These can be found [here](https://github.com/langchain4j/langchain4j-microprofile-jakarta/labels/good%20first%20issue). 
+Want to contribute to the langchain4j-microprofile-jakarta project but aren't quite sure where to start? Check out our issues with the `good first issue` label. These are a triaged set of issues that are great for getting started on our project. These can be found [here](https://github.com/langchain4j/langchain4j-cdi/labels/good%20first%20issue). 
 
 Once you have selected an issue you'd like to work on, make sure it's not already assigned to someone else, and assign it to yourself.
 
-It is recommended that you use a separate branch for every issue you work on. To keep things straightforward and memorable, you can name each branch using the GitHub issue number. This way, you can have multiple PRs open for different issues. For example, if you were working on [issue-125](https://github.com/langchain4j/langchain4j-microprofile-jakarta/issues/125), you could use issue-125 as your branch name.
+It is recommended that you use a separate branch for every issue you work on. To keep things straightforward and memorable, you can name each branch using the GitHub issue number. This way, you can have multiple PRs open for different issues. For example, if you were working on [issue-125](https://github.com/langchain4j/langchain4j-cdi/issues/125), you could use issue-125 as your branch name.
 
 ## Setting up your Developer Environment
 You will need:

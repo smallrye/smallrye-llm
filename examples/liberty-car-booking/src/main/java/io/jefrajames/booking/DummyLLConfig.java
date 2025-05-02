@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import dev.langchain4j.microprofile.config.spi.LLMConfig;
+import dev.langchain4j.cdi.config.spi.LLMConfig;
 
 public class DummyLLConfig implements LLMConfig {
     Properties properties = new Properties();

@@ -2,14 +2,13 @@ package io.jefrajames.booking;
 
 import java.time.temporal.ChronoUnit;
 
-import jakarta.enterprise.context.ApplicationScoped;
-
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
+import dev.langchain4j.cdi.spi.RegisterAIService;
 import dev.langchain4j.service.SystemMessage;
-import dev.langchain4j.microprofile.spi.RegisterAIService;
+import jakarta.enterprise.context.ApplicationScoped;
 
 //@SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @RegisterAIService(scope = ApplicationScoped.class, tools = BookingService.class, chatMemoryName = "chat-ai-service-memory")

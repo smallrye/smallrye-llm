@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>dev.langchain4j.microprofile.examples</groupId>
-        <artifactId>langchain4j-microprofile-examples</artifactId>
+        <groupId>dev.langchain4j.examples</groupId>
+        <artifactId>langchain4j-examples</artifactId>
         <version>1.0.0-beta3</version>
     </parent>
 
     <artifactId>helidon-car-booking-portable-ext</artifactId>
-    <name>Langchain4J Microprofile Examples: Helidon Car Booking Portable Extension</name>
+    <name>Langchain4J CDI Examples: Helidon Car Booking Portable Extension</name>
 
     <properties>
         <mainClass>io.helidon.Main</mainClass>
@@ -35,12 +35,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>dev.langchain4j.microprofile</groupId>
-            <artifactId>langchain4j-cdi-portable-ext</artifactId>
+            <groupId>dev.langchain4j.cdi</groupId>
+            <artifactId>langchain4j-portable-ext</artifactId>
         </dependency>
         <dependency>
-            <groupId>dev.langchain4j.microprofile</groupId>
-            <artifactId>langchain4j-microprofile-config</artifactId>
+            <groupId>dev.langchain4j.cdi</groupId>
+            <artifactId>langchain4j-config</artifactId>
         </dependency>
         <!-- Adds all features available in MicroProfile -->
         <dependency>

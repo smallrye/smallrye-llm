@@ -1,12 +1,5 @@
-:ci: https://github.com/smallrye/smallrye-llm/actions?query=workflow%3A%22SmallRye+Build%22
-
-image:https://github.com/smallrye/smallrye-llm/workflows/SmallRye%20Build/badge.svg?branch=main[link={ci}]
-image:https://img.shields.io/github/license/smallrye/smallrye-llm.svg["License", link="http://www.apache.org/licenses/LICENSE-2.0"]
-image:https://img.shields.io/maven-central/v/io.smallrye.llm/smallrye-llm?color=green["Maven", link="https://central.sonatype.com/search?q=io.smallrye.llm%3Asmallrye-llm-parent"]
-
-= 🚀 langchain4j-microprofile
-
-Experimentation around LLM and MicroProfile
+= 🚀 Langchain4J CDI - Langchain4J integration with MicroProfile™ and Jakarta™ specifications
+Experimentation around LLM, MicroProfile™ and Jakarta™ EE
 
 == How to run examples
 
@@ -41,8 +34,9 @@ Go to each example `README.md` to see how to execute the example.
 
 == Contributing
 
-If you want to contribute, please have a look at link:CONTRIBUTING.md[CONTRIBUTING.md].
+If you want to contribute, please have a look at link:https://github.com/langchain4j/langchain4j-community/blob/main/CONTRIBUTING.md[CONTRIBUTING.md].
 
 == License
 
 This project is licensed under the Apache License 2.0 - see the link:LICENSE[LICENSE] file for details.
+

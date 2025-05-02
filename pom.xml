@@ -19,13 +19,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.langchain4j.microprofile</groupId>
-    <artifactId>langchain4j-microprofile-parent</artifactId>
+    <groupId>dev.langchain4j.cdi</groupId>
+    <artifactId>langchain4j-cdi-parent</artifactId>
     <version>1.0.0-beta3</version>
 
     <packaging>pom</packaging>
-    <name>Langchain4J Microprofile Parent POM</name>
-    <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta</url>
+    <name>Langchain4J CDI Parent POM</name>
+    <url>https://github.com/langchain4j/langchain4j-cdi</url>
 
     <properties>
         <version.eclipse.microprofile.config>3.1</version.eclipse.microprofile.config>
@@ -49,7 +49,7 @@
         <version.maven.surefire>3.5.0</version.maven.surefire>
 
         <!-- Sonar settings -->
-        <sonar.projectName>Langchain4J Microprofile Jakarta</sonar.projectName>
+        <sonar.projectName>Langchain4J CDI</sonar.projectName>
     </properties>
 
     <licenses>
@@ -61,24 +61,24 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta/issues</url>
+        <url>https://github.com/langchain4j/langchain4j-cdi/issues</url>
     </issueManagement>
 
     <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
-        <connection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta.git</connection>
-        <developerConnection>scm:git:git@github.com:langchain4j/langchain4j-microprofile-jakarta.git</developerConnection>
-        <url>https://github.com/langchain4j/langchain4j-microprofile-jakarta</url>
+        <connection>scm:git:git@github.com:langchain4j/langchain4j-cdi.git</connection>
+        <developerConnection>scm:git:git@github.com:langchain4j/langchain4j-cdi.git</developerConnection>
+        <url>https://github.com/langchain4j/langchain4j-cdi</url>
         <tag>HEAD</tag>
     </scm>
 
     <modules>
         <module>examples</module>
-        <module>langchain4j-cdi-portable-ext</module>
-        <module>langchain4j-cdi-build-compatible-ext</module>
-        <module>langchain4j-microprofile-core</module>
-        <module>langchain4j-microprofile-config</module>
-        <module>langchain4j-microprofile-fault-tolerance</module>
-        <module>langchain4j-microprofile-telemetry</module>
+        <module>langchain4j-portable-ext</module>
+        <module>langchain4j-build-compatible-ext</module>
+        <module>langchain4j-core</module>
+        <module>langchain4j-config</module>
+        <module>langchain4j-fault-tolerance</module>
+        <module>langchain4j-telemetry</module>
     </modules>
 
     <dependencyManagement>
@@ -145,33 +145,33 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-build-compatible-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-microprofile-core</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-microprofile-config</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-config</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-cdi-portable-ext</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-portable-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-microprofile-telemetry</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-telemetry</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>dev.langchain4j.microprofile</groupId>
-                <artifactId>langchain4j-microprofile-fault-tolerance</artifactId>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -200,6 +200,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.maven.surefire}</version>
+                <configuration>
+					<forkCount>0</forkCount>
+					<useSystemClassLoader>false</useSystemClassLoader>
+				</configuration>
             </plugin>
         </plugins>
     </build>
