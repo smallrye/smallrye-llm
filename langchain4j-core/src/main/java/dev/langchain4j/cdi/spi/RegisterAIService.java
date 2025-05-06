@@ -19,9 +19,9 @@ public @interface RegisterAIService {
 
     Class<?>[] tools() default {};
 
-    String chatLanguageModelName() default "#default";
+    String chatModelName() default "#default";
 
-    String streamingChatLanguageModelName() default "";
+    String streamingChatModelName() default "";
 
     String contentRetrieverName() default "";
 

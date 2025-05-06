@@ -1,19 +1,19 @@
-package dev.langchain4j.cdi;
+package dev.langchain4j.core;
 
 import java.util.List;
 
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.output.Response;
 
-public class DummyChatLanguageModel implements ChatLanguageModel {
+public class DummyChatModel implements ChatModel {
     private String apiKey;
     private EmbeddingModel embeddingModel;
     private EmbeddingModel embeddingModel2;
 
-    public DummyChatLanguageModel(String apiKey, EmbeddingModel embeddingModel, EmbeddingModel embeddingModel2) {
+    public DummyChatModel(String apiKey, EmbeddingModel embeddingModel, EmbeddingModel embeddingModel2) {
         this.apiKey = apiKey;
         this.embeddingModel = embeddingModel;
         this.embeddingModel2 = embeddingModel2;
@@ -44,8 +44,8 @@ public class DummyChatLanguageModel implements ChatLanguageModel {
         private EmbeddingModel embeddingModel;
         private EmbeddingModel embeddingModel2;
 
-        public DummyChatLanguageModel build() {
-            return new DummyChatLanguageModel(this.apiKey, this.embeddingModel, this.embeddingModel2);
+        public DummyChatModel build() {
+            return new DummyChatModel(this.apiKey, this.embeddingModel, this.embeddingModel2);
         }
 
         public void embeddingModel2(EmbeddingModel embeddingModel) {

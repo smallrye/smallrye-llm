@@ -1,17 +1,15 @@
 package dev.langchain4j.cdi.plugin;
 
+import org.jboss.logging.Logger;
+
+import dev.langchain4j.cdi.config.spi.LLMConfig;
+import dev.langchain4j.cdi.config.spi.LLMConfigProvider;
+import dev.langchain4j.cdi.spi.AISyntheticBeanCreatorClassProvider;
 import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
 import jakarta.enterprise.inject.build.compatible.spi.Synthesis;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanBuilder;
 import jakarta.enterprise.inject.build.compatible.spi.SyntheticComponents;
 import jakarta.enterprise.inject.literal.NamedLiteral;
-
-import org.jboss.logging.Logger;
-
-import dev.langchain4j.cdi.config.spi.LLMConfig;
-import dev.langchain4j.cdi.config.spi.LLMConfigProvider;
-import dev.langchain4j.cdi.plugin.CommonLLMPluginCreator;
-import dev.langchain4j.cdi.spi.AISyntheticBeanCreatorClassProvider;
 
 public class LangChain4JPluginsBuildCompatibleExtension implements BuildCompatibleExtension {
     public static final Logger LOGGER = Logger.getLogger(LangChain4JPluginsBuildCompatibleExtension.class);

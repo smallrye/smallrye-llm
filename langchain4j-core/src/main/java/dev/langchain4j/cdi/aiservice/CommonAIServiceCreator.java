@@ -4,21 +4,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.enterprise.inject.Instance;
-import jakarta.enterprise.inject.literal.NamedLiteral;
-
 import org.jboss.logging.Logger;
 
 import dev.langchain4j.cdi.spi.RegisterAIService;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.moderation.ModerationModel;
 import dev.langchain4j.rag.RetrievalAugmentor;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.tool.ToolProvider;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.literal.NamedLiteral;
 
 public class CommonAIServiceCreator {
 
@@ -26,10 +25,10 @@ public class CommonAIServiceCreator {
 
     public static <X> X create(Instance<Object> lookup, Class<X> interfaceClass) {
         RegisterAIService annotation = interfaceClass.getAnnotation(RegisterAIService.class);
-        Instance<ChatLanguageModel> chatLanguageModel = getInstance(lookup, ChatLanguageModel.class,
-                annotation.chatLanguageModelName());
-        Instance<StreamingChatLanguageModel> streamingChatLanguageModel = getInstance(lookup, StreamingChatLanguageModel.class,
-                annotation.streamingChatLanguageModelName());
+        Instance<ChatModel> chatModel = getInstance(lookup, ChatModel.class,
+                annotation.chatModelName());
+        Instance<StreamingChatModel> streamingChatModel = getInstance(lookup, StreamingChatModel.class,
+                annotation.streamingChatModelName());
         Instance<ContentRetriever> contentRetriever = getInstance(lookup, ContentRetriever.class,
                 annotation.contentRetrieverName());
         Instance<RetrievalAugmentor> retrievalAugmentor = getInstance(lookup, RetrievalAugmentor.class,
@@ -37,13 +36,13 @@ public class CommonAIServiceCreator {
         Instance<ToolProvider> toolProvider = getInstance(lookup, ToolProvider.class, annotation.toolProviderName());
 
         AiServices<X> aiServices = AiServices.builder(interfaceClass);
-        if (chatLanguageModel != null && chatLanguageModel.isResolvable()) {
-            LOGGER.debug("ChatLanguageModel " + chatLanguageModel.get());
-            aiServices.chatLanguageModel(chatLanguageModel.get());
+        if (chatModel != null && chatModel.isResolvable()) {
+            LOGGER.debug("ChatModel " + chatModel.get());
+            aiServices.chatModel(chatModel.get());
         }
-        if (streamingChatLanguageModel != null && streamingChatLanguageModel.isResolvable()) {
-            LOGGER.debug("StreamingChatLanguageModel " + streamingChatLanguageModel.get());
-            aiServices.streamingChatLanguageModel(streamingChatLanguageModel.get());
+        if (streamingChatModel != null && streamingChatModel.isResolvable()) {
+            LOGGER.debug("StreamingChatModel " + streamingChatModel.get());
+            aiServices.streamingChatModel(streamingChatModel.get());
         }
         if (contentRetriever != null && contentRetriever.isResolvable()) {
             LOGGER.debug("ContentRetriever " + contentRetriever.get());

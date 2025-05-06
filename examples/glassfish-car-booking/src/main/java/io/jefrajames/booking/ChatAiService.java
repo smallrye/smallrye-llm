@@ -4,7 +4,7 @@ import dev.langchain4j.cdi.spi.RegisterAIService;
 import dev.langchain4j.service.SystemMessage;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(tools = BookingService.class, chatMemoryName = "chat-ai-service-memory", chatLanguageModelName = "chat-model")
+@RegisterAIService(tools = BookingService.class, chatMemoryName = "chat-ai-service-memory", chatModelName = "chat-model")
 public interface ChatAiService {
 
     @SystemMessage("""

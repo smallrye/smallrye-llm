@@ -4,13 +4,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.concurrent.Callable;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.context.control.ActivateRequestContext;
-import jakarta.enterprise.inject.Instance;
-import jakarta.enterprise.inject.spi.BeanManager;
-import jakarta.inject.Inject;
-
 import org.jboss.weld.junit5.WeldInitiator;
 import org.jboss.weld.junit5.WeldJunit5Extension;
 import org.jboss.weld.junit5.WeldSetup;
@@ -20,8 +13,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import dev.langchain4j.cdi.portableextension.LangChain4JAIServicePortableExtension;
 import dev.langchain4j.cdi.portableextension.LangChain4JPluginsPortableExtension;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import io.smallrye.config.inject.ConfigExtension;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.control.ActivateRequestContext;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.inject.Inject;
 
 @ExtendWith(WeldJunit5Extension.class)
 public class PortableExtensionInstanceTest {
@@ -36,7 +35,7 @@ public class PortableExtensionInstanceTest {
     RequestContextCaller requestContextCaller;
 
     @Inject
-    ChatLanguageModel chatLanguageModel;
+    ChatModel chatModel;
 
     @Inject
     BeanManager beanManager;
@@ -48,7 +47,7 @@ public class PortableExtensionInstanceTest {
             MyDummyAIService.class,
             MyDummyApplicationScopedAIService.class,
             RequestContextCaller.class,
-            DummyChatLanguageModel.class,
+            DummyChatModel.class,
             DummyEmbeddingStore.class,
             DummyEmbeddingModel.class,
             ConfigExtension.class)
@@ -56,9 +55,9 @@ public class PortableExtensionInstanceTest {
 
     @Test
     public void assertPlugin() {
-        Assertions.assertEquals(((DummyChatLanguageModel) chatLanguageModel).getApiKey(), "apikey");
-        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel());
-        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel2());
+        Assertions.assertEquals(((DummyChatModel) chatModel).getApiKey(), "apikey");
+        Assertions.assertNotNull(((DummyChatModel) chatModel).getEmbeddingModel());
+        Assertions.assertNotNull(((DummyChatModel) chatModel).getEmbeddingModel2());
     }
 
     @Test

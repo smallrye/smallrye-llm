@@ -4,7 +4,7 @@
     <parent>
         <artifactId>langchain4j-examples</artifactId>
         <groupId>dev.langchain4j.examples</groupId>
-        <version>1.0.0-beta3</version>
+        <version>1.0.0-rc1</version>
     </parent>
 
     <artifactId>quarkus-car-booking</artifactId>
