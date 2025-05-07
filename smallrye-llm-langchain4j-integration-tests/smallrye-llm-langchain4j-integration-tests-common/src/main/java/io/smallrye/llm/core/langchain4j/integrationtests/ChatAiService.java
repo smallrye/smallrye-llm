@@ -4,7 +4,7 @@ import dev.langchain4j.service.SystemMessage;
 import io.smallrye.llm.spi.RegisterAIService;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RegisterAIService(chatLanguageModelName = "chat-model")
+@RegisterAIService(chatModelName = "chat-model")
 public interface ChatAiService {
 
     @SystemMessage("""

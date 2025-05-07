@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import io.smallrye.config.inject.ConfigExtension;
 import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JAIServicePortableExtension;
 import io.smallrye.llm.core.langchain4j.portableextension.LangChain4JPluginsPortableExtension;
@@ -36,7 +36,7 @@ public class PortableExtensionInstanceTest {
     RequestContextCaller requestContextCaller;
 
     @Inject
-    ChatLanguageModel chatLanguageModel;
+    ChatModel chatLanguageModel;
 
     @Inject
     BeanManager beanManager;
@@ -48,7 +48,7 @@ public class PortableExtensionInstanceTest {
             MyDummyAIService.class,
             MyDummyApplicationScopedAIService.class,
             RequestContextCaller.class,
-            DummyChatLanguageModel.class,
+            DummyChatModel.class,
             DummyEmbeddingStore.class,
             DummyEmbeddingModel.class,
             ConfigExtension.class)
@@ -56,9 +56,9 @@ public class PortableExtensionInstanceTest {
 
     @Test
     public void assertPlugin() {
-        Assertions.assertEquals(((DummyChatLanguageModel) chatLanguageModel).getApiKey(), "apikey");
-        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel());
-        Assertions.assertNotNull(((DummyChatLanguageModel) chatLanguageModel).getEmbeddingModel2());
+        Assertions.assertEquals(((DummyChatModel) chatLanguageModel).getApiKey(), "apikey");
+        Assertions.assertNotNull(((DummyChatModel) chatLanguageModel).getEmbeddingModel());
+        Assertions.assertNotNull(((DummyChatModel) chatLanguageModel).getEmbeddingModel2());
     }
 
     @Test
