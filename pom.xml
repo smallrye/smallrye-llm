@@ -27,7 +27,7 @@
 
     <groupId>io.smallrye.llm</groupId>
     <artifactId>smallrye-llm-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.5</version>
 
     <packaging>pom</packaging>
     <name>SmallRye LLM: Parent</name>
@@ -85,7 +85,7 @@
         <connection>scm:git:git@github.com:smallrye/smallrye-llm.git</connection>
         <developerConnection>scm:git:git@github.com:smallrye/smallrye-llm.git</developerConnection>
         <url>https://github.com/smallrye/smallrye-llm/</url>
-        <tag>HEAD</tag>
+        <tag>0.0.5</tag>
     </scm>
 
     <modules>
