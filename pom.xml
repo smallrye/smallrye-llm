@@ -89,14 +89,12 @@
     </scm>
 
     <modules>
-        <module>examples</module>
         <module>smallrye-llm-langchain4j-portable-extension</module>
         <module>smallrye-llm-langchain4j-buildcompatible-extension</module>
         <module>smallrye-llm-langchain4j-core</module>
         <module>smallrye-llm-langchain4j-config-mpconfig</module>
         <module>smallrye-llm-langchain4j-fault-tolerance</module>
         <module>smallrye-llm-langchain4j-telemetry</module>
-        <module>smallrye-llm-langchain4j-integration-tests</module>
     </modules>
 
     <dependencyManagement>
@@ -237,6 +235,7 @@
             </activation>
             <modules>
                 <module>examples</module>
+                <module>smallrye-llm-langchain4j-integration-tests</module>
             </modules>
         </profile>
     </profiles>
