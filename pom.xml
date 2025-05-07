@@ -36,7 +36,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <dev.langchain4j.version>1.0.0-beta3</dev.langchain4j.version>
+        <dev.langchain4j.core.version>1.0.0-rc1</dev.langchain4j.core.version>
+        <dev.langchain4j.version>1.0.0-beta4</dev.langchain4j.version>
         <jakartaee-api.version>10.0.0</jakartaee-api.version>
         <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
 
@@ -112,6 +113,12 @@
                 <type>pom</type>
             </dependency>
             <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${dev.langchain4j.core.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
                 <groupId>io.smallrye.common</groupId>
                 <artifactId>smallrye-common-bom</artifactId>
                 <version>${version.smallrye.common}</version>
@@ -159,7 +166,7 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j</artifactId>
-                <version>${dev.langchain4j.version}</version>
+                <version>${dev.langchain4j.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.smallrye.llm</groupId>

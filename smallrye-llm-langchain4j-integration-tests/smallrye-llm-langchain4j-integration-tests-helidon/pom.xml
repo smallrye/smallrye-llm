@@ -41,13 +41,12 @@
         <dependency>
             <groupId>org.jboss.logmanager</groupId>
             <artifactId>jboss-logmanager</artifactId>
-            <version>3.1.2.Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-core</artifactId>
-            <version>${dev.langchain4j.version}</version> <!-- We MUST force the version because helidon embed a previous version -->
+            <version>${dev.langchain4j.core.version}</version> <!-- We MUST force the version because helidon embed a previous version -->
         </dependency>
         <!-- Logging dependency -->
         <dependency>
