@@ -21,7 +21,7 @@
 
     <groupId>dev.langchain4j.cdi</groupId>
     <artifactId>langchain4j-cdi-parent</artifactId>
-    <version>1.0.0-rc1</version>
+    <version>1.0.0-beta4</version>
 
     <packaging>pom</packaging>
     <name>Langchain4J CDI Parent POM</name>
@@ -33,7 +33,8 @@
         <version.smallrye.common>2.9.0</version.smallrye.common>
         <version.asm>9.7</version.asm>
         <version.smallrye.testing>2.3.1</version.smallrye.testing>
-        <version.langchain4j.parent-bom>1.0.0-beta4</version.langchain4j.parent-bom>
+        <dev.langchain4j.core.version>1.0.0-rc1</dev.langchain4j.core.version>
+        <dev.langchain4j.version>${project.version}</dev.langchain4j.version>
         <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
         <weld-junit5.version>4.0.4.Final</weld-junit5.version>
         <version.weld>5.1.5.Final</version.weld>
@@ -98,7 +99,7 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-bom</artifactId>
-                <version>${version.langchain4j.parent-bom}</version>
+                <version>${dev.langchain4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -143,7 +144,7 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j</artifactId>
-                <version>${project.version}</version>
+                <version>${dev.langchain4j.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>

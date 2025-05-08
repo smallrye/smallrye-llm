@@ -4,7 +4,7 @@
     <parent>
         <groupId>dev.langchain4j.examples</groupId>
         <artifactId>langchain4j-examples</artifactId>
-        <version>1.0.0-rc1</version>
+        <version>1.0.0-beta4</version>
     </parent>
 
     <artifactId>helidon-car-booking</artifactId>
