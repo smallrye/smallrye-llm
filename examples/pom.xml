@@ -3,7 +3,7 @@
     <parent>
         <groupId>dev.langchain4j.cdi</groupId>
         <artifactId>langchain4j-cdi-parent</artifactId>
-        <version>1.0.0-beta4</version>
+        <version>1.0.0-beta5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>langchain4j-examples</artifactId>
