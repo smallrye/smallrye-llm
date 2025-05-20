@@ -14,7 +14,7 @@
 
     <properties>
         <!-- OpenLiberty -->
-        <openliberty.version>25.0.0.4</openliberty.version>
+        <openliberty.version>25.0.0.5</openliberty.version>
         <liberty-maven-plugin.version>3.11.3</liberty-maven-plugin.version>
         <arquillian-liberty.version>2.1.3</arquillian-liberty.version>
     </properties>
