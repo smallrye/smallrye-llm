@@ -15,7 +15,7 @@ Please refer to our Wiki for the [Contribution Guidelines](https://github.com/la
 
 
 ## Issues
-The langchain4j-microprofile-jakarta project uses GitHub to manage issues. All issues can be found [here](https://github.com/langchain4j/langchain4j-microprofile-jakarta/issues). 
+The langchain4j-cdi project uses GitHub to manage issues. All issues can be found [here](https://github.com/langchain4j/langchain4j-cdi/issues). 
 
 To create a new issue, comment on an existing issue, or assign an issue to yourself, you'll need to first [create a GitHub account](https://github.com/).
 
@@ -37,12 +37,12 @@ You will need:
 
 To setup your development environment you need to:
 
-1. First `cd` to the directory where you cloned the project (eg: `cd langchain4j-microprofile`)
+1. First `cd` to the directory where you cloned the project (eg: `cd langchain4j-cdi`)
 
-2. To build `langchain4j-microprofile` run:
+2. To build `langchain4j-cdi` run:
     
     ```
-    mvn clean install
+    mvn package
     ```
 
 3. To run the tests:   
@@ -53,6 +53,6 @@ To setup your development environment you need to:
 
 ## Code Reviews
 
-All submissions, including submissions by project members, need to be reviewed by at least one langchain4j-microprofile-jakarta committer before being merged.
+All submissions, including submissions by project members, need to be reviewed by at least one langchain4j-cdi committer before being merged.
 
 The [GitHub Pull Request Review Process](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) is followed for every pull request.

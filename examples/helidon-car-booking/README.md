@@ -11,7 +11,7 @@ It is based on a simplified car booking application inspired from the [Java meet
 . a chat service to freely discuss with a customer assistant
 . a fraud service to determine if a customer is a fraudster.
 
-For the sake of simplicity, there is no database interaction, the application is standalone and can be used "as is". Of course thanks to Quarkus, it can  easily be extended according to your needs.
+For the sake of simplicity, there is no database interaction, the application is standalone and can be used "as is". Of course thanks to Quarkus, it can easily be extended according to your needs.
 
 Warning: you must first configure the application to connect to an LLM that supports Function Calling (see Environment Variables below).
 
