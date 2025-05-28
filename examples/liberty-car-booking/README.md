@@ -10,6 +10,7 @@ These are the steps to run this service.
  	> `mvn liberty:dev -e`
  	
 ## Application requirements:
+
 - JDK 17 and higher
 - Maven 3.9.9 and higher
 - LangChain4j 1.0.0-beta2 or higher.

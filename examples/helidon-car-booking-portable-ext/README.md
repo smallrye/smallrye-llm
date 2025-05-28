@@ -26,17 +26,26 @@ The project has been developed and tested with:
 * Maven 3.9.5
 * Testing against GPT 3.5 and 4.0 on a dedicated Azure instance (to be customized in your context). 
 
-During my tests, GPT 3.5 has proved to be faster but less precise en consistent than GPT 4. In particular, GPT 4 has provided much better result with Fraud Detection.
+During my tests, GPT 3.5 has proved to be faster but less precise and consistent than GPT 4. In particular, GPT 4 has provided much better result with Fraud Detection.
+
+## Application requirements:
+
+- JDK 17 and higher
+- Maven 3.9.9 and higher
+- LangChain4j 1.0.0-beta5 or higher.
+- Testing against GPT 4.0 on a dedicated Azure instance (to be customized in your context). 
+
+Then you can access the application through the browser of your choice.
 
 ## Differences with Quarkus-LangChain4j
 
 Quarkus provides a deep integration with LangChain4j thanks to a specific [extension](https://docs.quarkiverse.io/quarkus-langchain4j/dev/index.html).
 
-In particular, it provides a powerful @RegisterAiService annotation and network interactions with LLMs are managed with its own RestClient.
+In particular, it provides a powerful `@RegisterAiService` annotation and network interactions with LLMs are managed with its own RestClient.
 
 This example is based on a standard usage of LangChain4j with Helidon. There is no such deep integration. 
 
-I've added 3 technical classes to manage "the glue" (more or less the equivallent of @RegisterAiService):
+I've added 3 technical classes to manage "the glue" (more or less the equivalent of `@RegisterAiService`):
 
 * ModelFactory: generates an OpenAI Chat model
 * ChatAiServiceFactory: generates a Chat assistant
