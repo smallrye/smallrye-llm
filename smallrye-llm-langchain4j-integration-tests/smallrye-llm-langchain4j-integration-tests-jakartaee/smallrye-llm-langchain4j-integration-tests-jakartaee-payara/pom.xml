@@ -14,7 +14,7 @@
 
     <properties>
         <!-- Payara -->
-        <payara.version>6.2025.4</payara.version>
+        <payara.version>6.2025.6</payara.version>
         <payara-arquillian.version>3.1</payara-arquillian.version>
     </properties>
 
