@@ -3,11 +3,11 @@
     <parent>
         <groupId>dev.langchain4j.cdi</groupId>
         <artifactId>langchain4j-cdi-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>langchain4j-examples</artifactId>
-    <groupId>dev.langchain4j.examples</groupId>
+    <artifactId>langchain4j-cdi-examples</artifactId>
+    <groupId>dev.langchain4j.cdi.examples</groupId>
     <name>Langchain4J CDI Examples: Parent</name>
 
     <packaging>pom</packaging>
@@ -25,27 +25,27 @@
         <dependencies>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-build-compatible-ext</artifactId>
+                <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-config</artifactId>
+                <artifactId>langchain4j-cdi-config</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-portable-ext</artifactId>
+                <artifactId>langchain4j-cdi-portable-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-fault-tolerance</artifactId>
+                <artifactId>langchain4j-cdi-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-telemetry</artifactId>
+                <artifactId>langchain4j-cdi-telemetry</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

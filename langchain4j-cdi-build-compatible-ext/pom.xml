@@ -7,7 +7,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>langchain4j-build-compatible-ext</artifactId>
+    <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
     <name>LangChain4j CDI Build Compatible Extension</name>
 
     <build>
@@ -62,13 +62,13 @@
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-core</artifactId>
+            <artifactId>langchain4j-cdi-core</artifactId>
         </dependency>
 
         <!-- TEST -->
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-config</artifactId>
+            <artifactId>langchain4j-cdi-config</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

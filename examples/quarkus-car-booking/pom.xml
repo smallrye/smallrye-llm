@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>langchain4j-examples</artifactId>
-        <groupId>dev.langchain4j.examples</groupId>
+        <artifactId>langchain4j-cdi-examples</artifactId>
+        <groupId>dev.langchain4j.cdi.examples</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
@@ -36,19 +36,19 @@
     <dependencies>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-build-compatible-ext</artifactId>
+            <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-config</artifactId>
+            <artifactId>langchain4j-cdi-config</artifactId>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-fault-tolerance</artifactId>
+            <artifactId>langchain4j-cdi-fault-tolerance</artifactId>
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-core</artifactId>
+            <artifactId>langchain4j-cdi-core</artifactId>
         </dependency>
         <!-- langchain4j dependencies -->
         <dependency>

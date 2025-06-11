@@ -7,23 +7,22 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>langchain4j-config</artifactId>
-    <name>LangChain4j CDI - Microprofile Config</name>
+    <artifactId>langchain4j-cdi-core</artifactId>
+    <name>LangChain4J CDI Core</name>
 
     <dependencies>
         <dependency>
-            <groupId>io.smallrye.config</groupId>
-            <artifactId>smallrye-config</artifactId>
-            <scope>test</scope>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.microprofile.config</groupId>
-            <artifactId>microprofile-config-api</artifactId>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-core</artifactId>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
         </dependency>
     </dependencies>
 </project>

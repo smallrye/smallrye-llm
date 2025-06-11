@@ -72,12 +72,12 @@
 
     <modules>
         <module>examples</module>
-        <module>langchain4j-portable-ext</module>
-        <module>langchain4j-build-compatible-ext</module>
-        <module>langchain4j-core</module>
-        <module>langchain4j-config</module>
-        <module>langchain4j-fault-tolerance</module>
-        <module>langchain4j-telemetry</module>
+        <module>langchain4j-cdi-portable-ext</module>
+        <module>langchain4j-cdi-build-compatible-ext</module>
+        <module>langchain4j-cdi-core</module>
+        <module>langchain4j-cdi-config</module>
+        <module>langchain4j-cdi-fault-tolerance</module>
+        <module>langchain4j-cdi-telemetry</module>
     </modules>
 
     <dependencyManagement>
@@ -145,32 +145,32 @@
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-build-compatible-ext</artifactId>
+                <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-core</artifactId>
+                <artifactId>langchain4j-cdi-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-config</artifactId>
+                <artifactId>langchain4j-cdi-config</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-portable-ext</artifactId>
+                <artifactId>langchain4j-cdi-portable-ext</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-telemetry</artifactId>
+                <artifactId>langchain4j-cdi-telemetry</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>dev.langchain4j.cdi</groupId>
-                <artifactId>langchain4j-fault-tolerance</artifactId>
+                <artifactId>langchain4j-cdi-fault-tolerance</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

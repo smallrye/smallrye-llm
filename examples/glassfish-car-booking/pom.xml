@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>dev.langchain4j.examples</groupId>
-        <artifactId>langchain4j-examples</artifactId>
+        <groupId>dev.langchain4j.cdi.examples</groupId>
+        <artifactId>langchain4j-cdi-examples</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-build-compatible-ext</artifactId>
+            <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>jakarta.enterprise</groupId>

@@ -5,7 +5,7 @@
         <artifactId>langchain4j-cdi-parent</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>langchain4j-telemetry</artifactId>
+    <artifactId>langchain4j-cdi-telemetry</artifactId>
     <name>LangChain4J CDI - Microprofile Telemetry</name>
 
     <dependencies>
@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>dev.langchain4j.cdi</groupId>
-            <artifactId>langchain4j-core</artifactId>
+            <artifactId>langchain4j-cdi-core</artifactId>
         </dependency>
     </dependencies>
 </project>
