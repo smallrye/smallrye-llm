@@ -47,7 +47,7 @@
 
         <version.asm>9.7</version.asm>
         <weld-junit5.version>4.0.4.Final</weld-junit5.version>
-        <version.weld>5.1.5.Final</version.weld>
+        <version.weld>5.1.6.Final</version.weld>
         <version.org.jboss.logging>3.6.1.Final</version.org.jboss.logging>
 
         <!-- SmallRye -->
